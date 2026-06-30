@@ -21,8 +21,9 @@
   --transition:0.35s cubic-bezier(0.4,0,0.2,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
+html{scroll-behavior:smooth;scroll-padding-top:80px;background:#0A0A0A}
 body{font-family:'Heebo',sans-serif;background:var(--black);color:var(--text);line-height:1.65;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+body::before{content:'';position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:#0A0A0A;z-index:299;pointer-events:none}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none}
@@ -37,7 +38,9 @@ section{padding:84px 0}
 .divider{width:56px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px;margin-bottom:24px}
 
 /* ===== NAV — premium shrinking glass header ===== */
-nav{position:fixed;top:0;right:0;left:0;z-index:200;padding:16px 0;background:#0A0A0A;transition:padding .45s ease-in-out,box-shadow .45s ease-in-out,border-color .45s ease-in-out}
+nav{position:fixed;top:0;right:0;left:0;z-index:300;padding:16px 0;background-color:#0A0A0A;background:#0A0A0A;isolation:isolate;will-change:padding,transform,opacity;transition:transform .8s cubic-bezier(.33,1,.68,1),opacity .8s cubic-bezier(.33,1,.68,1),padding .45s ease-in-out,box-shadow .45s ease-in-out,border-color .45s ease-in-out}
+nav::before{content:'';position:absolute;left:0;right:0;bottom:100%;height:200px;background-color:#0A0A0A;pointer-events:none}
+nav.nav-hidden{transform:translateY(-100%);opacity:0;pointer-events:none;border-bottom:none!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 nav.scrolled{padding:13.5px 0;background:#0A0A0A;border-bottom:1px solid var(--gold-border);box-shadow:0 4px 24px rgba(0,0,0,.45),0 0 24px rgba(201,168,76,.08)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-size:1.4rem;font-weight:900;color:var(--champagne);letter-spacing:-.02em;white-space:nowrap;transition:font-size .45s ease-in-out}
@@ -880,7 +883,7 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
        instead so the hero never looks broken.
        ============================================================ -->
   <div class="hero-video-wrap">
-    <video class="hero-video" src="" autoplay muted loop playsinline preload="auto" poster=""></video>
+    <video class="hero-video" src="" autoplay muted playsinline preload="auto" poster=""></video>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-fade-edge" aria-hidden="true"></div>
@@ -1037,7 +1040,7 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
 
           <div class="gallery-slide is-active">
             <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.jpg')">
-              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.jpg" muted loop playsinline preload="metadata"></video>
+              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.jpg" muted playsinline preload="metadata"></video>
               <button class="gallery-item-click-catcher" type="button" data-lightbox-open aria-label="פתיחת הסרטון במסך מלא"></button>
               <div class="video-badge">VIDEO</div>
               <div class="gallery-overlay"><span>חתונה — אירוע</span></div>
@@ -1046,7 +1049,7 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
 
           <div class="gallery-slide">
             <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.jpg')">
-              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.jpg" muted loop playsinline preload="metadata"></video>
+              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.jpg" muted playsinline preload="metadata"></video>
               <button class="gallery-item-click-catcher" type="button" data-lightbox-open aria-label="פתיחת הסרטון במסך מלא"></button>
               <div class="video-badge">VIDEO</div>
               <div class="gallery-overlay"><span>חתונה — רחובות</span></div>
@@ -1055,7 +1058,7 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
 
           <div class="gallery-slide">
             <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/IMG_1239_c5cztf.jpg')">
-              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/IMG_1239_c5cztf.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/IMG_1239_c5cztf.jpg" muted loop playsinline preload="metadata"></video>
+              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/IMG_1239_c5cztf.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/IMG_1239_c5cztf.jpg" muted playsinline preload="metadata"></video>
               <button class="gallery-item-click-catcher" type="button" data-lightbox-open aria-label="פתיחת הסרטון במסך מלא"></button>
               <div class="video-badge">VIDEO</div>
               <div class="gallery-overlay"><span>חתונה — באר שבע</span></div>
@@ -1064,7 +1067,7 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
 
           <div class="gallery-slide">
             <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/20260527_202207792_ut4rzi.jpg')">
-              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/20260527_202207792_ut4rzi.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/20260527_202207792_ut4rzi.jpg" muted loop playsinline preload="metadata"></video>
+              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/20260527_202207792_ut4rzi.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/20260527_202207792_ut4rzi.jpg" muted playsinline preload="metadata"></video>
               <button class="gallery-item-click-catcher" type="button" data-lightbox-open aria-label="פתיחת הסרטון במסך מלא"></button>
               <div class="video-badge">VIDEO</div>
               <div class="gallery-overlay"><span>חתונה — מרכז הארץ</span></div>
@@ -1073,7 +1076,7 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
 
           <div class="gallery-slide">
             <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/IMG_1238_mdpsgy.jpg')">
-              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/du_9/IMG_1238_mdpsgy.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/IMG_1238_mdpsgy.jpg" muted loop playsinline preload="metadata"></video>
+              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/du_9/IMG_1238_mdpsgy.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/IMG_1238_mdpsgy.jpg" muted playsinline preload="metadata"></video>
               <button class="gallery-item-click-catcher" type="button" data-lightbox-open aria-label="פתיחת הסרטון במסך מלא"></button>
               <div class="video-badge">VIDEO</div>
               <div class="gallery-overlay"><span>חתונה — ראשון לציון</span></div>
@@ -1854,8 +1857,21 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
 
     /* ===== NAV SCROLL ===== */
     var nav = document.getElementById('main-nav');
+    var scrollTicking = false;
+    function onScrollDirection() {
+      var y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 80);
+      // header is visible ONLY at the very top of the page.
+      // once you scroll down it disappears and stays hidden — it does NOT return on scroll-up,
+      // only when you reach the very top again.
+      nav.classList.toggle('nav-hidden', y > 60);
+      scrollTicking = false;
+    }
     window.addEventListener('scroll', function () {
-      nav.classList.toggle('scrolled', window.scrollY > 80);
+      if (!scrollTicking) {
+        window.requestAnimationFrame(onScrollDirection);
+        scrollTicking = true;
+      }
     }, { passive: true });
 
     /* ===== MOBILE MENU ===== */
@@ -2523,6 +2539,8 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
     function playActiveVideo() {
       var v = slides[current].querySelector('.gallery-video');
       if (!v || !v.getAttribute('src')) return; // no source yet — nothing to play
+      // always restart the active video from the beginning so it never shows a stale last frame
+      try { v.currentTime = 0; } catch (e) {}
       // once the user has enabled sound, every video (including auto-advanced ones) plays with sound
       v.muted = !soundEnabled;
       v.volume = 1;
@@ -2599,8 +2617,7 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
 
     function startAuto() {
       stopAuto();
-      if (!galleryVisible) return; // never rotate while the gallery is off-screen
-      autoTimer = setInterval(next, AUTO_MS);
+      // no fixed timer — the carousel advances when the active video finishes (see 'ended' handler below)
     }
     function stopAuto() {
       if (autoTimer) clearInterval(autoTimer);
@@ -2610,6 +2627,17 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
       stopAuto();
       startAuto();
     }
+
+    /* when the active gallery video finishes, automatically move to the next one and play it */
+    videos.forEach(function (vid) {
+      vid.addEventListener('ended', function () {
+        // only the currently-active, on-screen video should trigger the advance
+        if (!galleryVisible) return;
+        var activeVid = slides[current].querySelector('.gallery-video');
+        if (vid !== activeVid) return;
+        next();
+      });
+    });
 
     /* dot navigation */
     dots.forEach(function (dot) {
@@ -2658,6 +2686,22 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
 
     window.addEventListener('resize', position);
 
+    /* stop the music/sound when the visitor leaves the page (switches tab, locks phone, closes site) */
+    function pauseAllGalleryVideos() {
+      videos.forEach(function (v) {
+        try { v.pause(); v.muted = true; } catch (e) {}
+      });
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        pauseAllGalleryVideos();
+      } else if (galleryVisible) {
+        playActiveVideo();
+      }
+    });
+    window.addEventListener('pagehide', pauseAllGalleryVideos);
+    window.addEventListener('blur', pauseAllGalleryVideos);
+
     /* play video + auto-rotation only while the gallery is on screen; stop when leaving */
     if ('IntersectionObserver' in window) {
       var playObserver = new IntersectionObserver(function (entries) {
@@ -2679,6 +2723,26 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
       galleryVisible = true;
       startAuto(); // fallback for old browsers without IntersectionObserver
     }
+
+    /* stop the music/video when the visitor leaves the site or switches tab/app */
+    function pauseAllOnLeave() {
+      videos.forEach(function (v) {
+        try { v.pause(); v.muted = true; } catch (e) {}
+      });
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        pauseAllOnLeave();
+      } else if (galleryVisible) {
+        // returned to the tab while still in the gallery — resume the active video
+        playActiveVideo();
+      }
+    });
+    window.addEventListener('pagehide', pauseAllOnLeave);
+    window.addEventListener('blur', function () {
+      // pause sound when the window loses focus (e.g. user switches app)
+      videos.forEach(function (v) { try { v.muted = true; } catch (e) {} });
+    });
 
     update();
     // auto-rotation is started by the IntersectionObserver only when the gallery is on screen
@@ -2712,6 +2776,8 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
       video.setAttribute('playsinline', '');
       video.setAttribute('webkit-playsinline', '');
       video.muted = false;         // play WITH sound (user clicked, so this is an allowed gesture)
+      /* clear any previous frame/source so the prior video is never shown */
+      try { video.pause(); video.removeAttribute('src'); video.load(); video.currentTime = 0; } catch (e) {}
       video.setAttribute('src', src);
       console.log('modalVideo src set to: ' + src);
       video.load();                // 3: force load of the new source
