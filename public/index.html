@@ -1,0 +1,3019 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0A0A0A" />
+<title>Kasa Events — עמדת צילום 360</title>
+<meta name="description" content="Kasa Events — השכרת עמדת צילום 360 לאירועים במרכז ובדרום הארץ." />
+<meta property="og:title" content="Kasa Events — עמדת צילום 360" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="he_IL" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --black:#0A0A0A;--black-mid:#111111;--card:#161616;--card-alt:#1E1E1E;
+  --gold:#C9A84C;--gold-light:#E8C96A;--gold-dim:rgba(201,168,76,0.15);--gold-border:rgba(201,168,76,0.3);
+  --champagne:#F5EDD7;--text:#D8D0BF;--muted:#7A7265;--white:#FFFFFF;
+  --radius-sm:8px;--radius-md:16px;--radius-lg:24px;
+  --transition:0.35s cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Heebo',sans-serif;background:var(--black);color:var(--text);line-height:1.65;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none}
+
+/* ===== UTILITIES ===== */
+.container{max-width:1160px;margin:0 auto;padding:0 20px}
+.gold{color:var(--gold)}
+.section-label{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-border);border-radius:20px;padding:4px 14px;margin-bottom:20px}
+.section-title{font-size:clamp(1.75rem,4.5vw,2.8rem);font-weight:900;color:var(--champagne);line-height:1.18;margin-bottom:16px}
+.section-sub{font-size:1rem;color:var(--muted);max-width:560px;line-height:1.8}
+section{padding:84px 0}
+.divider{width:56px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px;margin-bottom:24px}
+
+/* ===== NAV — premium shrinking glass header ===== */
+nav{position:fixed;top:0;right:0;left:0;z-index:200;padding:16px 0;background:#0A0A0A;transition:padding .45s ease-in-out,box-shadow .45s ease-in-out,border-color .45s ease-in-out}
+nav.scrolled{padding:13.5px 0;background:#0A0A0A;border-bottom:1px solid var(--gold-border);box-shadow:0 4px 24px rgba(0,0,0,.45),0 0 24px rgba(201,168,76,.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:1.4rem;font-weight:900;color:var(--champagne);letter-spacing:-.02em;white-space:nowrap;transition:font-size .45s ease-in-out}
+nav.scrolled .nav-logo{font-size:1.29rem}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:.88rem;font-weight:500;color:var(--text);transition:color var(--transition)}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--black);font-weight:700;font-size:.88rem;padding:10px 22px;border-radius:var(--radius-sm);transition:background var(--transition),transform var(--transition)}
+.nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;padding:8px;transition:gap .45s ease-in-out,transform .45s ease-in-out}
+.hamburger span{display:block;width:24px;height:2px;background:var(--champagne);border-radius:2px;transition:width .45s ease-in-out,background var(--transition),opacity var(--transition),transform var(--transition)}
+nav.scrolled .hamburger{gap:4.5px}
+nav.scrolled .hamburger span{width:22px}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--black);z-index:250;flex-direction:column;align-items:center;justify-content:center;gap:30px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1.35rem;font-weight:700;color:var(--champagne);transition:color var(--transition)}
+.mobile-menu a:hover,.mobile-menu a:active{color:var(--gold)}
+.mobile-close{position:absolute;top:calc(env(safe-area-inset-top,0px) + 18px);right:20px;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid var(--gold-border);font-size:1.5rem;color:var(--champagne);line-height:1;padding:0;cursor:pointer;z-index:2;transition:background .2s ease,transform .2s ease}
+.mobile-close:active{background:rgba(201,168,76,.22);transform:scale(.94)}
+.mobile-menu .mobile-wa-btn{display:flex;align-items:center;gap:12px;background:#25D366;color:#fff;font-weight:800;font-size:1.05rem;padding:15px 30px;border-radius:50px;box-shadow:0 4px 24px rgba(37,211,102,.35)}
+
+/* ===== HERO — cinematic video background ===== */
+#hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:90px 0 40px;background:#0a0a0a}
+.hero-video-wrap{position:absolute;inset:0;overflow:hidden;background:linear-gradient(160deg,rgba(201,168,76,.05) 0%,transparent 50%),linear-gradient(135deg,#0f0e0a 0%,#100e06 50%,#080808 100%)}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:heroZoom 22s ease-in-out infinite alternate}
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,5,4,.74) 0%,rgba(6,5,4,.86) 45%,rgba(4,4,3,.94) 100%),linear-gradient(160deg,rgba(201,168,76,.05) 0%,transparent 45%)}
+
+/* soft fade/blur where the hero meets the next section, hinting at more content below */
+.hero-fade-edge{position:absolute;left:0;right:0;bottom:0;height:90px;z-index:1;pointer-events:none;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 60%);mask-image:linear-gradient(to bottom,transparent,#000 60%);background:linear-gradient(to bottom,transparent,rgba(13,12,9,.9))}
+
+/* luxury gold particles — subtle ambient float, concentrated around the headline */
+.hero-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hp{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle,#F5E1A4 0%,#D4AF37 45%,rgba(212,175,55,0) 75%);
+  box-shadow:0 0 4px rgba(212,175,55,.35);
+  opacity:0;
+  animation:hpFloat ease-in-out infinite;
+}
+@keyframes hpFloat{
+  0%{transform:translate(0,0) scale(.85);opacity:0}
+  15%{opacity:var(--hp-max-opacity,.55)}
+  50%{transform:translate(var(--drift-x,6px),var(--drift-y,-14px)) scale(1);opacity:var(--hp-max-opacity,.55)}
+  85%{opacity:var(--hp-max-opacity,.55)}
+  100%{transform:translate(0,0) scale(.85);opacity:0}
+}
+/* sparkle variant — layered on top of a subset of particles for an occasional soft twinkle */
+.hp-sparkle{animation:hpFloat ease-in-out infinite, hpSparkle ease-in-out infinite}
+@keyframes hpSparkle{
+  0%,100%{filter:brightness(1) drop-shadow(0 0 0 rgba(245,225,164,0))}
+  50%{filter:brightness(1.6) drop-shadow(0 0 4px rgba(245,225,164,.6))}
+}
+
+.hero-content{position:relative;z-index:2;padding:0 20px;max-width:840px}
+
+/* staggered entrance: headline -> +0.2s subtitle -> +0.2s buttons */
+.hero-in{opacity:0;transform:translateY(22px);animation:heroIn .8s cubic-bezier(0.22,1,0.36,1) forwards}
+.hero-h1.hero-in{animation-delay:0s}
+.hero-sub.hero-in{animation-delay:.2s}
+.hero-btns.hero-in{animation-delay:.4s}
+@keyframes heroIn{to{opacity:1;transform:translateY(0)}}
+
+.hero-h1-wrap{position:relative;display:flex;align-items:center;justify-content:center;width:fit-content;margin:0 auto}
+
+.hero-h1{position:relative;z-index:1;font-size:clamp(1.93rem,6.1vw,3.68rem);font-weight:900;color:var(--white);line-height:1.16;margin-bottom:14px;letter-spacing:-.02em;text-shadow:0 2px 24px rgba(0,0,0,.5)}
+.hero-h1 em{font-style:normal;color:var(--gold)}
+.hero-sub{font-size:clamp(.98rem,2.5vw,1.18rem);color:rgba(245,237,215,.82);line-height:1.65;margin-bottom:24px;max-width:640px;margin-left:auto;margin-right:auto;text-shadow:0 1px 16px rgba(0,0,0,.4)}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);font-weight:800;font-size:.92rem;padding:11px 26px;border-radius:999px;transition:transform var(--transition),box-shadow var(--transition);box-shadow:0 3px 18px rgba(201,168,76,.3);white-space:nowrap}
+.btn-gold:hover,.btn-gold:active{transform:translateY(-2px);box-shadow:0 6px 26px rgba(201,168,76,.42)}
+.btn-outline{background:transparent;border:1.5px solid var(--gold-border);color:var(--champagne);font-weight:700;font-size:.92rem;padding:11px 26px;border-radius:999px;transition:border-color var(--transition),color var(--transition),transform var(--transition);white-space:nowrap}
+.btn-outline:hover,.btn-outline:active{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;color:var(--muted);font-size:.72rem;letter-spacing:.12em}
+.scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollDrop 2s ease-in-out infinite}
+@keyframes scrollDrop{0%,100%{opacity:0;transform:scaleY(0) translateY(-10px)}50%{opacity:1;transform:scaleY(1) translateY(0)}}
+
+/* ===== TRUST PILL STRIP — sits between hero and the next section ===== */
+#trust-strip{background:var(--black);padding:26px 0;display:flex;justify-content:center}
+.trust-pill-wrap{opacity:0;animation:trustFadeIn .7s cubic-bezier(0.22,1,0.36,1) .15s forwards}
+@keyframes trustFadeIn{to{opacity:1}}
+
+/* rotating premium pill */
+.hero-pill{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:34px;background:rgba(10,10,10,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(201,168,76,.45);border-radius:30px;padding:7px 20px;box-shadow:0 0 0 1px rgba(201,168,76,.12),0 0 18px rgba(201,168,76,.22),0 4px 16px rgba(0,0,0,.35);overflow:hidden}
+.hero-pill-item{display:flex;align-items:center;gap:7px;font-size:.82rem;font-weight:600;color:#fff;white-space:nowrap;opacity:0;transform:translateY(10px);transition:opacity .4s cubic-bezier(0.22,1,0.36,1),transform .4s cubic-bezier(0.22,1,0.36,1);position:absolute;left:0;right:0;justify-content:center}
+.hero-pill-item.active{position:relative;opacity:1;transform:translateY(0)}
+.hero-pill-item.leaving{opacity:0;transform:translateY(-10px)}
+.hero-pill-icon{font-size:.92rem;line-height:1;color:var(--gold)}
+
+/* ===== WHY — glassmorphism, compact, premium ===== */
+#why{background:var(--black-mid);position:relative}
+#why .section-label{font-size:.76rem;letter-spacing:.2em;border:1px solid rgba(230,199,106,.45);border-radius:24px;padding:6px 18px;background:rgba(230,199,106,.04);box-shadow:0 0 0 1px rgba(230,199,106,.06) inset,0 0 16px rgba(216,180,90,.16)}
+#why::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:80%;height:40%;background:radial-gradient(ellipse at center,rgba(230,199,106,.035),transparent 70%);pointer-events:none}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-top:40px;position:relative}
+.why-card{
+  background:
+    linear-gradient(160deg,rgba(255,255,255,.025) 0%,transparent 40%),
+    linear-gradient(200deg,rgba(216,180,90,.05) 0%,transparent 55%),
+    linear-gradient(135deg,#0d0c0a 0%,#16140f 50%,#0a0a09 100%);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(230,199,106,.22);
+  border-radius:28px;
+  padding:22px 20px;
+  transition:transform .35s cubic-bezier(0.34,1.56,0.64,1),border-color .3s ease,box-shadow .35s ease;
+  position:relative;
+  box-shadow:0 0 0 1px rgba(230,199,106,.05) inset,0 1px 0 rgba(255,255,255,.04) inset,0 0 22px rgba(216,180,90,.07),0 16px 34px rgba(0,0,0,.4);
+}
+.why-card:hover{transform:translateY(-4px);border-color:rgba(240,214,122,.5);box-shadow:0 0 0 1px rgba(230,199,106,.08) inset,0 1px 0 rgba(255,255,255,.05) inset,0 0 32px rgba(216,180,90,.16),0 20px 42px rgba(0,0,0,.45)}
+.why-card:active,.why-card.tap-glow{transform:translateY(-2px) scale(.985);border-color:rgba(240,214,122,.6);box-shadow:0 0 0 1px rgba(230,199,106,.1) inset,0 0 30px rgba(216,180,90,.32),0 14px 30px rgba(0,0,0,.4)}
+.why-icon{width:32px;height:32px;border-radius:11px;background:linear-gradient(135deg,rgba(240,214,122,.18),rgba(216,180,90,.1));border:1px solid rgba(230,199,106,.3);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;font-size:.94rem;margin-bottom:12px;box-shadow:0 0 12px rgba(216,180,90,.12) inset}
+.why-card h3{font-size:.84rem;font-weight:700;color:var(--champagne);margin-bottom:5px;line-height:1.3}
+.why-card p{font-size:.73rem;color:var(--muted);line-height:1.5}
+
+/* ===== PREMIUM ENTRANCE — spring scale + blur-out + slide, staggered ===== */
+.premium-entrance{
+  opacity:0;
+  transform:translateY(18px) scale(.9);
+  filter:blur(6px);
+  transition:opacity .7s cubic-bezier(0.34,1.56,0.64,1),
+             transform .7s cubic-bezier(0.34,1.56,0.64,1),
+             filter .7s ease-out;
+}
+.premium-entrance.visible{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+.entrance-d0{transition-delay:0s}
+.entrance-d1{transition-delay:.15s}
+.entrance-d2{transition-delay:.3s}
+.entrance-d3{transition-delay:.45s}
+.entrance-d4{transition-delay:.6s}
+.entrance-d5{transition-delay:.75s}
+
+/* one-time gold sweep across the grid once all cards have entered */
+.why-grid.sweep-ready{position:relative}
+.why-grid.sweep-ready::after{
+  content:'';
+  position:absolute;inset:0;
+  pointer-events:none;
+  background:linear-gradient(100deg,transparent 40%,rgba(232,201,106,.22) 50%,transparent 60%);
+  background-size:250% 100%;
+  background-position:160% 0;
+  opacity:0;
+}
+.why-grid.sweep-run::after{
+  animation:premiumSweep 1.1s ease-out 1 both;
+}
+@keyframes premiumSweep{
+  0%{background-position:160% 0;opacity:0}
+  12%{opacity:1}
+  80%{opacity:1}
+  100%{background-position:-60% 0;opacity:0}
+}
+
+/* ===== EVENTS (legacy class kept harmless if referenced) ===== */
+
+/* ===== GALLERY — premium video carousel (Netflix/Apple-TV style) ===== */
+#gallery{background:var(--black)}
+.gallery-carousel{max-width:600px;margin:32px auto 0;position:relative}
+.gallery-viewport{overflow:hidden;position:relative;padding:6px 0}
+.gallery-track{display:flex;align-items:stretch;will-change:transform;transition:transform .55s cubic-bezier(0.22,1,0.36,1);touch-action:pan-y}
+.gallery-slide{flex:0 0 42%;max-width:42%;padding:0 9px;box-sizing:border-box;display:flex;cursor:pointer}
+.gallery-item{flex:1;width:100%;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:var(--card);position:relative;transition:transform .5s cubic-bezier(0.22,1,0.36,1),opacity .5s ease,filter .5s ease,box-shadow .5s ease,border-color .5s ease;transform:scale(.88);opacity:.55;filter:brightness(.7) saturate(.85);border:1px solid rgba(201,168,76,.14)}
+.gallery-slide.is-active .gallery-item{
+  transform:scale(1);
+  opacity:1;
+  filter:brightness(1) saturate(1.05);
+  border-color:rgba(232,201,106,.6);
+  box-shadow:0 0 0 1px rgba(232,201,106,.4),
+             0 0 18px rgba(201,168,76,.35),
+             0 0 44px rgba(201,168,76,.22),
+             0 20px 50px rgba(0,0,0,.5);
+}
+.gallery-item::after{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,201,106,.5),rgba(201,168,76,.05) 40%,rgba(232,201,106,.35) 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .5s ease;pointer-events:none}
+.gallery-slide.is-active .gallery-item::after{opacity:1}
+.gallery-item video{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;display:block;background:transparent}
+.gallery-item iframe{width:100%;height:100%;border:0;display:block;background:linear-gradient(150deg,var(--card-alt),var(--card))}
+/* blurred, zoomed copy of the thumbnail fills the card behind the contained media (no black bars) */
+.gallery-item::before{content:'';position:absolute;inset:0;z-index:0;background-image:var(--thumb,none);background-size:cover;background-position:center;filter:blur(22px) brightness(.5) saturate(1.05);transform:scale(1.25);pointer-events:none}
+.gallery-item.no-thumb::before{background:linear-gradient(150deg,var(--card-alt),var(--card))}
+.gallery-item-click-catcher{position:absolute;inset:0;z-index:2;background:transparent;border:none;cursor:pointer;padding:0}
+.gallery-overlay{position:absolute;inset:0;z-index:3;display:flex;align-items:flex-end;padding:14px;pointer-events:none}
+.gallery-overlay span{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.video-badge{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);font-size:.64rem;font-weight:800;border-radius:6px;padding:3px 8px;letter-spacing:.05em;z-index:3}
+
+.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(17,17,17,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(201,168,76,.35);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:background .25s ease,border-color .25s ease,transform .25s ease}
+.gallery-arrow:hover{background:rgba(201,168,76,.18);border-color:var(--gold);color:var(--gold-light)}
+.gallery-arrow:active{transform:translateY(-50%) scale(.92)}
+.gallery-arrow svg{width:15px;height:15px;fill:none;color:var(--champagne)}
+.gallery-arrow-prev{right:2px}
+.gallery-arrow-next{left:2px}
+
+.gallery-dots{display:flex;justify-content:center;gap:7px;margin-top:16px}
+.gallery-dot{width:7px;height:7px;border-radius:50%;background:rgba(201,168,76,.25);border:none;padding:0;cursor:pointer;transition:background .3s ease,transform .3s ease}
+.gallery-dot.active{background:linear-gradient(135deg,var(--gold),var(--gold-light));transform:scale(1.3);box-shadow:0 0 8px rgba(201,168,76,.6)}
+
+/* ===== PRICING ===== */
+#pricing{background:var(--black-mid);padding-bottom:100px}
+
+/* quick comparison strip — shown above the two cards */
+.compare-strip{max-width:480px;margin:32px auto 0;background:rgba(255,255,255,.03);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(201,168,76,.18);border-radius:16px;overflow:hidden}
+.compare-row{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center}
+.compare-row + .compare-row{border-top:1px solid rgba(201,168,76,.1)}
+.compare-row.compare-head{background:rgba(201,168,76,.08)}
+.compare-cell{padding:10px 8px;text-align:center;font-size:.78rem;color:var(--text)}
+.compare-cell.compare-label{font-size:.72rem;color:var(--muted);text-align:center}
+.compare-head .compare-cell{font-weight:800;color:var(--champagne);font-size:.82rem}
+.compare-head .compare-cell.vip-col{color:var(--gold)}
+.compare-row:not(.compare-head) .compare-cell:nth-child(2){font-weight:600}
+.compare-row:not(.compare-head) .compare-cell:nth-child(3){font-weight:700;color:var(--gold-light)}
+
+.pricing-grid{display:flex;flex-direction:column;gap:18px;margin-top:30px;max-width:480px;margin-left:auto;margin-right:auto}
+.price-card{background:var(--card);border:1px solid var(--gold-border);border-radius:var(--radius-lg);padding:26px 24px;position:relative;transition:transform var(--transition),box-shadow var(--transition)}
+.price-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.price-card.featured{background:linear-gradient(160deg,#1C1A12,var(--card));border:1.5px solid var(--gold);box-shadow:0 0 0 1px rgba(201,168,76,.32),0 18px 50px rgba(201,168,76,.14)}
+.price-card.featured:hover{transform:translateY(-3px)}
+.featured-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);font-size:.74rem;font-weight:800;letter-spacing:.05em;padding:6px 18px;border-radius:20px;white-space:nowrap;box-shadow:0 4px 14px rgba(201,168,76,.4)}
+.price-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.price-name{font-size:1.35rem;font-weight:900;color:var(--champagne);display:flex;align-items:center;gap:8px}
+.price-name .pname-icon{font-size:1.1rem}
+.price-line{font-size:1.15rem;font-weight:800;color:var(--gold);white-space:nowrap}
+.price-line .pl-prefix{font-size:.8rem;font-weight:600;color:var(--muted);margin-left:3px}
+.price-desc{font-size:.84rem;color:var(--muted);line-height:1.6;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:8px}
+.price-features li{display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--text)}
+.price-features li::before{content:'✓';flex-shrink:0;color:var(--gold);font-weight:700;font-size:.82rem;margin-top:2px}
+.price-features li.highlight{color:var(--gold);font-weight:700;font-size:.93rem}
+.price-features li.highlight::before{color:var(--gold-light);font-weight:900;font-size:.93rem}
+
+/* extra features — always visible (toggle removed) */
+.price-features-extra{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:9px}
+.price-features-extra li{display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--text)}
+.price-features-extra li::before{content:'✓';flex-shrink:0;color:var(--gold);font-weight:700;font-size:.82rem;margin-top:2px}
+
+/* VIP premium note */
+.price-premium-note{display:flex;align-items:flex-start;gap:9px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.35);border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:.78rem;color:var(--champagne);line-height:1.55}
+.price-premium-note .ppn-icon{flex-shrink:0;font-size:1rem;line-height:1}
+.price-premium-note strong{color:var(--gold)}
+
+.price-btn{display:block;width:100%;text-align:center;padding:13px;border-radius:var(--radius-sm);font-size:.92rem;font-weight:700;transition:transform var(--transition),box-shadow var(--transition)}
+.price-btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);box-shadow:0 4px 18px rgba(201,168,76,.3)}
+.price-btn-primary:hover,.price-btn-primary:active{transform:translateY(-2px);box-shadow:0 8px 26px rgba(201,168,76,.45)}
+.price-btn-outline{border:1.5px solid var(--gold-border);color:var(--champagne)}
+.price-btn-outline:hover,.price-btn-outline:active{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+/* ===== TESTIMONIALS — compact WhatsApp-style peek carousel ===== */
+#testimonials{background:var(--black-mid)}
+
+.trust-header{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:8px;text-align:center}
+.trust-stars{font-size:1.05rem;letter-spacing:3px;color:var(--gold);text-shadow:0 0 12px rgba(201,168,76,.35)}
+.trust-label{font-size:.9rem;font-weight:700;color:var(--champagne)}
+.trust-sub{font-size:.78rem;color:var(--muted)}
+
+.review-carousel{max-width:560px;margin:26px auto 0;position:relative}
+.review-viewport{overflow:hidden;position:relative;padding:6px 0}
+.review-track{display:flex;align-items:stretch;will-change:transform;transition:transform .55s cubic-bezier(0.22,1,0.36,1);touch-action:pan-y}
+.review-slide{flex:0 0 68%;max-width:68%;padding:0 6px;box-sizing:border-box;display:flex;cursor:pointer}
+
+/* card shell — premium black+gold frame around the WA-style bubble */
+.review-card{
+  flex:1;width:100%;border-radius:14px;overflow:hidden;background:var(--card);
+  position:relative;display:flex;flex-direction:column;
+  transition:transform .5s cubic-bezier(0.22,1,0.36,1),opacity .5s ease,filter .5s ease,box-shadow .5s ease,border-color .5s ease;
+  transform:scale(.85);opacity:.58;filter:brightness(.76) saturate(.88);
+  border:1px solid rgba(201,168,76,.14);
+}
+.review-slide.is-active .review-card{
+  transform:scale(1);
+  opacity:1;
+  filter:brightness(1) saturate(1.05);
+  border-color:rgba(232,201,106,.55);
+  box-shadow:0 0 0 1px rgba(232,201,106,.38),
+             0 0 16px rgba(201,168,76,.3),
+             0 0 38px rgba(201,168,76,.18),
+             0 18px 42px rgba(0,0,0,.45);
+}
+.review-card::after{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,201,106,.45),rgba(201,168,76,.04) 40%,rgba(232,201,106,.3) 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .5s ease;pointer-events:none;z-index:1}
+.review-slide.is-active .review-card::after{opacity:1}
+
+/* mini WhatsApp chat header — logo profile picture on the right, inside the card */
+.review-wa-header{display:flex;flex-direction:row;align-items:center;gap:12px;padding:15px 14px;background:#1F2C26;border-bottom:1px solid rgba(201,168,76,.12)}
+.review-wa-avatar{position:relative;flex-shrink:0;width:46px;height:46px;border-radius:50%;background-image:url("data:image/png;base64,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");background-size:66%;background-repeat:no-repeat;background-position:center;background-color:#000;border:1.25px solid #B8923C;box-shadow:0 0 0 1px rgba(184,146,60,.5),0 0 5px rgba(201,168,76,.85),0 0 11px rgba(180,148,60,.7),0 0 22px rgba(150,120,45,.5),0 0 38px rgba(120,95,35,.3)}
+/* very subtle gold halo around the frame */
+.review-wa-avatar::before{content:'';position:absolute;inset:-7px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,rgba(216,180,90,.28) 0%,rgba(201,168,76,.1) 50%,transparent 72%);animation:waGlowPulse 3.6s ease-in-out infinite}
+/* many small gold sparkle particles around the ring (gold dust) */
+.review-wa-avatar::after{content:'';position:absolute;inset:-9px;border-radius:50%;pointer-events:none;z-index:-1;
+  background-image:
+    radial-gradient(circle,rgba(255,245,210,1) 0 1.2px,transparent 1.7px),
+    radial-gradient(circle,rgba(244,224,150,.95) 0 .8px,transparent 1.2px),
+    radial-gradient(circle,rgba(255,240,190,1) 0 1px,transparent 1.5px),
+    radial-gradient(circle,rgba(232,201,106,.9) 0 .7px,transparent 1.1px),
+    radial-gradient(circle,rgba(255,245,210,.95) 0 1.1px,transparent 1.5px),
+    radial-gradient(circle,rgba(244,224,150,.9) 0 .7px,transparent 1.1px),
+    radial-gradient(circle,rgba(255,240,190,1) 0 .9px,transparent 1.3px),
+    radial-gradient(circle,rgba(232,201,106,.85) 0 .8px,transparent 1.2px),
+    radial-gradient(circle,rgba(255,245,210,1) 0 1px,transparent 1.4px),
+    radial-gradient(circle,rgba(244,224,150,.9) 0 .6px,transparent 1px),
+    radial-gradient(circle,rgba(255,240,190,.95) 0 .9px,transparent 1.3px),
+    radial-gradient(circle,rgba(232,201,106,.85) 0 .7px,transparent 1.1px),
+    radial-gradient(circle,rgba(255,245,210,.9) 0 .8px,transparent 1.2px),
+    radial-gradient(circle,rgba(244,224,150,.95) 0 1px,transparent 1.4px);
+  background-repeat:no-repeat;
+  background-position:50% 1%,72% 5%,90% 18%,99% 38%,96% 60%,85% 82%,68% 95%,48% 99%,30% 95%,14% 82%,3% 60%,1% 38%,9% 17%,27% 5%;
+  animation:waSparkle 3s ease-in-out infinite}
+@keyframes waGlowPulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+@keyframes waSparkle{0%,100%{opacity:.6}50%{opacity:1}}
+
+.review-wa-headtext{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.review-wa-title{font-size:.74rem;font-weight:700;color:#E9EDEF;letter-spacing:.02em}
+.review-wa-status{display:flex;align-items:center;gap:5px;font-size:.6rem;color:#8FD89A;margin-top:1px}
+.review-wa-dot{width:6px;height:6px;border-radius:50%;background:#25D366;box-shadow:0 0 6px rgba(37,211,102,.7);flex-shrink:0}
+
+/* WhatsApp-style bubble body */
+.review-body{background:#0B141A;padding:12px 12px 10px;flex:1;display:flex;flex-direction:column;border-radius:0 0 14px 14px}
+.review-bubble{background:#202C33;border-radius:9px 9px 9px 2px;padding:10px 12px 8px;position:relative;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.review-bubble::before{content:'';position:absolute;bottom:0;left:-6px;width:0;height:0;border-style:solid;border-width:0 7px 7px 0;border-color:transparent #202C33 transparent transparent}
+
+.review-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.review-avatar{width:26px;height:26px;border-radius:50%;background:var(--gold-dim);border:1.5px solid var(--gold-border);display:flex;align-items:center;justify-content:center;font-size:.66rem;font-weight:800;color:var(--gold);flex-shrink:0}
+.review-meta{flex:1;min-width:0}
+.review-name{font-size:.74rem;font-weight:700;color:#7FE08A;line-height:1.2}
+.review-event{font-size:.64rem;color:#8696A0;line-height:1.2}
+.review-stars{font-size:.66rem;color:#FFC93C;letter-spacing:1px;margin-bottom:5px}
+.review-text{font-size:.78rem;color:#E9EDEF;line-height:1.5}
+.review-footer{display:flex;align-items:center;justify-content:flex-end;gap:3px;margin-top:5px}
+.review-time{font-size:.6rem;color:#8696A0}
+.review-check{font-size:.68rem;color:#53BDEB;line-height:1}
+
+/* arrows */
+.review-arrow{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:rgba(17,17,17,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(201,168,76,.35);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:background .25s ease,border-color .25s ease,transform .25s ease}
+.review-arrow:hover{background:rgba(201,168,76,.18);border-color:var(--gold);color:var(--gold-light)}
+.review-arrow:active{transform:translateY(-50%) scale(.92)}
+.review-arrow svg{width:13px;height:13px;fill:none;color:var(--champagne)}
+.review-arrow-prev{right:0}
+.review-arrow-next{left:0}
+
+.review-dots{display:flex;justify-content:center;gap:7px;margin-top:16px}
+.review-dot{width:7px;height:7px;border-radius:50%;background:rgba(201,168,76,.25);border:none;padding:0;cursor:pointer;transition:background .3s ease,transform .3s ease}
+.review-dot.active{background:linear-gradient(135deg,var(--gold),var(--gold-light));transform:scale(1.3);box-shadow:0 0 8px rgba(201,168,76,.6)}
+
+@media (max-width:600px){
+  .review-carousel{margin-top:20px}
+  .review-slide{flex:0 0 70%;max-width:70%;padding:0 5px}
+  .review-wa-header{padding:7px 11px}
+  .review-body{padding:10px 10px 9px}
+  .review-bubble{padding:9px 11px 7px}
+  .review-text{font-size:.76rem}
+  .review-arrow{width:28px;height:28px}
+  .review-arrow svg{width:11px;height:11px}
+  .review-arrow-prev{right:-2px}
+  .review-arrow-next{left:-2px}
+}
+
+
+/* ===== FAQ — premium, compact, luxury SaaS style ===== */
+#faq{background:var(--black);position:relative}
+#faq::before{content:'';position:absolute;top:10%;right:8%;width:45%;height:45%;background:radial-gradient(circle,rgba(201,168,76,.05),transparent 70%);pointer-events:none}
+.faq-list{margin-top:36px;display:flex;flex-direction:column;gap:14px;position:relative}
+.faq-item{
+  background:rgba(255,255,255,.03);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(201,168,76,.14);
+  border-radius:14px;
+  overflow:hidden;
+  transition:border-color .35s ease,box-shadow .35s ease,transform .25s ease;
+}
+.faq-item:hover{border-color:rgba(201,168,76,.32);transform:translateY(-1px)}
+.faq-item.open{border-color:rgba(232,201,106,.45);box-shadow:0 0 0 1px rgba(201,168,76,.18),0 0 28px rgba(201,168,76,.12),0 14px 32px rgba(0,0,0,.35)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 26px;background:none;color:var(--champagne);font-size:.88rem;font-weight:700;text-align:right;cursor:pointer;transition:color .25s ease}
+.faq-q:hover{color:var(--gold)}
+.faq-icon{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:transparent;border:1px solid rgba(201,168,76,.5);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:.86rem;font-weight:600;line-height:1;transition:transform .35s cubic-bezier(0.34,1.56,0.64,1),background .3s ease,border-color .3s ease,color .3s ease}
+.faq-item.open .faq-icon{transform:rotate(135deg);background:var(--gold);border-color:var(--gold);color:var(--black)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(0.22,1,0.36,1),padding .4s ease,opacity .35s ease;font-size:.84rem;color:var(--muted);line-height:1.75;padding:0 26px;opacity:0}
+.faq-item.open .faq-a{max-height:300px;padding:0 26px 16px;opacity:1}
+
+/* ===== AVAILABILITY DATE TRIGGER — sits inside the luxury modal as a field ===== */
+.avail-date-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(0,0,0,.3);border:1.5px solid rgba(201,168,76,.2);border-radius:14px;padding:13px 15px;color:var(--champagne);font-family:inherit;font-size:.9rem;direction:rtl;cursor:pointer;transition:border-color var(--transition),box-shadow var(--transition)}
+.avail-date-trigger:hover,.avail-date-trigger:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.12)}
+.avail-date-trigger.has-value{color:var(--champagne);font-weight:600}
+.avail-date-trigger span{color:inherit}
+.avail-date-trigger:not(.has-value) span{color:var(--muted)}
+.avail-date-trigger svg{width:18px;height:18px;fill:var(--gold);flex-shrink:0}
+
+/* confetti canvas — full-screen, sits above everything, click-through */
+#confetti-canvas{position:fixed;inset:0;z-index:400;pointer-events:none}
+
+/* luxury availability request modal */
+.avail-success-overlay{display:none;position:fixed;inset:0;z-index:350;background:rgba(0,0,0,.72);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px}
+.avail-success-overlay.open{display:flex}
+.avail-success-modal{
+  position:relative;
+  background:rgba(18,16,12,.88);
+  backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);
+  border:1px solid rgba(232,201,106,.4);border-radius:30px;
+  max-width:420px;width:100%;max-height:90vh;overflow-y:auto;padding:36px 28px 30px;text-align:center;
+  box-shadow:0 0 0 1px rgba(201,168,76,.1) inset,0 1px 0 rgba(255,255,255,.05) inset,0 0 50px rgba(201,168,76,.22),0 0 110px rgba(201,168,76,.1),0 30px 80px rgba(0,0,0,.6);
+  opacity:0;transform:scale(.86);
+  animation:successModalIn .5s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+@keyframes successModalIn{to{opacity:1;transform:scale(1)}}
+.avail-success-close{position:absolute;top:16px;left:16px;width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);color:var(--champagne);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background var(--transition),border-color var(--transition)}
+.avail-success-close:hover{background:rgba(201,168,76,.18);border-color:var(--gold)}
+.avail-success-headline{font-size:1.4rem;font-weight:900;color:var(--champagne);margin-bottom:8px;line-height:1.3}
+.avail-success-text{font-size:.92rem;color:var(--text);line-height:1.7;margin-bottom:24px}
+.avail-success-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;text-align:right}
+.avail-success-field label{font-size:.78rem;font-weight:600;color:var(--muted)}
+.avail-success-field input,.avail-success-field select{background:rgba(0,0,0,.3);border:1.5px solid rgba(201,168,76,.2);border-radius:14px;padding:13px 15px;color:var(--champagne);font-family:inherit;font-size:.9rem;direction:rtl;width:100%}
+.avail-success-field select option{background:#161616}
+.avail-success-field input:focus,.avail-success-field select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.12)}
+.avail-success-btn{margin-top:8px;display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);font-weight:800;font-size:.98rem;padding:16px;border-radius:999px;border:none;cursor:pointer;font-family:inherit;transition:transform var(--transition),box-shadow var(--transition);box-shadow:0 4px 24px rgba(201,168,76,.4)}
+.avail-success-btn:hover,.avail-success-btn:active{transform:translateY(-2px);box-shadow:0 8px 34px rgba(201,168,76,.55)}
+body.avail-success-open{overflow:hidden}
+
+/* gallery video lightbox — fullscreen 9:16 modal player */
+.lightbox-overlay{display:none;position:fixed;inset:0;z-index:340;background:rgba(8,7,5,.55);backdrop-filter:blur(14px) saturate(120%);-webkit-backdrop-filter:blur(14px) saturate(120%);align-items:center;justify-content:center;padding:12px}
+.lightbox-overlay.open{display:flex}
+.lightbox-box{
+  position:relative;
+  /* width ≈ 64–70% of screen, but never so wide the 9:16 video exceeds 66vh */
+  width:min(68vw, 280px, calc(66vh * 9 / 16 + 16px));
+  background:rgba(18,16,12,.55);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  border:1px solid rgba(232,201,106,.45);border-radius:22px;
+  padding:8px;
+  box-shadow:0 0 0 1px rgba(201,168,76,.12) inset,0 0 40px rgba(201,168,76,.18),0 24px 70px rgba(0,0,0,.55);
+  opacity:0;transform:scale(.9);
+  animation:lightboxIn .4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+@keyframes lightboxIn{to{opacity:1;transform:scale(1)}}
+.lightbox-close{position:absolute;top:-14px;left:-14px;width:36px;height:36px;border-radius:50%;background:rgba(18,16,12,.95);border:1px solid rgba(201,168,76,.45);color:var(--champagne);font-size:1.15rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:background var(--transition),border-color var(--transition),transform var(--transition);box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.lightbox-close:hover{background:rgba(201,168,76,.2);border-color:var(--gold);transform:scale(1.06)}
+.lightbox-frame-wrap{position:relative;width:100%;aspect-ratio:9/16;max-height:66vh;margin:0 auto;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 0 0 1px rgba(201,168,76,.2) inset}
+.lightbox-iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;object-fit:contain;background:#000}
+.lightbox-fallback{display:block;text-align:center;margin-top:12px;font-size:.82rem;color:var(--gold);text-decoration:underline;opacity:.85;transition:opacity var(--transition)}
+.lightbox-fallback:hover{opacity:1}
+body.lightbox-open{overflow:hidden}
+
+/* custom Hebrew RTL calendar */
+.cal-overlay{display:none;position:fixed;inset:0;z-index:360;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px}
+.cal-overlay.open{display:flex}
+.cal-popup{
+  direction:rtl;position:relative;width:100%;max-width:340px;
+  background:rgba(18,16,12,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(201,168,76,.4);border-radius:20px;padding:22px 18px 18px;
+  box-shadow:0 0 0 1px rgba(201,168,76,.1),0 0 40px rgba(201,168,76,.16),0 30px 70px rgba(0,0,0,.6);
+  opacity:0;transform:scale(.92) translateY(10px);
+  animation:calPopupIn .35s cubic-bezier(0.34,1.56,0.64,1) forwards;
+}
+@keyframes calPopupIn{to{opacity:1;transform:scale(1) translateY(0)}}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-month-label{font-size:1.05rem;font-weight:800;color:var(--champagne);letter-spacing:.01em}
+.cal-nav{width:34px;height:34px;border-radius:50%;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-size:1.1rem;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background var(--transition),border-color var(--transition)}
+.cal-nav:hover{background:rgba(201,168,76,.18);border-color:var(--gold)}
+.cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:6px}
+.cal-weekdays span{text-align:center;font-size:.74rem;font-weight:700;color:var(--gold);opacity:.85;padding:6px 0}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-day{position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:.86rem;font-weight:500;color:#fff;background:transparent;border:none;cursor:pointer;font-family:inherit;transition:background var(--transition),color var(--transition)}
+.cal-day:hover:not(.cal-day-disabled):not(.cal-day-empty){background:rgba(201,168,76,.15)}
+.cal-day-empty{cursor:default;pointer-events:none}
+.cal-day-disabled{color:rgba(255,255,255,.22);cursor:not-allowed;pointer-events:none}
+.cal-day-today{box-shadow:inset 0 0 0 1px rgba(201,168,76,.5)}
+.cal-day-selected{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);font-weight:800;box-shadow:0 0 14px rgba(201,168,76,.55)}
+.cal-day-selected:hover{background:linear-gradient(135deg,var(--gold),var(--gold-light))}
+.cal-actions{display:flex;gap:10px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(201,168,76,.15)}
+.cal-btn{flex:1;padding:12px;border-radius:var(--radius-sm);font-size:.88rem;font-weight:700;font-family:inherit;cursor:pointer;border:none;transition:transform var(--transition),box-shadow var(--transition),background var(--transition)}
+.cal-btn-reset{background:transparent;border:1.5px solid rgba(201,168,76,.3);color:var(--champagne)}
+.cal-btn-reset:hover{border-color:var(--gold);color:var(--gold)}
+.cal-btn-confirm{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);box-shadow:0 4px 18px rgba(201,168,76,.35)}
+.cal-btn-confirm:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(201,168,76,.5)}
+body.cal-open{overflow:hidden}
+
+/* ===== CONTACT — lead form only, single clean conversion section ===== */
+#contact{background:var(--black-mid)}
+.contact-wrap{max-width:640px;margin:52px auto 0}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-field{display:flex;flex-direction:column;gap:7px}
+.form-field.full{grid-column:span 2}
+.form-field label{font-size:.8rem;font-weight:600;color:var(--muted)}
+.form-field input,.form-field select,.form-field textarea{background:var(--card);border:1.5px solid rgba(201,168,76,.15);border-radius:var(--radius-sm);padding:13px 14px;color:var(--champagne);font-family:inherit;font-size:.92rem;transition:border-color var(--transition);direction:rtl}
+.form-field input::placeholder,.form-field textarea::placeholder{color:var(--muted)}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{outline:none;border-color:var(--gold)}
+.form-field select{appearance:none;cursor:pointer}
+.form-field select option{background:#161616}
+.form-field textarea{resize:vertical;min-height:100px}
+.form-submit{margin-top:8px;width:100%;background:#25D366;color:#fff;font-weight:800;font-size:1rem;padding:16px;border-radius:var(--radius-sm);transition:transform var(--transition),box-shadow var(--transition);box-shadow:0 4px 24px rgba(37,211,102,.3);display:flex;align-items:center;justify-content:center;gap:10px}
+.form-submit svg{width:22px;height:22px;fill:#fff;flex-shrink:0}
+.form-submit:hover,.form-submit:active{transform:translateY(-2px);box-shadow:0 8px 32px rgba(37,211,102,.45)}
+.form-note{font-size:.76rem;color:var(--muted);text-align:center;margin-top:10px}
+
+/* ===== FOOTER ===== */
+footer{background:var(--black-mid);border-top:1px solid var(--gold-border);padding:48px 0 32px}
+.footer-main{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
+.footer-logo{font-size:1.3rem;font-weight:900;color:var(--champagne)}
+.footer-logo span{color:var(--gold)}
+.footer-tag{font-size:.85rem;color:var(--muted);max-width:300px;line-height:1.6;margin-bottom:4px}
+.footer-contact{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:6px}
+.footer-contact a{font-size:.88rem;color:var(--text);display:flex;align-items:center;gap:8px;transition:color var(--transition)}
+.footer-contact a:hover{color:var(--gold)}
+.footer-copy{font-size:.78rem;color:var(--muted);padding-top:18px;border-top:1px solid rgba(201,168,76,.12);width:100%;max-width:320px}
+/* ===== SERVICE AREAS ===== */
+#areas{text-align:center;background:var(--black);color:var(--text)}
+#areas .section-title{color:var(--champagne)}
+#areas .section-sub{color:var(--muted)}
+#areas .container{display:flex;flex-direction:column;align-items:center}
+.area-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:680px;margin-top:30px}
+.area-chip{
+  display:inline-block;padding:8px 18px;font-size:.84rem;font-weight:600;
+  color:var(--champagne);
+  background:linear-gradient(150deg,rgba(230,199,106,.07),rgba(201,168,76,.03));
+  border:1px solid var(--gold-border);border-radius:999px;letter-spacing:.01em;
+  box-shadow:0 0 0 1px rgba(230,199,106,.05) inset;
+  transition:transform .45s cubic-bezier(.22,1,.36,1),background .35s ease,border-color .35s ease,box-shadow .35s ease,color .35s ease;
+  cursor:default;
+}
+.area-chip:hover{
+  color:var(--gold-light);
+  background:linear-gradient(150deg,rgba(230,199,106,.16),rgba(201,168,76,.07));
+  border-color:rgba(230,199,106,.55);
+  box-shadow:0 0 0 1px rgba(230,199,106,.12) inset,0 0 22px rgba(216,180,90,.3);
+  transform:translateY(-2px);
+}
+@media (max-width:600px){
+  .area-chips{gap:8px;margin-top:22px}
+  .area-chip{padding:7px 14px;font-size:.78rem}
+}
+
+/* ===== SUCCESS MODAL (lead submitted) ===== */
+.success-overlay{display:none;position:fixed;inset:0;z-index:360;background:rgba(6,5,4,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:22px}
+.success-overlay.open{display:flex}
+.success-modal{position:relative;width:100%;max-width:360px;text-align:center;background:linear-gradient(165deg,rgba(22,20,15,.96),rgba(12,11,8,.97));border:1.5px solid rgba(201,168,76,.55);border-radius:28px;padding:34px 26px 30px;box-shadow:0 0 0 1px rgba(201,168,76,.15) inset,0 0 60px rgba(201,168,76,.25),0 30px 80px rgba(0,0,0,.6);opacity:0;transform:scale(.9) translateY(10px);animation:successIn .5s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes successIn{to{opacity:1;transform:scale(1) translateY(0)}}
+.success-close{position:absolute;top:14px;left:14px;width:32px;height:32px;border-radius:50%;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);color:var(--champagne);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--transition),transform var(--transition)}
+.success-close:hover{background:rgba(201,168,76,.2);transform:scale(1.08)}
+.success-emoji{font-size:2.6rem;line-height:1;margin-bottom:12px}
+.success-title{font-size:1.7rem;font-weight:900;color:var(--champagne);margin-bottom:10px;letter-spacing:-.01em}
+.success-text{font-size:.92rem;line-height:1.7;color:var(--text);margin-bottom:20px}
+.success-checks{list-style:none;display:inline-flex;flex-direction:column;gap:9px;text-align:right;margin:0 auto}
+.success-checks li{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:600;color:var(--champagne)}
+.success-checks li::before{content:'✓';flex-shrink:0;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);font-size:.75rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+@media (max-width:600px){
+  .success-modal{padding:30px 22px 26px;border-radius:24px}
+  .success-title{font-size:1.5rem}
+  .success-emoji{font-size:2.3rem}
+}
+
+/* ===== REVEAL ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+/* premium entrance for the quote form: fade + slight rise, 500ms ease-out */
+#contact .reveal{transform:translateY(15px);transition:opacity .5s ease-out,transform .5s ease-out}
+#contact .reveal.visible{transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ===== STICKY BOTTOM CTA BAR — two independent floating pill buttons, no outer frame ===== */
+.sticky-cta-bar{
+  display:flex;position:fixed;left:0;right:0;z-index:150;
+  bottom:calc(12px + env(safe-area-inset-bottom));
+  padding:0 16px;gap:12px;
+  max-width:480px;width:calc(100% - 32px);margin:0 auto;
+  transition:opacity .6s ease-in-out,transform .6s ease-in-out,filter .6s ease-in-out;
+}
+/* on mobile only: smoothly slide + blur the fixed bar away while the quote form is in view (prevents overlap with the submit button) */
+@media (max-width:600px){
+  .sticky-cta-bar.sticky-hidden{opacity:0;transform:translateY(120%);filter:blur(8px);pointer-events:none}
+}
+.sticky-cta-bar a,.sticky-cta-bar button{
+  flex:1;text-align:center;font-weight:700;font-size:.82rem;padding:9px 10px;
+  border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;
+  font-family:inherit;cursor:pointer;border:none;
+  transition:transform .25s cubic-bezier(0.34,1.56,0.64,1),box-shadow .3s ease,filter .3s ease;
+}
+.sticky-cta-bar a:hover,.sticky-cta-bar button:hover{transform:translateY(-1.5px)}
+.sticky-cta-bar a:active,.sticky-cta-bar button:active{transform:scale(.95)}
+.sticky-cta-bar .scta-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);box-shadow:0 0 0 1px rgba(201,168,76,.3),0 0 4px rgba(255,248,224,.5) inset,0 0 18px rgba(201,168,76,.45),0 4px 16px rgba(201,168,76,.3)}
+.sticky-cta-bar .scta-gold:hover{filter:brightness(1.07);box-shadow:0 0 0 1px rgba(201,168,76,.4),0 0 4px rgba(255,248,224,.6) inset,0 0 26px rgba(201,168,76,.6),0 8px 22px rgba(201,168,76,.36)}
+.sticky-cta-bar .scta-wa{background:#25D366;color:#fff;box-shadow:0 0 0 1px rgba(37,211,102,.35),0 0 18px rgba(37,211,102,.45),0 4px 16px rgba(37,211,102,.26)}
+.sticky-cta-bar .scta-wa:hover{filter:brightness(1.08);box-shadow:0 0 0 1px rgba(37,211,102,.45),0 0 26px rgba(37,211,102,.6),0 8px 22px rgba(37,211,102,.32)}
+.sticky-cta-bar svg{width:13px;height:13px;fill:currentColor;flex-shrink:0}
+
+/* ===== ACCESSIBILITY WIDGET ===== */
+.a11y-toggle{position:fixed;bottom:84px;left:16px;z-index:400;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:2px solid #fff;box-shadow:0 4px 18px rgba(0,0,0,.4),0 0 0 1px rgba(201,168,76,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:transform .2s ease}
+.a11y-toggle:hover{transform:scale(1.06)}
+.a11y-toggle:focus-visible{outline:3px solid #1a73e8;outline-offset:2px}
+.a11y-toggle svg{width:30px;height:30px;fill:#0A0A0A}
+.a11y-panel{position:fixed;bottom:84px;left:16px;z-index:401;width:300px;max-width:calc(100vw - 32px);max-height:78vh;overflow-y:auto;background:#fff;color:#1a1a1a;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.5);padding:16px;display:none;direction:rtl;font-family:'Heebo',Arial,sans-serif}
+.a11y-panel.open{display:block}
+.a11y-panel h2{font-size:1.05rem;font-weight:800;margin:0 0 4px;color:#111}
+.a11y-panel .a11y-sub{font-size:.74rem;color:#666;margin:0 0 12px}
+.a11y-close{position:absolute;top:12px;left:12px;width:30px;height:30px;border-radius:50%;background:#f0f0f0;border:none;font-size:1.2rem;line-height:1;color:#333;cursor:pointer}
+.a11y-close:hover{background:#e3e3e3}
+.a11y-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.a11y-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:11px 6px;background:#f6f6f6;border:2px solid #eee;border-radius:11px;font-family:inherit;font-size:.76rem;font-weight:600;color:#222;cursor:pointer;text-align:center;transition:background .15s ease;min-height:64px}
+.a11y-btn:hover{background:#efefef}
+.a11y-btn:focus-visible{outline:3px solid #1a73e8;outline-offset:1px}
+.a11y-btn.active{background:#e8f0fe;border-color:#1a73e8;color:#1a4ba0}
+.a11y-btn .a11y-ico{font-size:1.25rem;line-height:1}
+.a11y-reset{margin-top:10px;width:100%;padding:10px;background:#111;color:#fff;border:none;border-radius:11px;font-family:inherit;font-size:.84rem;font-weight:700;cursor:pointer}
+.a11y-reset:hover{background:#000}
+.a11y-statement{margin-top:10px;font-size:.68rem;color:#888;text-align:center;line-height:1.5}
+
+html.a11y-contrast body{filter:contrast(1.4)}
+html.a11y-invert body{filter:invert(1) hue-rotate(180deg)}
+html.a11y-invert body img,html.a11y-invert body video{filter:invert(1) hue-rotate(180deg)}
+html.a11y-links a{text-decoration:underline !important;text-underline-offset:3px;font-weight:700 !important}
+html.a11y-noanim *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+html.a11y-readable *{font-family:Arial,Helvetica,sans-serif !important;letter-spacing:.3px}
+html.a11y-spacing p,html.a11y-spacing li,html.a11y-spacing span,html.a11y-spacing a{line-height:2 !important;letter-spacing:.5px !important;word-spacing:2px !important}
+html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' stroke='%23fff' stroke-width='1' d='M5 2l14 7-6 2-2 6z'/%3E%3C/svg%3E") 4 4,auto !important}
+body{padding-bottom:92px}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:900px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  section{padding:60px 0}
+}
+@media (max-width:600px){
+  .cal-popup{padding:18px 14px 14px;max-width:94vw}
+  .cal-day{font-size:.8rem}
+  .avail-success-modal{padding:30px 22px 26px}
+  .why-grid{grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}
+  .why-card{padding:16px 14px;border-radius:20px}
+  .why-icon{width:28px;height:28px;font-size:.82rem;margin-bottom:8px}
+  .why-card h3{font-size:.78rem}
+  .why-card p{font-size:.68rem;line-height:1.4}
+
+  .faq-list{margin-top:28px;gap:11px}
+  .faq-q{padding:12px 18px;font-size:.83rem;gap:12px}
+  .faq-a{padding:0 18px;font-size:.8rem}
+  .faq-item.open .faq-a{padding:0 18px 14px}
+  .faq-icon{width:20px;height:20px;font-size:.78rem}
+
+  .compare-strip{margin-top:24px;margin-bottom:8px}
+  .compare-cell{padding:8px 6px;font-size:.74rem}
+  .compare-cell.compare-label{font-size:.68rem}
+
+  /* ===== MOBILE PRICING CAROUSEL (premium swipe) ===== */
+  #pricing{padding-bottom:64px}
+  .pricing-grid{
+    display:flex;flex-direction:row;flex-wrap:nowrap;align-items:flex-start;
+    gap:12px;margin-top:24px;max-width:none;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;scroll-padding:0 9%;
+    padding:24px 9% 18px;margin-left:-20px;margin-right:-20px;
+    scrollbar-width:none;
+  }
+  .pricing-grid::-webkit-scrollbar{display:none}
+  .price-card{
+    flex:0 0 86%;scroll-snap-align:center;
+    padding:14px 13px 8px;  /* bottom padding reduced ~40% to remove empty space below CTA */
+    transition:all .6s cubic-bezier(.22,1,.36,1);
+  }
+  .price-card.featured{padding:16px 13px 9px}
+  /* side (non-snapped) cards: stronger premium blur + dim, still peeking on both sides */
+  .price-card.carousel-side{opacity:.45;filter:blur(3px) brightness(.78);transform:scale(.82);cursor:pointer;pointer-events:auto}
+  .price-card.carousel-active{opacity:1;filter:none;transform:scale(1)}
+  /* compact text/spacing on mobile */
+  .price-card .price-desc{font-size:.8rem;margin-bottom:11px}
+  .price-features{gap:7px;margin-bottom:7px}
+  .price-features li,.price-features-extra li{font-size:.78rem}
+  .price-features-extra{gap:6px;margin-top:6px}
+  .price-head{margin-bottom:10px}
+  .price-line{font-size:1.42rem}
+  .price-btn{margin-top:11px;padding:11px}
+  .price-premium-note{padding:9px 11px;font-size:.74rem;margin-bottom:11px}
+
+  #hero{min-height:74svh;padding:90px 0 40px;align-items:center}
+  .hero-h1{font-size:clamp(1.75rem,7.9vw,2.45rem)}
+  .hero-pill{font-size:.76rem}
+  .hero-pill-item{font-size:.76rem}
+  #trust-strip{padding:20px 0}
+  .hero-sub{font-size:.94rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn-gold,.hero-btns .btn-outline{width:auto;text-align:center;padding:11px 24px;font-size:.88rem}
+  .gallery-carousel{margin-top:22px}
+  .gallery-slide{flex:0 0 50%;max-width:50%;padding:0 8px}
+  .gallery-item{border-radius:16px}
+  .gallery-arrow{width:32px;height:32px}
+  .gallery-arrow svg{width:13px;height:13px}
+  .gallery-arrow-prev{right:-2px}
+  .gallery-arrow-next{left:-2px}
+  .form-grid{grid-template-columns:1fr}
+  .form-field.full{grid-column:1}
+  section{padding:44px 0}
+  .section-title{font-size:clamp(1.5rem,7vw,1.9rem);margin-bottom:10px}
+  .section-sub{font-size:.92rem}
+  .section-label{margin-bottom:14px}
+  .divider{margin-bottom:18px}
+  /* change 4 + further mobile compression: compact quote form on mobile only */
+  #contact{padding:28px 0}
+  #contact .section-title{font-size:clamp(1.38rem,6.5vw,1.7rem);margin-bottom:7px}
+  #contact .section-sub{margin-bottom:0}
+  #contact .contact-wrap{margin-top:22px}
+  #contact .form-grid{gap:7px}
+  #contact .form-field{gap:3px}
+  #contact .form-field input,#contact .form-field select,#contact .form-field textarea{padding:8px 13px}
+  #contact .form-field textarea{min-height:48px}
+  #contact .form-submit{margin-top:3px;padding:12px}
+}
+@media (prefers-reduced-motion: reduce){
+  .scroll-line{animation:none}
+  .hero-video{animation:none}
+  .hp{animation:none;display:none}
+  .hero-in{animation:none;opacity:1;transform:none}
+  .trust-pill-wrap{animation:none;opacity:1}
+  .hero-pill-item{transition:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .premium-entrance{opacity:1;transform:none;filter:none;transition:none}
+  .why-grid.sweep-run::after{animation:none}
+  .review-wa-avatar::before,.review-wa-avatar::after{animation:none}
+  .avail-success-modal{animation:none;opacity:1;transform:none}
+  .lightbox-box{animation:none;opacity:1;transform:none}
+  .cal-popup{animation:none;opacity:1;transform:none}
+}
+/* ===== ACCESSIBILITY WIDGET ===== */
+.a11y-toggle{position:fixed;bottom:84px;left:16px;z-index:400;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#0A0A0A;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.4),0 0 0 1px rgba(201,168,76,.4);transition:transform .2s ease,box-shadow .2s ease}
+.a11y-toggle:hover{transform:scale(1.06)}
+.a11y-toggle:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.a11y-toggle svg{width:28px;height:28px;fill:#0A0A0A}
+.a11y-panel{position:fixed;bottom:144px;left:16px;z-index:401;width:300px;max-width:calc(100vw - 32px);max-height:70vh;overflow-y:auto;background:#fff;color:#1a1a1a;border-radius:16px;box-shadow:0 16px 50px rgba(0,0,0,.5);padding:18px;display:none;direction:rtl;text-align:right;font-family:'Heebo',sans-serif}
+.a11y-panel.open{display:block}
+.a11y-panel h3{margin:0 0 4px;font-size:1.05rem;font-weight:800;color:#111}
+.a11y-panel .a11y-sub{margin:0 0 14px;font-size:.78rem;color:#666}
+.a11y-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.a11y-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:11px 6px;border:1.5px solid #e2e2e2;border-radius:11px;background:#fafafa;color:#222;font-size:.74rem;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;line-height:1.25;transition:border-color .15s ease,background .15s ease}
+.a11y-btn:hover{background:#f0ead7;border-color:var(--gold)}
+.a11y-btn:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.a11y-btn.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.a11y-btn .a11y-ico{font-size:1.25rem;line-height:1}
+.a11y-reset{margin-top:12px;width:100%;padding:11px;border:none;border-radius:11px;background:#c0392b;color:#fff;font-size:.85rem;font-weight:700;font-family:inherit;cursor:pointer}
+.a11y-reset:hover{background:#a83224}
+.a11y-close{position:absolute;top:12px;left:12px;width:30px;height:30px;border-radius:50%;border:none;background:#eee;color:#333;font-size:1.1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.a11y-close:hover{background:#ddd}
+
+/* applied accessibility states (scoped to <html> classes) */
+html.a11y-contrast body{background:#000 !important}
+html.a11y-contrast .why-card,html.a11y-contrast .price-card,html.a11y-contrast section,html.a11y-contrast nav{background:#000 !important}
+html.a11y-contrast p,html.a11y-contrast li,html.a11y-contrast span,html.a11y-contrast h1,html.a11y-contrast h2,html.a11y-contrast h3,html.a11y-contrast h4,html.a11y-contrast a,html.a11y-contrast div{color:#fff !important;text-shadow:none !important}
+html.a11y-contrast .gold,html.a11y-contrast [class*="gold"]{color:#ffd84d !important}
+html.a11y-invert{filter:invert(1) hue-rotate(180deg)}
+html.a11y-invert img,html.a11y-invert video,html.a11y-invert .gallery-item{filter:invert(1) hue-rotate(180deg)}
+html.a11y-links a{text-decoration:underline !important;text-underline-offset:3px !important;font-weight:700 !important;outline:2px dashed currentColor;outline-offset:2px}
+html.a11y-noanim *,html.a11y-noanim *::before,html.a11y-noanim *::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+html.a11y-readable body,html.a11y-readable p,html.a11y-readable li,html.a11y-readable span,html.a11y-readable a,html.a11y-readable h1,html.a11y-readable h2,html.a11y-readable h3,html.a11y-readable h4,html.a11y-readable button{font-family:Arial,Helvetica,sans-serif !important;letter-spacing:.02em !important}
+html.a11y-spacing p,html.a11y-spacing li,html.a11y-spacing span{line-height:2 !important;letter-spacing:.04em !important;word-spacing:.12em !important}
+html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M6 2l30 18-14 3 8 16-6 3-8-16-10 10z' fill='%23000' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E") 4 2,auto !important}
+@media (max-width:520px){.a11y-toggle{width:46px;height:46px;bottom:78px}.a11y-toggle svg{width:25px;height:25px}.a11y-panel{bottom:132px}}
+/* ===== LEGAL: footer links, modals, consent checkbox ===== */
+.footer-legal{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:.74rem}
+.footer-legal a{color:var(--gold);text-decoration:none;transition:color var(--transition),text-shadow var(--transition);cursor:pointer;padding:2px 0}
+.footer-legal a:hover{color:var(--gold-light);text-shadow:0 0 10px rgba(201,168,76,.5)}
+.footer-legal .sep{color:var(--gold-border);font-size:.7rem;user-select:none}
+
+.legal-modal{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
+.legal-modal.open{opacity:1;visibility:visible}
+.legal-modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.legal-modal-box{position:relative;z-index:1;width:100%;max-width:560px;max-height:86vh;overflow-y:auto;background:linear-gradient(160deg,#121212,var(--black));border:1px solid var(--gold-border);border-radius:var(--radius-lg);box-shadow:0 0 0 1px rgba(201,168,76,.18),0 0 50px rgba(201,168,76,.16),0 24px 60px rgba(0,0,0,.6);padding:30px 26px 28px;direction:rtl;text-align:right;transform:translateY(16px) scale(.98);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.legal-modal.open .legal-modal-box{transform:translateY(0) scale(1)}
+.legal-modal-box::-webkit-scrollbar{width:7px}
+.legal-modal-box::-webkit-scrollbar-thumb{background:var(--gold-border);border-radius:8px}
+.legal-modal-close{position:absolute;top:14px;left:14px;width:38px;height:38px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--gold-border);color:var(--champagne);font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--transition),transform var(--transition)}
+.legal-modal-close:hover{background:rgba(201,168,76,.22);transform:scale(1.06)}
+.legal-modal-box h2{font-size:1.5rem;font-weight:900;color:var(--champagne);margin:0 0 6px;padding-left:44px}
+.legal-modal-box h2::after{content:'';display:block;width:54px;height:3px;margin-top:10px;border-radius:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.legal-modal-body{margin-top:18px;font-size:.92rem;line-height:1.85;color:var(--text)}
+.legal-modal-body p{margin:0 0 14px}
+.legal-modal-body h3{font-size:1.02rem;font-weight:700;color:var(--gold-light);margin:18px 0 8px}
+.legal-modal-body ul{list-style:none;margin:0 0 14px;padding:0}
+.legal-modal-body li{position:relative;padding-right:18px;margin-bottom:7px;color:var(--text)}
+.legal-modal-body li::before{content:'•';position:absolute;right:0;color:var(--gold);font-weight:700}
+
+.form-consent{display:flex;align-items:flex-start;gap:10px;margin:4px 0 16px;text-align:right;direction:rtl}
+.form-consent input[type=checkbox]{appearance:none;-webkit-appearance:none;flex-shrink:0;width:20px;height:20px;margin-top:2px;border:1.5px solid var(--gold-border);border-radius:5px;background:var(--card);cursor:pointer;position:relative;transition:border-color var(--transition),background var(--transition)}
+.form-consent input[type=checkbox]:hover{border-color:var(--gold)}
+.form-consent input[type=checkbox]:checked{background:linear-gradient(135deg,var(--gold),var(--gold-light));border-color:var(--gold)}
+.form-consent input[type=checkbox]:checked::after{content:'';position:absolute;top:2px;left:6px;width:5px;height:10px;border:solid #0A0A0A;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.form-consent label{font-size:.82rem;line-height:1.6;color:var(--muted);cursor:pointer}
+.form-consent label a{color:var(--gold);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.form-consent label a:hover{color:var(--gold-light)}
+.form-submit:disabled{opacity:.5;cursor:not-allowed;filter:grayscale(.3)}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     EDIT GUIDE
+     • WhatsApp number and email are set as JS constants near the
+       bottom of the file (WA_NUMBER, EMAIL) — change them there
+       to update every link on the page automatically.
+     • To add the hero background video: set the src attribute on
+       the hero video element below to your real 360-booth event
+       clip (e.g. videos/hero-360-booth.mp4).
+     • To add real gallery videos: set the src attribute on each
+       gallery video element in the gallery section below.
+     ============================================================ -->
+
+<!-- NAV -->
+<nav id="main-nav">
+
+  <div class="container nav-inner">
+    <div class="nav-logo">Kasa <span>Events</span></div>
+    <ul class="nav-links">
+      <li><a href="#why">למה אנחנו</a></li>
+      <li><a href="#pricing">חבילות</a></li>
+      <li><a href="#gallery">גלריה</a></li>
+      <li><a href="#testimonials">ביקורות</a></li>
+      <li><a href="#faq">שאלות</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">בדיקת זמינות</a>
+    <button class="hamburger" id="hamburger" aria-label="פתח תפריט">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="תפריט ניווט">
+  <button class="mobile-close" id="mobile-close" aria-label="סגור">✕</button>
+  <a href="#why" onclick="closeMobile()">למה אנחנו</a>
+  <a href="#pricing" onclick="closeMobile()">חבילות</a>
+  <a href="#gallery" onclick="closeMobile()">גלריה</a>
+  <a href="#testimonials" onclick="closeMobile()">ביקורות</a>
+  <a href="#faq" onclick="closeMobile()">שאלות</a>
+  <a href="#" class="mobile-wa-btn" id="mobile-wa-link" onclick="closeMobile()">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;fill:white;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    וואטסאפ מיידי
+  </a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- ============================================================
+       EASY EDIT: set the src="" on the video below to your real
+       360-booth event clip (e.g. src="videos/hero-360-booth.mp4").
+       Keep autoplay, muted, loop, and playsinline — they're required
+       for silent autoplay to work reliably on mobile browsers. Until
+       a real file is added, the gradient background below shows
+       instead so the hero never looks broken.
+       ============================================================ -->
+  <div class="hero-video-wrap">
+    <video class="hero-video" src="" autoplay muted loop playsinline preload="auto" poster=""></video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-fade-edge" aria-hidden="true"></div>
+
+  <div class="hero-particles" aria-hidden="true">
+    <span class="hp" style="top:42.2%;left:34.2%;width:4.2px;height:4.2px;--drift-x:2.7px;--drift-y:-19.3px;--hp-max-opacity:0.36;animation-duration:10.7s;animation-delay:2.6s"></span>
+    <span class="hp hp-sparkle" style="top:29.6%;left:47.6%;width:4.5px;height:4.5px;--drift-x:-7.7px;--drift-y:-19.1px;--hp-max-opacity:0.37;animation-duration:10.1s;animation-delay:5.8s"></span>
+    <span class="hp hp-sparkle" style="top:55.6%;left:73.7%;width:4.8px;height:4.8px;--drift-x:1.4px;--drift-y:-16.0px;--hp-max-opacity:0.52;animation-duration:12.9s;animation-delay:0.3s"></span>
+    <span class="hp hp-sparkle" style="top:34.3%;left:32.0%;width:4.6px;height:4.6px;--drift-x:-3.4px;--drift-y:-11.8px;--hp-max-opacity:0.48;animation-duration:8.9s;animation-delay:4.1s"></span>
+    <span class="hp" style="top:6.5%;left:5.0%;width:2.5px;height:2.5px;--drift-x:-6.1px;--drift-y:-14.6px;--hp-max-opacity:0.32;animation-duration:10.0s;animation-delay:4.8s"></span>
+    <span class="hp" style="top:12.0%;left:9.5%;width:2.5px;height:2.5px;--drift-x:-0.7px;--drift-y:-12.9px;--hp-max-opacity:0.29;animation-duration:13.0s;animation-delay:4.9s"></span>
+    <span class="hp" style="top:8.0%;left:92.0%;width:2.4px;height:2.4px;--drift-x:5.3px;--drift-y:-9.9px;--hp-max-opacity:0.27;animation-duration:10.4s;animation-delay:6.9s"></span>
+    <span class="hp" style="top:14.5%;left:95.5%;width:2.7px;height:2.7px;--drift-x:-4.9px;--drift-y:-11.6px;--hp-max-opacity:0.38;animation-duration:9.2s;animation-delay:4.7s"></span>
+    <span class="hp" style="top:35.1%;left:59.2%;width:2.7px;height:2.7px;--drift-x:1.3px;--drift-y:-13.9px;--hp-max-opacity:0.42;animation-duration:12.0s;animation-delay:6.6s"></span>
+    <span class="hp" style="top:62.2%;left:56.7%;width:3.5px;height:3.5px;--drift-x:5.2px;--drift-y:-15.4px;--hp-max-opacity:0.29;animation-duration:9.3s;animation-delay:4.7s"></span>
+    <span class="hp" style="top:31.2%;left:22.4%;width:3.0px;height:3.0px;--drift-x:-5.9px;--drift-y:-15.8px;--hp-max-opacity:0.3;animation-duration:9.3s;animation-delay:6.1s"></span>
+    <span class="hp hp-sparkle" style="top:71.8%;left:66.7%;width:3.2px;height:3.2px;--drift-x:-3.5px;--drift-y:-14.3px;--hp-max-opacity:0.57;animation-duration:9.2s;animation-delay:6.2s"></span>
+    <span class="hp" style="top:37.3%;left:36.7%;width:2.5px;height:2.5px;--drift-x:1.4px;--drift-y:-15.6px;--hp-max-opacity:0.39;animation-duration:7.0s;animation-delay:2.9s"></span>
+    <span class="hp" style="top:65.2%;left:50.7%;width:2.7px;height:2.7px;--drift-x:2.8px;--drift-y:-17.5px;--hp-max-opacity:0.54;animation-duration:12.4s;animation-delay:5.5s"></span>
+    <span class="hp hp-sparkle" style="top:46.1%;left:27.1%;width:2.8px;height:2.8px;--drift-x:-7.0px;--drift-y:-17.4px;--hp-max-opacity:0.38;animation-duration:8.3s;animation-delay:1.1s"></span>
+    <span class="hp" style="top:33.0%;left:26.9%;width:2.2px;height:2.2px;--drift-x:-7.6px;--drift-y:-10.1px;--hp-max-opacity:0.36;animation-duration:10.7s;animation-delay:1.0s"></span>
+    <span class="hp hp-sparkle" style="top:31.5%;left:68.9%;width:3.5px;height:3.5px;--drift-x:-0.5px;--drift-y:-13.6px;--hp-max-opacity:0.38;animation-duration:7.5s;animation-delay:0.7s"></span>
+    <span class="hp" style="top:33.6%;left:17.0%;width:3.4px;height:3.4px;--drift-x:0.5px;--drift-y:-16.7px;--hp-max-opacity:0.44;animation-duration:10.3s;animation-delay:0.2s"></span>
+    <span class="hp hp-sparkle" style="top:65.7%;left:38.4%;width:2.2px;height:2.2px;--drift-x:-5.3px;--drift-y:-11.1px;--hp-max-opacity:0.38;animation-duration:10.2s;animation-delay:5.5s"></span>
+    <span class="hp hp-sparkle" style="top:77.2%;left:69.2%;width:3.1px;height:3.1px;--drift-x:5.1px;--drift-y:-11.3px;--hp-max-opacity:0.39;animation-duration:8.4s;animation-delay:3.6s"></span>
+    <span class="hp" style="top:39.8%;left:38.2%;width:2.9px;height:2.9px;--drift-x:7.3px;--drift-y:-14.0px;--hp-max-opacity:0.57;animation-duration:12.6s;animation-delay:6.9s"></span>
+    <span class="hp" style="top:37.0%;left:34.3%;width:1.9px;height:1.9px;--drift-x:2.0px;--drift-y:-9.9px;--hp-max-opacity:0.48;animation-duration:12.0s;animation-delay:3.4s"></span>
+    <span class="hp" style="top:60.0%;left:74.2%;width:3.1px;height:3.1px;--drift-x:4.0px;--drift-y:-13.7px;--hp-max-opacity:0.38;animation-duration:8.1s;animation-delay:5.5s"></span>
+    <span class="hp" style="top:41.7%;left:45.6%;width:3.4px;height:3.4px;--drift-x:3.6px;--drift-y:-16.5px;--hp-max-opacity:0.55;animation-duration:7.8s;animation-delay:1.1s"></span>
+    <span class="hp" style="top:68.8%;left:83.7%;width:2.8px;height:2.8px;--drift-x:-2.4px;--drift-y:-13.1px;--hp-max-opacity:0.57;animation-duration:7.8s;animation-delay:0.1s"></span>
+    <span class="hp" style="top:74.5%;left:47.1%;width:3.2px;height:3.2px;--drift-x:5.2px;--drift-y:-16.1px;--hp-max-opacity:0.35;animation-duration:8.5s;animation-delay:2.1s"></span>
+    <span class="hp" style="top:47.2%;left:29.5%;width:3.3px;height:3.3px;--drift-x:-2.3px;--drift-y:-13.9px;--hp-max-opacity:0.41;animation-duration:10.5s;animation-delay:6.3s"></span>
+    <span class="hp" style="top:53.2%;left:51.0%;width:1.5px;height:1.5px;--drift-x:-1.0px;--drift-y:-16.4px;--hp-max-opacity:0.33;animation-duration:7.0s;animation-delay:5.6s"></span>
+    <span class="hp hp-sparkle" style="top:38.5%;left:43.0%;width:2.6px;height:2.6px;--drift-x:-2.2px;--drift-y:-15.0px;--hp-max-opacity:0.42;animation-duration:11.4s;animation-delay:3.1s"></span>
+    <span class="hp" style="top:44.0%;left:55.5%;width:2.3px;height:2.3px;--drift-x:3.1px;--drift-y:-13.2px;--hp-max-opacity:0.38;animation-duration:12.2s;animation-delay:1.7s"></span>
+    <span class="hp" style="top:36.0%;left:62.5%;width:2.0px;height:2.0px;--drift-x:-1.5px;--drift-y:-12.5px;--hp-max-opacity:0.34;animation-duration:10.8s;animation-delay:5.0s"></span>
+    <span class="hp hp-sparkle" style="top:48.5%;left:40.0%;width:2.8px;height:2.8px;--drift-x:2.4px;--drift-y:-14.7px;--hp-max-opacity:0.40;animation-duration:9.6s;animation-delay:2.3s"></span>
+    <span class="hp" style="top:41.0%;left:58.0%;width:1.8px;height:1.8px;--drift-x:-2.8px;--drift-y:-11.0px;--hp-max-opacity:0.31;animation-duration:13.2s;animation-delay:6.4s"></span>
+    <span class="hp hp-sparkle" style="top:33.9%;left:19.3%;width:4.1px;height:4.1px;--drift-x:-6.8px;--drift-y:-13.6px;--hp-max-opacity:0.41;animation-duration:8.3s;animation-delay:3.6s"></span>
+    <span class="hp" style="top:42.7%;left:12.1%;width:2.6px;height:2.6px;--drift-x:-1.2px;--drift-y:-10.1px;--hp-max-opacity:0.34;animation-duration:9.3s;animation-delay:4.4s"></span>
+    <span class="hp hp-sparkle" style="top:54.2%;left:40.9%;width:4.9px;height:4.9px;--drift-x:-7.3px;--drift-y:-9.7px;--hp-max-opacity:0.39;animation-duration:8.9s;animation-delay:0.8s"></span>
+    <span class="hp hp-sparkle" style="top:73.3%;left:21.9%;width:3.9px;height:3.9px;--drift-x:2.2px;--drift-y:-15.5px;--hp-max-opacity:0.46;animation-duration:8.4s;animation-delay:0.4s"></span>
+    <span class="hp hp-sparkle" style="top:62.4%;left:43.6%;width:3.2px;height:3.2px;--drift-x:1.4px;--drift-y:-14.6px;--hp-max-opacity:0.39;animation-duration:12.8s;animation-delay:4.9s"></span>
+    <span class="hp" style="top:54.0%;left:52.2%;width:4.7px;height:4.7px;--drift-x:3.7px;--drift-y:-16.5px;--hp-max-opacity:0.59;animation-duration:8.7s;animation-delay:2.9s"></span>
+    <span class="hp" style="top:20.2%;left:49.0%;width:2.5px;height:2.5px;--drift-x:2.7px;--drift-y:-10.8px;--hp-max-opacity:0.47;animation-duration:13.3s;animation-delay:2.2s"></span>
+    <span class="hp" style="top:55.5%;left:57.0%;width:3.6px;height:3.6px;--drift-x:5.4px;--drift-y:-8.7px;--hp-max-opacity:0.44;animation-duration:12.0s;animation-delay:0.4s"></span>
+    <span class="hp hp-sparkle" style="top:59.8%;left:93.4%;width:4.5px;height:4.5px;--drift-x:-3.4px;--drift-y:-15.4px;--hp-max-opacity:0.5;animation-duration:8.1s;animation-delay:3.2s"></span>
+    <span class="hp" style="top:17.4%;left:11.2%;width:4.4px;height:4.4px;--drift-x:-5.9px;--drift-y:-17.0px;--hp-max-opacity:0.42;animation-duration:13.2s;animation-delay:0.6s"></span>
+    <span class="hp" style="top:52.0%;left:83.7%;width:4.5px;height:4.5px;--drift-x:5.8px;--drift-y:-16.7px;--hp-max-opacity:0.42;animation-duration:10.2s;animation-delay:6.2s"></span>
+    <span class="hp" style="top:20.1%;left:21.5%;width:3.0px;height:3.0px;--drift-x:-4.3px;--drift-y:-14.2px;--hp-max-opacity:0.48;animation-duration:9.6s;animation-delay:0.0s"></span>
+    <span class="hp" style="top:37.5%;left:55.8%;width:4.9px;height:4.9px;--drift-x:3.0px;--drift-y:-13.8px;--hp-max-opacity:0.49;animation-duration:12.1s;animation-delay:0.4s"></span>
+    <span class="hp hp-sparkle" style="top:70.4%;left:83.0%;width:4.5px;height:4.5px;--drift-x:-1.7px;--drift-y:-15.2px;--hp-max-opacity:0.33;animation-duration:11.8s;animation-delay:0.4s"></span>
+    <span class="hp hp-sparkle" style="top:24.7%;left:20.3%;width:3.3px;height:3.3px;--drift-x:-7.2px;--drift-y:-20.0px;--hp-max-opacity:0.35;animation-duration:8.6s;animation-delay:2.5s"></span>
+    <span class="hp" style="top:77.9%;left:60.0%;width:2.8px;height:2.8px;--drift-x:-4.0px;--drift-y:-15.8px;--hp-max-opacity:0.41;animation-duration:8.7s;animation-delay:5.9s"></span>
+    <span class="hp hp-sparkle" style="top:45.3%;left:48.6%;width:2.6px;height:2.6px;--drift-x:-6.4px;--drift-y:-15.9px;--hp-max-opacity:0.38;animation-duration:13.0s;animation-delay:1.1s"></span>
+    <span class="hp" style="top:84.1%;left:52.5%;width:2.8px;height:2.8px;--drift-x:0.7px;--drift-y:-19.7px;--hp-max-opacity:0.46;animation-duration:13.9s;animation-delay:6.0s"></span>
+    <span class="hp" style="top:28.9%;left:38.3%;width:2.8px;height:2.8px;--drift-x:4.4px;--drift-y:-13.6px;--hp-max-opacity:0.53;animation-duration:10.0s;animation-delay:1.6s"></span>
+    <span class="hp hp-sparkle" style="top:86.8%;left:81.0%;width:4.5px;height:4.5px;--drift-x:5.1px;--drift-y:-11.1px;--hp-max-opacity:0.37;animation-duration:11.1s;animation-delay:2.5s"></span>
+    <span class="hp" style="top:10.2%;left:30.6%;width:3.1px;height:3.1px;--drift-x:3.1px;--drift-y:-8.5px;--hp-max-opacity:0.43;animation-duration:13.6s;animation-delay:6.9s"></span>
+    <span class="hp" style="top:37.2%;left:25.4%;width:3.0px;height:3.0px;--drift-x:-4.9px;--drift-y:-17.5px;--hp-max-opacity:0.49;animation-duration:13.4s;animation-delay:5.9s"></span>
+    <span class="hp hp-sparkle" style="top:60.2%;left:76.4%;width:2.6px;height:2.6px;--drift-x:2.6px;--drift-y:-9.1px;--hp-max-opacity:0.53;animation-duration:12.5s;animation-delay:3.3s"></span>
+    <span class="hp hp-sparkle" style="top:71.1%;left:35.3%;width:4.5px;height:4.5px;--drift-x:7.5px;--drift-y:-15.2px;--hp-max-opacity:0.42;animation-duration:13.7s;animation-delay:5.1s"></span>
+    <span class="hp hp-sparkle" style="top:18.2%;left:19.3%;width:4.8px;height:4.8px;--drift-x:4.9px;--drift-y:-18.2px;--hp-max-opacity:0.55;animation-duration:13.9s;animation-delay:4.6s"></span>
+    <span class="hp" style="top:51.9%;left:17.5%;width:2.4px;height:2.4px;--drift-x:7.5px;--drift-y:-12.2px;--hp-max-opacity:0.46;animation-duration:13.6s;animation-delay:3.0s"></span>
+    <span class="hp hp-sparkle" style="top:74.1%;left:24.6%;width:3.1px;height:3.1px;--drift-x:-3.3px;--drift-y:-17.1px;--hp-max-opacity:0.48;animation-duration:9.6s;animation-delay:2.9s"></span>
+    <span class="hp" style="top:80.8%;left:37.1%;width:3.6px;height:3.6px;--drift-x:1.3px;--drift-y:-9.1px;--hp-max-opacity:0.43;animation-duration:13.5s;animation-delay:3.5s"></span>
+    <span class="hp" style="top:49.9%;left:7.6%;width:3.5px;height:3.5px;--drift-x:-5.1px;--drift-y:-20.0px;--hp-max-opacity:0.54;animation-duration:9.0s;animation-delay:3.3s"></span>
+    <span class="hp hp-sparkle" style="top:52.5%;left:34.7%;width:3.7px;height:3.7px;--drift-x:0.9px;--drift-y:-10.6px;--hp-max-opacity:0.33;animation-duration:11.4s;animation-delay:1.7s"></span>
+    <span class="hp" style="top:69.8%;left:50.7%;width:3.9px;height:3.9px;--drift-x:4.2px;--drift-y:-9.1px;--hp-max-opacity:0.43;animation-duration:11.7s;animation-delay:3.5s"></span>
+    <span class="hp hp-sparkle" style="top:63.4%;left:45.8%;width:3.8px;height:3.8px;--drift-x:-0.4px;--drift-y:-8.7px;--hp-max-opacity:0.51;animation-duration:13.3s;animation-delay:6.6s"></span>
+    <span class="hp hp-sparkle" style="top:52.8%;left:89.0%;width:4.6px;height:4.6px;--drift-x:-5.8px;--drift-y:-18.5px;--hp-max-opacity:0.43;animation-duration:8.4s;animation-delay:1.7s"></span>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-h1-wrap">
+      <h1 class="hero-h1 hero-in">עמדת צילום 360 שהופכת כל אירוע <em>לחוויה</em></h1>
+    </div>
+    <p class="hero-sub hero-in">סרטונים ויראליים, עיצוב מותאם אישית ושליחה מיידית לאורחים בזמן אמת.</p>
+    <div class="hero-btns hero-in">
+      <button type="button" class="btn-gold" id="hero-avail-btn">בדיקת זמינות לאירוע</button>
+      <a href="#gallery" class="btn-outline">צפו בגלריה ▶</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>גלול</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- WHY KASA -->
+<section id="why">
+  <div class="container">
+    <div class="section-label">למה לבחור ב־Kasa Events</div>
+    <div class="divider"></div>
+    <h2 class="section-title">חוויה שמרימה את האירוע</h2>
+    <p class="section-sub">הופכים רגעים לסרטונים שכולם משתפים.</p>
+    <div class="why-grid" id="why-grid">
+      <div class="why-card premium-entrance entrance-d0">
+        <div class="why-icon">🎥</div>
+        <h3>חוויית צילום מקצועית</h3>
+        <p>סרטונים ברמה גבוהה עם אפקטים, מוזיקה ומיתוג אישי.</p>
+      </div>
+      <div class="why-card premium-entrance entrance-d1">
+        <div class="why-icon">⚡</div>
+        <h3>שליחה מיידית</h3>
+        <p>קבלת הסרטונים בזמן אמת.</p>
+      </div>
+      <div class="why-card premium-entrance entrance-d2">
+        <div class="why-icon">✨</div>
+        <h3>מראה יוקרתי</h3>
+        <p>עמדת 360 עם תאורת LED מקצועית.</p>
+      </div>
+      <div class="why-card premium-entrance entrance-d3">
+        <div class="why-icon">👥</div>
+        <h3>ניהול קהל מקצועי</h3>
+        <p>שטיח אדום, עמודי תור ותפעול מלא.</p>
+      </div>
+      <div class="why-card premium-entrance entrance-d4">
+        <div class="why-icon">📱</div>
+        <h3>תוכן שהאורחים משתפים</h3>
+        <p>מוכן לשיתוף באינסטגרם, טיקטוק ופייסבוק.</p>
+      </div>
+      <div class="why-card premium-entrance entrance-d5">
+        <div class="why-icon">⭐</div>
+        <h3>שירות אישי וזמינות מלאה</h3>
+        <p>ליווי אישי לפני ובמהלך האירוע.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-label">גלריה</div>
+    <div class="divider"></div>
+    <h2 class="section-title">החוויה דרך העדשה</h2>
+    <p class="section-sub">הצצה לרגעים היפים מהאירועים שלנו.</p>
+
+    <div class="gallery-carousel reveal">
+      <div class="gallery-viewport" id="gallery-viewport">
+        <div class="gallery-track" id="gallery-track">
+
+          <!-- ============================================================
+               EASY EDIT: set the src="" on each <video> below to your own
+               file (e.g. src="videos/wedding-1.mp4"). Until a real file is
+               added, the video element shows the gradient background so
+               the carousel never looks broken. Keep muted, loop, and
+               playsinline on every video — they're required for silent
+               autoplay to work reliably on mobile browsers.
+               ============================================================ -->
+
+          
+
+          <div class="gallery-slide is-active">
+            <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.jpg')">
+              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.jpg" muted loop playsinline preload="metadata"></video>
+              <button class="gallery-item-click-catcher" type="button" data-lightbox-open aria-label="פתיחת הסרטון במסך מלא"></button>
+              <div class="video-badge">VIDEO</div>
+              <div class="gallery-overlay"><span>חתונה — אירוע</span></div>
+            </div>
+          </div>
+
+          <div class="gallery-slide">
+            <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.jpg')">
+              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.jpg" muted loop playsinline preload="metadata"></video>
+              <button class="gallery-item-click-catcher" type="button" data-lightbox-open aria-label="פתיחת הסרטון במסך מלא"></button>
+              <div class="video-badge">VIDEO</div>
+              <div class="gallery-overlay"><span>חתונה — רחובות</span></div>
+            </div>
+          </div>
+
+          <div class="gallery-slide">
+            <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/IMG_1239_c5cztf.jpg')">
+              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/IMG_1239_c5cztf.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/IMG_1239_c5cztf.jpg" muted loop playsinline preload="metadata"></video>
+              <button class="gallery-item-click-catcher" type="button" data-lightbox-open aria-label="פתיחת הסרטון במסך מלא"></button>
+              <div class="video-badge">VIDEO</div>
+              <div class="gallery-overlay"><span>חתונה — באר שבע</span></div>
+            </div>
+          </div>
+
+          <div class="gallery-slide">
+            <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/20260527_202207792_ut4rzi.jpg')">
+              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/20260527_202207792_ut4rzi.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/20260527_202207792_ut4rzi.jpg" muted loop playsinline preload="metadata"></video>
+              <button class="gallery-item-click-catcher" type="button" data-lightbox-open aria-label="פתיחת הסרטון במסך מלא"></button>
+              <div class="video-badge">VIDEO</div>
+              <div class="gallery-overlay"><span>חתונה — מרכז הארץ</span></div>
+            </div>
+          </div>
+
+          <div class="gallery-slide">
+            <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/IMG_1238_mdpsgy.jpg')">
+              <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/du_9/IMG_1238_mdpsgy.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/IMG_1238_mdpsgy.jpg" muted loop playsinline preload="metadata"></video>
+              <button class="gallery-item-click-catcher" type="button" data-lightbox-open aria-label="פתיחת הסרטון במסך מלא"></button>
+              <div class="video-badge">VIDEO</div>
+              <div class="gallery-overlay"><span>חתונה — ראשון לציון</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="gallery-arrow gallery-arrow-prev" id="gallery-prev" aria-label="הסרטון הקודם" type="button">
+        <svg viewBox="0 0 24 24"><path d="M15.5 19L8.5 12l7-7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="gallery-arrow gallery-arrow-next" id="gallery-next" aria-label="הסרטון הבא" type="button">
+        <svg viewBox="0 0 24 24"><path d="M8.5 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="gallery-dots" id="gallery-dots">
+        <button class="gallery-dot active" data-i="0" aria-label="וידאו 1"></button>
+        <button class="gallery-dot" data-i="1" aria-label="וידאו 2"></button>
+        <button class="gallery-dot" data-i="2" aria-label="וידאו 3"></button>
+        <button class="gallery-dot" data-i="3" aria-label="וידאו 4"></button>
+        <button class="gallery-dot" data-i="4" aria-label="וידאו 5"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST PILL STRIP — premium rotating indicator, bridges the gallery and reviews -->
+<section id="trust-strip">
+  <div class="trust-pill-wrap">
+    <div class="hero-pill" id="hero-pill">
+      <span class="hero-pill-item active" data-i="0"><span class="hero-pill-icon">⭐</span>100+ אירועים מוצלחים</span>
+      <span class="hero-pill-item" data-i="1"><span class="hero-pill-icon">⚡</span>שליחה מיידית לאורחים</span>
+      <span class="hero-pill-item" data-i="2"><span class="hero-pill-icon">🎥</span>איכות 4K</span>
+      <span class="hero-pill-item" data-i="3"><span class="hero-pill-icon">📍</span>מרכז ודרום</span>
+    </div>
+  </div>
+</section>
+
+<!-- AVAILABILITY CHECK — above pricing -->
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-label">חבילות</div>
+    <div class="divider"></div>
+    <h2 class="section-title">בחרו את החבילה המתאימה</h2>
+    <p class="section-sub">הבחירה שלכם, החוויה עלינו.</p>
+
+    <div class="pricing-grid">
+
+      <!-- PACKAGE 1: Classic 360 -->
+      <div class="price-card reveal">
+        <div class="price-head">
+          <div class="price-name"><span class="pname-icon">⭐</span>Classic 360</div>
+          <div class="price-line"><span class="pl-prefix">החל מ־</span>₪1,700</div>
+        </div>
+        <div class="price-desc">פתרון מושלם לאירועים שרוצים חוויית צילום מקצועית במחיר משתלם.</div>
+        <ul class="price-features">
+          <li>עמדת צילום 360</li>
+          <li>3 שעות פעילות</li>
+          <li>2 מעמדי תאורת LED מקצועיים</li>
+          <li>שטיח אדום</li>
+          <li>עיצוב מותאם אישית לסרטון</li>
+          <li>שליחה מיידית לאורחים בזמן אמת</li>
+        </ul>
+        <ul class="price-features-extra">
+          <li>עמודי תור לניהול הקהל</li>
+          <li>WhatsApp / SMS / AirDrop</li>
+          <li>צוות תפעול מקצועי לאורך כל האירוע</li>
+          <li>קבלת כל סרטוני האורחים לאחר האירוע</li>
+        </ul>
+        <a href="#contact" class="price-btn price-btn-outline">לקבלת הצעת מחיר</a>
+      </div>
+
+      <!-- PACKAGE 2: VIP 360 (featured) -->
+      <div class="price-card featured reveal reveal-delay-1">
+        <div class="featured-badge">החבילה הפופולרית ביותר ⭐</div>
+        <div class="price-head">
+          <div class="price-name"><span class="pname-icon">👑</span>VIP 360</div>
+          <div class="price-line"><span class="pl-prefix">החל מ־</span>₪1,900</div>
+        </div>
+        <div class="price-desc">חוויית צילום יוקרתית ומרשימה יותר עם רקע מואר ומעוצב.</div>
+
+        <div class="price-premium-note">
+          <span class="ppn-icon">✨</span>
+          <span><strong>בתוספת של 200 ₪ בלבד</strong> – רקע LED יוקרתי הכולל 28 נורות LED מובנות.</span>
+        </div>
+
+        <ul class="price-features">
+          <li>עמדת צילום 360</li>
+          <li>3 שעות פעילות</li>
+          <li>שטיח אדום</li>
+          <li>שליחה מיידית לאורחים בזמן אמת</li>
+          <li class="highlight">✨ רקע LED יוקרתי הכולל 28 נורות מובנות</li>
+        </ul>
+        <ul class="price-features-extra">
+          <li>עמודי תור לניהול הקהל</li>
+          <li>עיצוב מותאם אישית לסרטון</li>
+          <li>WhatsApp / SMS / AirDrop</li>
+          <li>צוות תפעול מקצועי לאורך כל האירוע</li>
+          <li>קבלת כל סרטוני האורחים לאחר האירוע</li>
+        </ul>
+        <a href="#contact" class="price-btn price-btn-primary">לקבלת הצעת מחיר</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-label">ביקורות לקוחות</div>
+    <div class="divider"></div>
+    <h2 class="section-title">לקוחות מספרים בוואטסאפ</h2>
+    <p class="section-sub">התגובות שהכי משמחות אותנו בסיום כל אירוע</p>
+
+    <div class="trust-header reveal">
+      <div class="trust-stars">★★★★★</div>
+      <div class="trust-label">דירוג לקוחות</div>
+      <div class="trust-sub">מעל 100 אירועים מוצלחים</div>
+    </div>
+
+    <!-- ============================================================
+         EASY EDIT: each review lives in one .review-slide block below.
+         To replace with a real review, just edit the text inside:
+         name / event / stars / message / time.
+         To add or remove a review, copy/delete a whole .review-slide
+         block AND add/remove a matching .review-dot button.
+         ============================================================ -->
+    <div class="review-carousel reveal">
+      <div class="review-viewport" id="review-viewport">
+        <div class="review-track" id="review-track">
+
+          <div class="review-slide is-active">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">💍</div>
+                    <div class="review-meta">
+                      <div class="review-name">חתונה • רחובות</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">חייבת לפרגן לכם מכל הלב ❤️<br>השירות שלכם פשוט מושלם והייתם מאוד סבלניים עם הילדים שהבאתי.<br>שתגיעו לעוד הרבה שמחות בעזרת ה' גם בחתונה של אחותי 😊</p>
+                  <div class="review-footer"><span class="review-time">21:32</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">💍</div>
+                    <div class="review-meta">
+                      <div class="review-name">חתונה • כנות</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">היי, מה קורה? 😊<br>תודה רבה על אתמול.<br>איזו עמדה מטורפת!<br>אני כל כך שמחה שלא ויתרתי עליכם ❤️🔥</p>
+                  <div class="review-footer"><span class="review-time">20:15</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">💍</div>
+                    <div class="review-meta">
+                      <div class="review-name">חתונה • ראשון לציון</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">אין לי מילים!! תודה ענקית על השירות המטורף ועל זה שכל פרט קטן היה מושלם 🙏<br>העמדה שלכם עשתה את כל האווירה באירוע ❤️</p>
+                  <div class="review-footer"><span class="review-time">22:48</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">💍</div>
+                    <div class="review-meta">
+                      <div class="review-name">חתונה • פתח תקווה</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">תודה רבה על הכול ❤️<br>באמת לא ציפינו לרמה כזו!<br>הייתם מדהימים, מקצועיים, והאורחים לא הפסיקו לדבר על העמדה 🥰</p>
+                  <div class="review-footer"><span class="review-time">23:10</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">💍</div>
+                    <div class="review-meta">
+                      <div class="review-name">חתונה • אשדוד</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">לא הפסקנו לקבל מחמאות על הסרטונים.<br>כל מי שהיה באירוע אמר שזו הייתה האטרקציה הכי שווה!<br>תודה על שירות מושלם ❤️</p>
+                  <div class="review-footer"><span class="review-time">19:54</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">🎉</div>
+                    <div class="review-meta">
+                      <div class="review-name">בת מצווה • אשקלון</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">היי בוקר טוב, רציתי להגיד שהיה ממש יפה.<br>כל האורחים נהנו, העמדה הייתה אחת היפות וכיף שלקחנו אתכם.<br>תודה רבה על הערב 🙏🙏</p>
+                  <div class="review-footer"><span class="review-time">09:22</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">🎉</div>
+                    <div class="review-meta">
+                      <div class="review-name">בת מצווה • יבנה</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">תודה רבה על הכול ❤️<br>אנשים עפו עליכם, הייתה אווירה מטורפת והילדים לא הפסיקו להצטלם.<br>העמדה הוסיפה המון לאירוע.</p>
+                  <div class="review-footer"><span class="review-time">21:05</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">🎉</div>
+                    <div class="review-meta">
+                      <div class="review-name">בת מצווה • נס ציונה</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">תודה רבה על השירות!<br>הילדה הייתה בעננים וכל החברות שלה דיברו על הסרטונים גם אחרי האירוע.<br>מקצועיים, אדיבים ושירות ברמה גבוהה.</p>
+                  <div class="review-footer"><span class="review-time">18:40</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">🎉</div>
+                    <div class="review-meta">
+                      <div class="review-name">בת מצווה • מודיעין</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">הייתם פשוט אלופים ❤️<br>הכול עבד בצורה מושלמת, הסרטונים יצאו מדהים והאורחים ממש התלהבו.<br>שמחים שבחרנו בכם.</p>
+                  <div class="review-footer"><span class="review-time">20:33</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">🏢</div>
+                    <div class="review-meta">
+                      <div class="review-name">אירוע חברה • תל אביב</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">תקשיבו, אתם תותחים 🔥<br>הכול היה מדויק – מהצילום ועד השירות בקיצור הכול!<br>כבר המלצנו עליכם לשני חברים 😉</p>
+                  <div class="review-footer"><span class="review-time">17:12</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">💍</div>
+                    <div class="review-meta">
+                      <div class="review-name">חתונה • נתניה</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">תודה רבה על השירות המושלם ❤️<br>האורחים נהנו בטירוף והסרטונים יצאו ברמה גבוהה.<br>אין ספק שנמליץ עליכם הלאה.</p>
+                  <div class="review-footer"><span class="review-time">22:20</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">💍</div>
+                    <div class="review-meta">
+                      <div class="review-name">חתונה • באר שבע</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">העמדה שלכם הייתה אחת האטרקציות הבולטות באירוע.<br>הכול היה מסודר, מקצועי ועם יחס מעולה לאורך כל הערב.<br>תודה רבה לכם ❤️</p>
+                  <div class="review-footer"><span class="review-time">23:41</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">🎉</div>
+                    <div class="review-meta">
+                      <div class="review-name">בת מצווה • קריית גת</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">שירות מעולה מהרגע הראשון ועד סוף האירוע.<br>הילדים נהנו, ההורים פרגנו והסרטונים יצאו מושלם.<br>ממליצים בחום ❤️</p>
+                  <div class="review-footer"><span class="review-time">19:18</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">💍</div>
+                    <div class="review-meta">
+                      <div class="review-name">חתונה • חולון</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">צוות מקצועי, אדיב וסבלני.<br>הכול תיקתק כמו שצריך והאורחים נהנו מכל רגע.<br>תודה על ערב מושלם 🙏</p>
+                  <div class="review-footer"><span class="review-time">21:50</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">💍</div>
+                    <div class="review-meta">
+                      <div class="review-name">חתונה • רמלה</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">השירות היה מעל ומעבר לציפיות.<br>האיכות, היחס והזמינות שלכם היו פשוט מעולים.<br>שמחים שבחרנו בכם ליום המיוחד שלנו ❤️</p>
+                  <div class="review-footer"><span class="review-time">22:05</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <button class="review-arrow review-arrow-prev" id="review-prev" aria-label="הביקורת הקודמת" type="button">
+        <svg viewBox="0 0 24 24"><path d="M15.5 19L8.5 12l7-7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="review-arrow review-arrow-next" id="review-next" aria-label="הביקורת הבאה" type="button">
+        <svg viewBox="0 0 24 24"><path d="M8.5 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="review-dots" id="review-dots">
+        <button class="review-dot active" data-i="0" aria-label="ביקורת 1"></button>
+        <button class="review-dot" data-i="1" aria-label="ביקורת 2"></button>
+        <button class="review-dot" data-i="2" aria-label="ביקורת 3"></button>
+        <button class="review-dot" data-i="3" aria-label="ביקורת 4"></button>
+        <button class="review-dot" data-i="4" aria-label="ביקורת 5"></button>
+        <button class="review-dot" data-i="5" aria-label="ביקורת 6"></button>
+        <button class="review-dot" data-i="6" aria-label="ביקורת 7"></button>
+        <button class="review-dot" data-i="7" aria-label="ביקורת 8"></button>
+        <button class="review-dot" data-i="8" aria-label="ביקורת 9"></button>
+        <button class="review-dot" data-i="9" aria-label="ביקורת 10"></button>
+        <button class="review-dot" data-i="10" aria-label="ביקורת 11"></button>
+        <button class="review-dot" data-i="11" aria-label="ביקורת 12"></button>
+        <button class="review-dot" data-i="12" aria-label="ביקורת 13"></button>
+        <button class="review-dot" data-i="13" aria-label="ביקורת 14"></button>
+        <button class="review-dot" data-i="14" aria-label="ביקורת 15"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-label">שאלות נפוצות</div>
+    <div class="divider"></div>
+    <h2 class="section-title">כל מה שרציתם לשאול</h2>
+    <p class="section-sub">כל מה שחשוב לדעת לפני האירוע</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">מה זו עמדת צילום 360 ואיך היא עובדת?<span class="faq-icon">+</span></button>
+        <div class="faq-a">עמדת 360 היא פלטפורמה מסתובבת שעליה עומדים האורחים, ומצלמה מקיפה אותם. הסרטון הסופי יוצא כ-slow motion מרהיב עם אפקטים ועיצוב מותאם — ואפשר לשלוח אותו מיד לנייד.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">לאיזה אזורים אתם מגיעים?<span class="faq-icon">+</span></button>
+        <div class="faq-a">אנחנו פועלים במרכז ובדרום ישראל — גוש דן, השרון, השפלה, יהודה, הנגב ועוד. לא בטוחים שאתם באזור השירות? פנו אלינו ונשמח לבדוק.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">כמה מוקדם צריך להזמין?<span class="faq-icon">+</span></button>
+        <div class="faq-a">אנחנו ממליצים להזמין לפחות 3-4 שבועות מראש, במיוחד לסוף שבוע בעונת החגים. עם זאת, לעיתים ניתן לאשר גם בזמן קצר יותר — צרו קשר ונבדוק זמינות.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">כמה זמן לוקח ההתקנה?<span class="faq-icon">+</span></button>
+        <div class="faq-a">ההגעה וההתקנה אורכות בדרך כלל 45-60 דקות לפני תחילת האירוע. כל הציוד מגיע איתנו ואנחנו מטפלים בכל ההכנות.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">כיצד האורחים מקבלים את הסרטון שלהם?<span class="faq-icon">+</span></button>
+        <div class="faq-a">בסיום הצילום, איש צוות ייעודי שולח לכל אורח את הסרטון שלו באופן אישי ובזמן אמת. הסרטונים נשלחים באמצעות WhatsApp, SMS או AirDrop – במהירות וללא צורך בהתקנת אפליקציה.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">מה קורה אם יש תקלה טכנית באירוע?<span class="faq-icon">+</span></button>
+        <div class="faq-a">הצוות שלנו מנוסה ומגיע עם ציוד גיבוי. במקרה של כל תקלה — נטפל בה במקום ובמהירות, כך שהאירוע ממשיך ברציפות ללא עיכוב.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">בדקתי תאריך באתר ויצא "פנוי" — זה סופי?<span class="faq-icon">+</span></button>
+        <div class="faq-a">בדיקת הזמינות באתר היא בדיקה ראשונית בלבד ומציגה שהתאריך נראה פנוי כרגע. האישור הסופי ניתן רק לאחר שהצוות שלנו בודק ידנית ומאשר מולכם בחזרה — לכן חשוב להשאיר פרטים בהקדם.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<!-- QUICK AVAILABILITY CHECK -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">קבלו הצעת מחיר לאירוע שלכם</h2>
+    <p class="section-sub">מלאו כמה פרטים ונחזור אליכם עם הצעת מחיר מותאמת.</p>
+    <div class="contact-wrap">
+      <div class="reveal">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="f-name">שם מלא *</label>
+            <input id="f-name" type="text" placeholder="שם פרטי ומשפחה" autocomplete="name" />
+          </div>
+          <div class="form-field">
+            <label for="f-phone">טלפון *</label>
+            <input id="f-phone" type="tel" placeholder="05X-XXXXXXX" autocomplete="tel" inputmode="tel" />
+          </div>
+          <div class="form-field">
+            <label for="f-date">תאריך האירוע *</label>
+            <input id="f-date" type="date" />
+          </div>
+          <div class="form-field">
+            <label for="f-type">סוג האירוע *</label>
+            <select id="f-type">
+              <option value="" disabled selected>בחרו סוג אירוע</option>
+              <option>חתונה</option>
+              <option>בר/בת מצווה</option>
+              <option>אירוע חברה</option>
+              <option>מסיבת סיום</option>
+              <option>אחר</option>
+            </select>
+          </div>
+          <div class="form-field full">
+            <label for="f-area">אזור האירוע *</label>
+            <select id="f-area">
+              <option value="" disabled selected>בחרו אזור</option>
+              <option>תל אביב וגוש דן</option>
+              <option>השרון</option>
+              <option>השפלה</option>
+              <option>ירושלים ויהודה</option>
+              <option>הנגב</option>
+              <option>אחר</option>
+            </select>
+          </div>
+          <div class="form-field full">
+            <label for="f-msg">הודעה (אופציונלי)</label>
+            <textarea id="f-msg" placeholder="מספר אורחים, מיקום, בקשות מיוחדות..."></textarea>
+          </div>
+        </div>
+        <div class="form-consent">
+          <input type="checkbox" id="consent-checkbox" />
+          <label for="consent-checkbox">אני מאשר/ת כי קראתי את <a data-legal="privacy">מדיניות הפרטיות</a> ומסכים/ה להשארת פרטיי לצורך יצירת קשר.</label>
+        </div>
+        <button class="form-submit" onclick="sendToWhatsApp()" id="lead-submit" disabled>
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          קבלת הצעת מחיר
+        </button>
+        <p class="form-note">לאחר הלחיצה ייפתח וואטסאפ עם כל הפרטים מולאים מראש ✓</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREAS -->
+<section id="areas">
+  <div class="container">
+    <div class="section-label">אזורי שירות</div>
+    <div class="divider"></div>
+    <h2 class="section-title">מרכז ודרום ישראל</h2>
+    <p class="section-sub">מגיעים עם עמדת ה־360 לכל אירוע באזור המרכז והדרום — ומביאים איתנו את כל החוויה.</p>
+    <div class="area-chips reveal">
+      <span class="area-chip">תל אביב</span>
+      <span class="area-chip">בני ברק</span>
+      <span class="area-chip">רמת גן</span>
+      <span class="area-chip">פתח תקווה</span>
+      <span class="area-chip">חולון</span>
+      <span class="area-chip">בת ים</span>
+      <span class="area-chip">ראשון לציון</span>
+      <span class="area-chip">נס ציונה</span>
+      <span class="area-chip">רחובות</span>
+      <span class="area-chip">יבנה</span>
+      <span class="area-chip">לוד</span>
+      <span class="area-chip">רמלה</span>
+      <span class="area-chip">מודיעין</span>
+      <span class="area-chip">אשדוד</span>
+      <span class="area-chip">אשקלון</span>
+      <span class="area-chip">קריית גת</span>
+      <span class="area-chip">באר שבע</span>
+      <span class="area-chip">רעננה</span>
+      <span class="area-chip">הרצליה</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-logo">Kasa <span>Events</span></div>
+      <p class="footer-tag">הופכים רגעים לסרטונים שכולם משתפים. מרכז ודרום ישראל.</p>
+      <div class="footer-contact">
+        <a href="tel:0529762788">📞 052-976-2788</a>
+        <a href="mailto:Kasa.events25@gmail.com">✉️ Kasa.events25@gmail.com</a>
+        <a href="#" id="footer-wa-link">💬 וואטסאפ</a>
+      </div>
+      <p class="footer-copy">© 2025 Kasa Events — כל הזכויות שמורות</p>
+      <div class="footer-legal" role="navigation" aria-label="קישורים משפטיים">
+        <a data-legal="privacy">מדיניות פרטיות</a>
+        <span class="sep" aria-hidden="true">•</span>
+        <a data-legal="terms">תנאי שימוש</a>
+        <span class="sep" aria-hidden="true">•</span>
+        <a data-legal="accessibility">הצהרת נגישות</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- CONFETTI CANVAS — gold + white premium burst on availability check -->
+<canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+<!-- SUCCESS MODAL — premium thank-you after a lead form is submitted -->
+<div class="success-overlay" id="form-success-overlay" role="dialog" aria-label="הבקשה התקבלה">
+  <div class="success-modal">
+    <button class="success-close" type="button" id="form-success-close" aria-label="סגור">✕</button>
+    <div class="success-emoji">🎉</div>
+    <h3 class="success-title">תודה!</h3>
+    <p class="success-text">קיבלנו את הפרטים שלכם בהצלחה.<br>נחזור אליכם בהקדם עם הצעת מחיר מותאמת.</p>
+    <ul class="success-checks">
+      <li>הבקשה התקבלה</li>
+      <li>הפרטים נשמרו</li>
+      <li>נחזור אליכם בהקדם</li>
+    </ul>
+  </div>
+</div>
+
+<!-- GALLERY VIDEO LIGHTBOX — fullscreen 9:16 modal player -->
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <div class="lightbox-box" role="dialog" aria-label="נגן וידאו במסך מלא">
+    <button class="lightbox-close" type="button" data-lightbox-close aria-label="סגור">✕</button>
+    <div class="lightbox-frame-wrap">
+      <video id="modalVideo" class="lightbox-iframe" controls playsinline webkit-playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;"></video>
+    </div>
+    <a id="modalVideoFallback" class="lightbox-fallback" href="#" target="_blank" rel="noopener">אם הסרטון לא נטען, לחצו כאן לפתיחה</a>
+  </div>
+</div>
+
+<!-- CUSTOM HEBREW CALENDAR POPUP -->
+<div class="cal-overlay" id="cal-overlay">
+  <div class="cal-popup" role="dialog" aria-label="בחירת תאריך">
+    <div class="cal-header">
+      <button class="cal-nav" id="cal-prev" type="button" aria-label="חודש קודם">›</button>
+      <div class="cal-month-label" id="cal-month-label"></div>
+      <button class="cal-nav" id="cal-next" type="button" aria-label="חודש הבא">‹</button>
+    </div>
+    <div class="cal-weekdays">
+      <span>א׳</span><span>ב׳</span><span>ג׳</span><span>ד׳</span><span>ה׳</span><span>ו׳</span><span>ש׳</span>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+    <div class="cal-actions">
+      <button class="cal-btn cal-btn-reset" id="cal-reset" type="button">איפוס</button>
+      <button class="cal-btn cal-btn-confirm" id="cal-confirm" type="button">אישור</button>
+    </div>
+  </div>
+</div>
+
+<!-- LUXURY AVAILABILITY MODAL — 3-step flow: pick date -> success+confetti -> leave details -->
+<div class="avail-success-overlay" id="avail-success-overlay">
+
+  <!-- STEP 1: date only -->
+  <div class="avail-success-modal" id="avail-step-date" role="dialog" aria-label="בדיקת זמינות לאירוע">
+    <button class="avail-success-close" type="button" data-avail-close aria-label="סגור">✕</button>
+    <div class="avail-success-headline">📅 בדיקת זמינות לאירוע</div>
+    <p class="avail-success-text">בחרו את תאריך האירוע ונבדוק עבורכם זמינות.</p>
+
+    <div class="avail-success-field">
+      <label for="avail-date-trigger">תאריך האירוע</label>
+      <button class="avail-date-trigger" type="button" id="avail-date-trigger" aria-haspopup="dialog">
+        <span id="avail-date-display">בחרו תאריך אירוע</span>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V3a1 1 0 0 1 1-1Zm13 8H4v10h16V10ZM8 13h3v3H8v-3Z"/></svg>
+      </button>
+    </div>
+
+    <button class="avail-success-btn" id="avail-step-date-cta" type="button">בדיקת זמינות</button>
+  </div>
+
+  <!-- STEP 2: success message + lead form together (no extra click) -->
+  <div class="avail-success-modal" id="avail-step-success" role="dialog" aria-label="התאריך פנוי" style="display:none">
+    <button class="avail-success-close" type="button" data-avail-close aria-label="סגור">✕</button>
+    <div class="avail-success-headline">🎉 מזל טוב!</div>
+    <p class="avail-success-text">נראה שהתאריך שבחרתם פנוי</p>
+
+    <div class="avail-success-field">
+      <label for="as-name">שם מלא</label>
+      <input id="as-name" type="text" placeholder="שם פרטי ומשפחה" autocomplete="name" />
+    </div>
+    <div class="avail-success-field">
+      <label for="as-phone">טלפון *</label>
+      <input id="as-phone" type="tel" placeholder="05X-XXXXXXX" autocomplete="tel" inputmode="tel" />
+    </div>
+    <div class="avail-success-field">
+      <label for="as-type">סוג האירוע *</label>
+      <select id="as-type">
+        <option value="" disabled selected>בחרו סוג אירוע</option>
+        <option>חתונה</option>
+        <option>בר/בת מצווה</option>
+        <option>אירוע חברה</option>
+        <option>מסיבת סיום</option>
+        <option>אחר</option>
+      </select>
+    </div>
+    <div class="avail-success-field">
+      <label for="as-city">עיר האירוע *</label>
+      <input id="as-city" type="text" placeholder="לדוגמה: תל אביב" autocomplete="address-level2" />
+    </div>
+
+    <button class="avail-success-btn" id="avail-success-cta" type="button">שליחת פרטים</button>
+  </div>
+
+</div>
+
+<!-- STICKY BOTTOM CTA BAR -->
+<div class="sticky-cta-bar" aria-label="פעולות מהירות">
+  <button class="scta-gold" type="button" id="sticky-bar-avail-btn">📅 בדיקת זמינות</button>
+  <a href="#" class="scta-wa" id="sticky-bar-wa-link">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    דברו איתנו בוואטסאפ
+  </a>
+</div>
+
+<script>
+  /* ===== EDIT THESE TWO VALUES IF NEEDED ===== */
+  var WA_NUMBER = '972529762788';      // WhatsApp number (international format, no +)
+  var EMAIL     = 'Kasa.events25@gmail.com';
+  var DEFAULT_WA_MSG = 'היי Kasa Events, אני רוצה לבדוק זמינות לאירוע ☺️';
+
+  /* =========================================================================
+     GALLERY VIDEOS — Cloudinary (public MP4 links)
+     -------------------------------------------------------------------------
+     Each gallery video card is matched by its caption (the text shown on the
+     card). For every entry, paste the DIRECT Cloudinary MP4 link in `video`.
+     The `poster` is the thumbnail image — Cloudinary can auto-generate one
+     from the video by changing the extension to .jpg and adding so_2 (the
+     frame at 2 seconds).
+
+     HOW TO GET A LINK: in Cloudinary, open the video → choose "Link" (NOT
+     Embed / Javascript) → copy the link that starts with
+     https://res.cloudinary.com/dchc5d5lr/video/upload/.../NAME.mp4
+
+     Until you paste a real link, that card will not play (it just shows its
+     poster). Replace the empty '' values below as you get each link.
+     ========================================================================= */
+  var CLOUD = 'dchc5d5lr'; // your Cloudinary cloud name
+  var GALLERY_VIDEOS = {
+    'חתונה — אירוע': {
+      video:  'https://res.cloudinary.com/dchc5d5lr/video/upload/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.mp4',
+      poster: 'https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.jpg'
+    },
+    'חתונה — מרכז הארץ': {
+      video:  'https://res.cloudinary.com/dchc5d5lr/video/upload/20260527_202207792_ut4rzi.mp4',
+      poster: 'https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/20260527_202207792_ut4rzi.jpg'
+    },
+    'חתונה — רחובות': {
+      video:  'https://res.cloudinary.com/dchc5d5lr/video/upload/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.mp4',
+      poster: 'https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.jpg'
+    },
+    'חתונה — באר שבע': {
+      video:  'https://res.cloudinary.com/dchc5d5lr/video/upload/IMG_1239_c5cztf.mp4',
+      poster: 'https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/IMG_1239_c5cztf.jpg'
+    },
+    'חתונה — ראשון לציון': {
+      video:  'https://res.cloudinary.com/dchc5d5lr/video/upload/du_9/IMG_1238_mdpsgy.mp4',
+      poster: 'https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/IMG_1238_mdpsgy.jpg'
+    }
+  };
+
+  function waLink(msg) {
+    return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg || DEFAULT_WA_MSG);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var ids = ['mobile-wa-link','footer-wa-link','sticky-bar-wa-link'];
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.setAttribute('href', waLink());
+    });
+
+    /* ===== NAV SCROLL ===== */
+    var nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', function () {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+
+    /* ===== MOBILE MENU ===== */
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobile-menu');
+    var mobileClose = document.getElementById('mobile-close');
+    hamburger.addEventListener('click', function () {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    mobileClose.addEventListener('click', closeMobile);
+
+    /* ===== FAQ ACCORDION ===== */
+    document.querySelectorAll('.faq-q').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.faq-item');
+        var isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function (i) { i.classList.remove('open'); });
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    /* ===== SCROLL REVEAL ===== */
+    var revealEls = document.querySelectorAll('.reveal');
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+
+    /* ===== HERO VIDEO AUTOPLAY SAFETY NET ===== */
+    initHeroVideo();
+
+    /* ===== HERO ROTATING PILL ===== */
+    initHeroPill();
+
+    /* ===== PREMIUM CARD ENTRANCE (why-cards) ===== */
+    initPremiumEntrance();
+
+    /* ===== SMOOTH SCROLL ===== */
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var targetId = a.getAttribute('href');
+        if (targetId.length > 1) {
+          var target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    /* ===== REVIEW CAROUSEL ===== */
+    initReviewCarousel();
+
+    /* ===== GALLERY VIDEO CAROUSEL ===== */
+    initGalleryCarousel();
+    initGalleryLightbox();
+
+    /* ===== MOBILE PRICING CAROUSEL — highlight centered card ===== */
+    initPricingCarousel();
+
+    /* ===== CUSTOM HEBREW CALENDAR + QUICK AVAILABILITY CHECK ===== */
+    initCustomCalendar();
+    initAvailabilityCheck();
+
+    /* ===== HIDE STICKY BAR OVER THE QUOTE FORM (mobile only) ===== */
+    initStickyBarOverForm();
+  });
+
+  /* Hide the fixed bottom CTA bar while the quote form (#contact) is on screen,
+     so it doesn't overlap the form's submit button. Mobile only; desktop unaffected. */
+  function initStickyBarOverForm() {
+    var bar = document.querySelector('.sticky-cta-bar');
+    if (!bar || !('IntersectionObserver' in window)) return;
+
+    /* sections where the fixed bar would overlap a CTA — hide it over each of these */
+    var sections = ['contact', 'pricing']
+      .map(function (id) { return document.getElementById(id); })
+      .filter(Boolean);
+    if (!sections.length) return;
+
+    var isMobile = function () { return window.matchMedia('(max-width:600px)').matches; };
+    var visible = new Set();
+
+    function sync() {
+      if (isMobile() && visible.size > 0) {
+        bar.classList.add('sticky-hidden');
+      } else {
+        bar.classList.remove('sticky-hidden');
+      }
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { visible.add(entry.target); }
+        else { visible.delete(entry.target); }
+      });
+      sync();
+    }, { threshold: 0.12 });
+
+    sections.forEach(function (s) { observer.observe(s); });
+
+    /* if the viewport is resized from mobile to desktop while hidden, make sure the bar comes back */
+    window.addEventListener('resize', sync);
+  }
+
+  function closeMobile() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ===== QUICK AVAILABILITY CHECK → confetti + success modal → phone popup → WhatsApp ===== */
+  /* ===== CUSTOM HEBREW RTL CALENDAR ===== */
+  var HEBREW_MONTHS = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+  var selectedDate = null; // {y, m, d}
+  var calViewYear, calViewMonth;
+
+  function initCustomCalendar() {
+    var trigger = document.getElementById('avail-date-trigger');
+    var display = document.getElementById('avail-date-display');
+    var overlay = document.getElementById('cal-overlay');
+    var monthLabel = document.getElementById('cal-month-label');
+    var grid = document.getElementById('cal-grid');
+    var prevBtn = document.getElementById('cal-prev');
+    var nextBtn = document.getElementById('cal-next');
+    var resetBtn = document.getElementById('cal-reset');
+    var confirmBtn = document.getElementById('cal-confirm');
+    if (!trigger || !overlay || !monthLabel || !grid || !prevBtn || !nextBtn || !resetBtn || !confirmBtn) return;
+
+    var today = new Date();
+    calViewYear = today.getFullYear();
+    calViewMonth = today.getMonth();
+    var tempSelected = null; // working selection until "אישור" is pressed
+
+    function renderGrid() {
+      monthLabel.textContent = HEBREW_MONTHS[calViewMonth] + ' ' + calViewYear;
+      grid.innerHTML = '';
+
+      var firstOfMonth = new Date(calViewYear, calViewMonth, 1);
+      var startOffset = firstOfMonth.getDay(); // 0=Sunday ... matches our א׳(Sun) first weekday column when reversed for RTL
+      var daysInMonth = new Date(calViewYear, calViewMonth + 1, 0).getDate();
+      var todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+      // empty leading cells (grid-template-columns is already RTL-ordered via the markup's weekday spans)
+      for (var i = 0; i < startOffset; i++) {
+        var empty = document.createElement('span');
+        empty.className = 'cal-day cal-day-empty';
+        grid.appendChild(empty);
+      }
+
+      for (var d = 1; d <= daysInMonth; d++) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'cal-day';
+        btn.textContent = d;
+
+        var thisDate = new Date(calViewYear, calViewMonth, d);
+        if (thisDate < todayMidnight) {
+          btn.classList.add('cal-day-disabled');
+        } else {
+          if (thisDate.getTime() === todayMidnight.getTime()) btn.classList.add('cal-day-today');
+          if (tempSelected && tempSelected.y === calViewYear && tempSelected.m === calViewMonth && tempSelected.d === d) {
+            btn.classList.add('cal-day-selected');
+          }
+          btn.addEventListener('click', function () {
+            var dayNum = parseInt(this.textContent, 10);
+            tempSelected = { y: calViewYear, m: calViewMonth, d: dayNum };
+            renderGrid();
+          });
+        }
+        grid.appendChild(btn);
+      }
+    }
+
+    function openCal() {
+      tempSelected = selectedDate;
+      if (selectedDate) {
+        calViewYear = selectedDate.y;
+        calViewMonth = selectedDate.m;
+      }
+      renderGrid();
+      overlay.classList.add('open');
+      document.body.classList.add('cal-open');
+    }
+    function closeCal() {
+      overlay.classList.remove('open');
+      document.body.classList.remove('cal-open');
+    }
+
+    trigger.addEventListener('click', openCal);
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeCal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeCal();
+    });
+
+    prevBtn.addEventListener('click', function () {
+      calViewMonth--;
+      if (calViewMonth < 0) { calViewMonth = 11; calViewYear--; }
+      renderGrid();
+    });
+    nextBtn.addEventListener('click', function () {
+      calViewMonth++;
+      if (calViewMonth > 11) { calViewMonth = 0; calViewYear++; }
+      renderGrid();
+    });
+
+    resetBtn.addEventListener('click', function () {
+      tempSelected = null;
+      selectedDate = null;
+      display.textContent = 'בחרו תאריך אירוע';
+      trigger.classList.remove('has-value');
+      renderGrid();
+    });
+
+    confirmBtn.addEventListener('click', function () {
+      if (tempSelected) {
+        selectedDate = tempSelected;
+        var d2 = String(selectedDate.d).padStart(2, '0');
+        var m2 = String(selectedDate.m + 1).padStart(2, '0');
+        display.textContent = d2 + '/' + m2 + '/' + selectedDate.y;
+        trigger.classList.add('has-value');
+      }
+      closeCal();
+    });
+  }
+
+  /* ===== LUXURY AVAILABILITY MODAL — opened directly by hero CTA + sticky bar, submit sends to WhatsApp with confetti ===== */
+  function initAvailabilityCheck() {
+    var heroBtn = document.getElementById('hero-avail-btn');
+    var stickyBtn = document.getElementById('sticky-bar-avail-btn');
+    var overlay = document.getElementById('avail-success-overlay');
+    var stepDate = document.getElementById('avail-step-date');
+    var stepSuccess = document.getElementById('avail-step-success');
+    var stepDateCta = document.getElementById('avail-step-date-cta');
+    var detailsCta = document.getElementById('avail-success-cta');
+    var closeBtns = document.querySelectorAll('[data-avail-close]');
+    if (!overlay || !stepDate || !stepSuccess || !stepDateCta || !detailsCta) return;
+
+    function showStep(step) {
+      stepDate.style.display = (step === 'date') ? '' : 'none';
+      stepSuccess.style.display = (step === 'success') ? '' : 'none';
+    }
+
+    function openModal() {
+      showStep('date');
+      overlay.classList.add('open');
+      document.body.classList.add('avail-success-open');
+    }
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.classList.remove('avail-success-open');
+    }
+
+    if (heroBtn) heroBtn.addEventListener('click', openModal);
+    if (stickyBtn) stickyBtn.addEventListener('click', openModal);
+
+    closeBtns.forEach(function (btn) {
+      btn.addEventListener('click', closeModal);
+    });
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+    });
+
+    /* STEP 1 -> STEP 2: requires a selected date, then shows מזל טוב + lead form together + confetti */
+    stepDateCta.addEventListener('click', function () {
+      if (!selectedDate) {
+        document.getElementById('avail-date-trigger').focus();
+        return;
+      }
+      showStep('success');
+      fireConfetti();
+    });
+
+    /* STEP 2: submit name + phone + type + city (+ auto date) -> WhatsApp */
+    detailsCta.addEventListener('click', function () {
+      var name = document.getElementById('as-name').value.trim();
+      var phone = document.getElementById('as-phone').value.trim();
+      var type = document.getElementById('as-type').value.trim();
+      var city = document.getElementById('as-city').value.trim();
+
+      if (!phone) {
+        alert('אנא השאירו מספר טלפון.');
+        return;
+      }
+      if (!type) {
+        alert('אנא בחרו את סוג האירוע.');
+        document.getElementById('as-type').focus();
+        return;
+      }
+      if (!city) {
+        alert('אנא הזינו את עיר האירוע.');
+        document.getElementById('as-city').focus();
+        return;
+      }
+
+      /* the date chosen in the availability checker is included automatically — no need to re-enter */
+      var dateStr = '';
+      if (selectedDate) {
+        var d2 = String(selectedDate.d).padStart(2, '0');
+        var m2 = String(selectedDate.m + 1).padStart(2, '0');
+        dateStr = d2 + '/' + m2 + '/' + selectedDate.y;
+      }
+
+      var lines = [
+        '👋 היי Kasa Events, אני רוצה לבדוק זמינות לתאריך!',
+        '',
+        dateStr ? '📅 תאריך האירוע: ' + dateStr : '',
+        name  ? '👤 שם: ' + name : '',
+        '📞 טלפון: ' + phone,
+        '🎉 סוג האירוע: ' + type,
+        '📍 עיר האירוע: ' + city,
+        '',
+        'אשמח לקבל אישור זמינות 🙏'
+      ].filter(function (l) { return l !== ''; }).join('\n');
+
+      var cleaned = lines.replace(/\n{3,}/g, '\n\n');
+      window.open(waLink(cleaned), '_blank');
+      closeModal();
+      showFormSuccess();
+    });
+  }
+
+  /* ===== PREMIUM GOLD + WHITE CONFETTI BURST (2s, canvas-based) ===== */
+  function fireConfetti() {
+    var canvas = document.getElementById('confetti-canvas');
+    if (!canvas || !canvas.getContext) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var ctx = canvas.getContext('2d');
+    var dpr = window.devicePixelRatio || 1;
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.scale(dpr, dpr);
+
+    var colors = ['#C9A84C', '#E8C96A', '#F5EDD7', '#FFFFFF'];
+    var COUNT = 90;
+    var DURATION = 2000; // ms
+    var particles = [];
+
+    for (var i = 0; i < COUNT; i++) {
+      particles.push({
+        x: w / 2 + (Math.random() - 0.5) * 60,
+        y: h * 0.32 + (Math.random() - 0.5) * 30,
+        vx: (Math.random() - 0.5) * 7,
+        vy: -(Math.random() * 6 + 4),
+        size: Math.random() * 5 + 3,
+        shape: Math.random() > 0.5 ? 'rect' : 'circle',
+        color: colors[Math.floor(Math.random() * colors.length)],
+        rotation: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.25,
+        gravity: 0.18 + Math.random() * 0.08,
+        drag: 0.99,
+        opacity: 1
+      });
+    }
+
+    var startTime = null;
+    function frame(ts) {
+      if (!startTime) startTime = ts;
+      var elapsed = ts - startTime;
+      var progress = Math.min(elapsed / DURATION, 1);
+
+      ctx.clearRect(0, 0, w, h);
+
+      particles.forEach(function (p) {
+        p.vx *= p.drag;
+        p.vy += p.gravity;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rotation += p.rotSpeed;
+        p.opacity = 1 - progress * progress; // ease-out fade, premium not abrupt
+
+        ctx.save();
+        ctx.globalAlpha = Math.max(p.opacity, 0);
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.fillStyle = p.color;
+        if (p.shape === 'rect') {
+          ctx.fillRect(-p.size / 2, -p.size / 3.2, p.size, p.size / 1.6);
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, p.size / 2.4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      });
+
+      if (elapsed < DURATION) {
+        requestAnimationFrame(frame);
+      } else {
+        ctx.clearRect(0, 0, w, h);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function initHeroVideo() {
+    var v = document.querySelector('.hero-video');
+    if (!v || !v.getAttribute('src')) return; // no source yet — nothing to play
+    var playPromise = v.play();
+    if (playPromise && playPromise.catch) {
+      playPromise.catch(function () { /* autoplay blocked — ignore silently */ });
+    }
+  }
+
+  function initHeroPill() {
+    var items = document.querySelectorAll('.hero-pill-item');
+    if (!items.length) return;
+
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return; // leave the first item static, no rotation
+
+    var current = 0;
+    var total = items.length;
+    var ROTATE_MS = 2200;
+
+    setInterval(function () {
+      var next = (current + 1) % total;
+      items[current].classList.remove('active');
+      items[current].classList.add('leaving');
+      items[next].classList.add('active');
+
+      setTimeout(function () {
+        items[current].classList.remove('leaving');
+      }, 400); // matches the CSS transition duration
+
+      current = next;
+    }, ROTATE_MS);
+  }
+
+  function initPremiumEntrance() {
+    var grid = document.getElementById('why-grid');
+    var cards = document.querySelectorAll('.why-card.premium-entrance');
+    if (!grid || !cards.length) return;
+
+    var triggered = false;
+
+    var entranceObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && !triggered) {
+          triggered = true;
+          cards.forEach(function (c) { c.classList.add('visible'); });
+
+          /* find the longest stagger delay among the cards so the
+             one-time sweep starts only after the last card has
+             finished springing into place */
+          var maxDelay = 0;
+          cards.forEach(function (c) {
+            var style = window.getComputedStyle(c);
+            var d = parseFloat(style.transitionDelay) || 0;
+            if (d > maxDelay) maxDelay = d;
+          });
+          var entranceDuration = 0.7; // matches the CSS transition duration
+          var totalWait = (maxDelay + entranceDuration) * 1000 + 150;
+
+          setTimeout(function () {
+            grid.classList.add('sweep-ready');
+            // next frame, so the browser registers the class before animating
+            requestAnimationFrame(function () {
+              requestAnimationFrame(function () {
+                grid.classList.add('sweep-run');
+              });
+            });
+          }, totalWait);
+
+          entranceObserver.unobserve(grid);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    entranceObserver.observe(grid);
+
+    /* mobile tap glow: toggle a class briefly so touch devices get the
+       same glow/lift feedback that :hover gives on desktop */
+    cards.forEach(function (card) {
+      card.addEventListener('touchstart', function () {
+        card.classList.add('tap-glow');
+      }, { passive: true });
+      card.addEventListener('touchend', function () {
+        setTimeout(function () { card.classList.remove('tap-glow'); }, 280);
+      }, { passive: true });
+    });
+  }
+
+  /* Mobile pricing carousel: mark the card nearest the center as active (sharp),
+     the others as side (dimmed/blurred). Only active on mobile widths. */
+  function initPricingCarousel() {
+    var grid = document.querySelector('.pricing-grid');
+    if (!grid) return;
+    var cards = grid.querySelectorAll('.price-card');
+    if (!cards.length) return;
+
+    function isMobile() { return window.matchMedia('(max-width:600px)').matches; }
+
+    function update() {
+      if (!isMobile()) {
+        cards.forEach(function (c) { c.classList.remove('carousel-active', 'carousel-side'); });
+        return;
+      }
+      var gridRect = grid.getBoundingClientRect();
+      var center = gridRect.left + gridRect.width / 2;
+      var best = null, bestDist = Infinity;
+      cards.forEach(function (c) {
+        var r = c.getBoundingClientRect();
+        var cCenter = r.left + r.width / 2;
+        var d = Math.abs(cCenter - center);
+        if (d < bestDist) { bestDist = d; best = c; }
+      });
+      cards.forEach(function (c) {
+        if (c === best) { c.classList.add('carousel-active'); c.classList.remove('carousel-side'); }
+        else { c.classList.add('carousel-side'); c.classList.remove('carousel-active'); }
+      });
+    }
+
+    var raf = null;
+    grid.addEventListener('scroll', function () {
+      if (raf) return;
+      raf = requestAnimationFrame(function () { update(); raf = null; });
+    }, { passive: true });
+    window.addEventListener('resize', update);
+
+    /* tap/click a side card to bring it to the center (no arrows; swipe + dots still work) */
+    cards.forEach(function (card) {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', function (e) {
+        if (!isMobile()) return;
+        /* if the click is on the CTA link/button, let it do its normal job */
+        if (e.target.closest('a, button')) return;
+        /* only act when this card isn't already the centered/active one */
+        if (card.classList.contains('carousel-active')) return;
+        e.preventDefault();
+        card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+    });
+
+    update();
+  }
+
+  function initReviewCarousel() {
+    var viewport = document.getElementById('review-viewport');
+    var track = document.getElementById('review-track');
+    var slides = document.querySelectorAll('.review-slide');
+    var dots = document.querySelectorAll('.review-dot');
+    if (!viewport || !track || !slides.length) return;
+
+    var current = 0;
+    var total = slides.length;
+    var autoTimer = null;
+    var AUTO_MS = 6000;
+
+    function position() {
+      var slide = slides[current];
+      var slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+      var viewportCenter = viewport.offsetWidth / 2;
+      var offset = viewportCenter - slideCenter;
+      track.style.transform = 'translateX(' + offset + 'px)';
+
+      slides.forEach(function (s, idx) { s.classList.toggle('is-active', idx === current); });
+      dots.forEach(function (d, idx) { d.classList.toggle('active', idx === current); });
+    }
+
+    function show(i) {
+      current = (i + total) % total;
+      position();
+    }
+
+    function next() { show(current + 1); }
+    function prev() { show(current - 1); }
+
+    function startAuto() {
+      stopAuto();
+      autoTimer = setInterval(next, AUTO_MS);
+    }
+    function stopAuto() {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = null;
+    }
+    function restartAuto() {
+      stopAuto();
+      startAuto();
+    }
+
+    /* dot navigation */
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        show(parseInt(dot.getAttribute('data-i'), 10));
+        restartAuto();
+      });
+    });
+
+    /* arrow navigation */
+    var prevBtn = document.getElementById('review-prev');
+    var nextBtn = document.getElementById('review-next');
+    if (prevBtn) prevBtn.addEventListener('click', function () { prev(); restartAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { next(); restartAuto(); });
+
+    /* tap a peeking side review to bring it to center */
+    slides.forEach(function (s, idx) {
+      s.addEventListener('click', function () {
+        if (idx !== current) { show(idx); restartAuto(); }
+      });
+    });
+
+    /* pause on hover (desktop) */
+    viewport.addEventListener('mouseenter', stopAuto);
+    viewport.addEventListener('mouseleave', startAuto);
+
+    /* swipe support (mobile) */
+    var touchStartX = 0;
+    var touchEndX = 0;
+    var SWIPE_THRESHOLD = 35;
+
+    viewport.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].screenX;
+      stopAuto();
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', function (e) {
+      touchEndX = e.changedTouches[0].screenX;
+      var diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > SWIPE_THRESHOLD) {
+        if (diff > 0) { next(); }
+        else { prev(); }
+      }
+      startAuto();
+    }, { passive: true });
+
+    window.addEventListener('resize', position);
+
+    position();
+    startAuto();
+  }
+
+  function initGalleryCarousel() {
+    var viewport = document.getElementById('gallery-viewport');
+    var track = document.getElementById('gallery-track');
+    var slides = document.querySelectorAll('.gallery-slide');
+    var dots = document.querySelectorAll('.gallery-dot');
+    var videos = document.querySelectorAll('.gallery-video');
+    if (!viewport || !track || !slides.length) return;
+
+    var current = 0;
+    var total = slides.length;
+    var autoTimer = null;
+    var AUTO_MS = 10000;
+
+    var soundEnabled = false; // becomes true after the visitor's first tap/click while in the gallery
+    var galleryVisible = false; // true only while the gallery is on screen
+
+    function playActiveVideo() {
+      var v = slides[current].querySelector('.gallery-video');
+      if (!v || !v.getAttribute('src')) return; // no source yet — nothing to play
+      // once the user has enabled sound, every video (including auto-advanced ones) plays with sound
+      v.muted = !soundEnabled;
+      v.volume = 1;
+      var playPromise = v.play();
+      if (playPromise && playPromise.catch) {
+        playPromise.catch(function () {
+          // playback was blocked. only fall back to muted if the user hasn't enabled sound yet.
+          if (!soundEnabled) {
+            v.muted = true;
+            var p2 = v.play();
+            if (p2 && p2.catch) { p2.catch(function () {}); }
+          }
+        });
+      }
+    }
+
+    function pauseOtherVideos() {
+      var activeSlide = slides[current];
+      videos.forEach(function (v) {
+        var ownerSlide = v.closest('.gallery-slide');
+        if (ownerSlide !== activeSlide) {
+          v.pause();
+          v.currentTime = 0;
+          v.muted = true; // keep non-active videos silent
+        }
+      });
+    }
+
+    /* enable sound on the active gallery video — but ONLY when the gallery is on screen.
+       this keeps the homepage silent; sound starts once the visitor reaches the gallery. */
+    function enableSoundOnce() {
+      if (soundEnabled) return;
+      if (!galleryVisible) return; // ignore taps elsewhere on the page (e.g. the homepage)
+      soundEnabled = true;
+      var v = slides[current].querySelector('.gallery-video');
+      if (v && v.getAttribute('src')) {
+        v.muted = false;
+        v.volume = 1;
+        var pp = v.play();
+        if (pp && pp.catch) { pp.catch(function () {}); }
+      }
+      document.removeEventListener('pointerdown', enableSoundOnce);
+      document.removeEventListener('touchstart', enableSoundOnce);
+      document.removeEventListener('click', enableSoundOnce);
+    }
+    document.addEventListener('pointerdown', enableSoundOnce, { passive: true });
+    document.addEventListener('touchstart', enableSoundOnce, { passive: true });
+    document.addEventListener('click', enableSoundOnce);
+
+    function position() {
+      var slide = slides[current];
+      var slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+      var viewportCenter = viewport.offsetWidth / 2;
+      var offset = viewportCenter - slideCenter;
+      track.style.transform = 'translateX(' + offset + 'px)';
+
+      slides.forEach(function (s, idx) { s.classList.toggle('is-active', idx === current); });
+      dots.forEach(function (d, idx) { d.classList.toggle('active', idx === current); });
+    }
+
+    function update() {
+      position();
+      pauseOtherVideos();
+      playActiveVideo();
+    }
+
+    function show(i) {
+      current = (i + total) % total;
+      update();
+    }
+
+    function next() { show(current + 1); }
+    function prev() { show(current - 1); }
+
+    function startAuto() {
+      stopAuto();
+      if (!galleryVisible) return; // never rotate while the gallery is off-screen
+      autoTimer = setInterval(next, AUTO_MS);
+    }
+    function stopAuto() {
+      if (autoTimer) clearInterval(autoTimer);
+      autoTimer = null;
+    }
+    function restartAuto() {
+      stopAuto();
+      startAuto();
+    }
+
+    /* dot navigation */
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        show(parseInt(dot.getAttribute('data-i'), 10));
+        restartAuto();
+      });
+    });
+
+    /* arrow navigation */
+    var prevBtn = document.getElementById('gallery-prev');
+    var nextBtn = document.getElementById('gallery-next');
+    if (prevBtn) prevBtn.addEventListener('click', function () { prev(); restartAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { next(); restartAuto(); });
+
+    /* tap a peeking side video to bring it to center */
+    slides.forEach(function (s, idx) {
+      s.addEventListener('click', function () {
+        if (idx !== current) { show(idx); restartAuto(); }
+      });
+    });
+
+    /* pause on hover (desktop) */
+    viewport.addEventListener('mouseenter', stopAuto);
+    viewport.addEventListener('mouseleave', startAuto);
+
+    /* swipe support (mobile) */
+    var touchStartX = 0;
+    var touchEndX = 0;
+    var SWIPE_THRESHOLD = 35;
+
+    viewport.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].screenX;
+      stopAuto();
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', function (e) {
+      touchEndX = e.changedTouches[0].screenX;
+      var diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > SWIPE_THRESHOLD) {
+        if (diff > 0) { next(); }
+        else { prev(); }
+      }
+      startAuto();
+    }, { passive: true });
+
+    window.addEventListener('resize', position);
+
+    /* play video + auto-rotation only while the gallery is on screen; stop when leaving */
+    if ('IntersectionObserver' in window) {
+      var playObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            galleryVisible = true;
+            playActiveVideo();
+            startAuto();
+          } else {
+            galleryVisible = false;
+            var v = slides[current].querySelector('.gallery-video');
+            if (v) { v.pause(); }
+            stopAuto();
+          }
+        });
+      }, { threshold: 0.4 });
+      playObserver.observe(viewport);
+    } else {
+      galleryVisible = true;
+      startAuto(); // fallback for old browsers without IntersectionObserver
+    }
+
+    update();
+    // auto-rotation is started by the IntersectionObserver only when the gallery is on screen
+  }
+
+  /* ===== GALLERY VIDEO LIGHTBOX — opens any [data-lightbox-open] card fullscreen ===== */
+  function initGalleryLightbox() {
+    var overlay = document.getElementById('lightbox-overlay');
+    var video = document.getElementById('modalVideo');
+    var fallback = document.getElementById('modalVideoFallback');
+    var closeBtns = document.querySelectorAll('[data-lightbox-close]');
+    var triggers = document.querySelectorAll('[data-lightbox-open]');
+    if (!overlay || !video || !triggers.length) return;
+
+    function openLightboxVideo(src) {
+      /* 1. open the modal FIRST */
+      overlay.classList.add('open');
+      document.body.classList.add('lightbox-open');
+
+      /* update the fallback link to the same MP4 URL */
+      if (fallback) fallback.setAttribute('href', src);
+
+      /* surface load errors + log the exact src actually being used */
+      video.onerror = function () {
+        var err = video.error ? (' (code ' + video.error.code + ')') : '';
+        console.warn('modalVideo failed to load' + err + '. src = ' + video.currentSrc + ' | requested = ' + src);
+      };
+
+      /* 2. set the src directly to the MP4 URL (never the poster) and load AFTER modal is open */
+      video.playsInline = true;          // keep playback INSIDE the modal (no iOS native fullscreen)
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+      video.muted = false;         // play WITH sound (user clicked, so this is an allowed gesture)
+      video.setAttribute('src', src);
+      console.log('modalVideo src set to: ' + src);
+      video.load();                // 3: force load of the new source
+
+      /* play with sound; if the browser blocks unmuted autoplay, retry muted so it still plays */
+      var p = video.play();
+      if (p && p.catch) {
+        p.catch(function () {
+          video.muted = true;
+          video.play().catch(function () {});
+        });
+      }
+    }
+
+    function closeLightbox() {
+      overlay.classList.remove('open');
+      document.body.classList.remove('lightbox-open');
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+    }
+
+    triggers.forEach(function (trigger) {
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var card = trigger.closest('.gallery-item');
+        if (!card) return;
+
+        /* if the clicked card is NOT the active (center) one, just slide to it instead of opening the video */
+        var slide = card.closest('.gallery-slide');
+        if (slide && !slide.classList.contains('is-active')) {
+          var allSlides = Array.prototype.slice.call(document.querySelectorAll('.gallery-slide'));
+          var idx = allSlides.indexOf(slide);
+          var dot = document.querySelector('.gallery-dot[data-i="' + idx + '"]');
+          if (dot) { dot.click(); }
+          return; // do not open the lightbox for side cards
+        }
+
+        var captionEl = card.querySelector('.gallery-overlay span');
+        var caption = captionEl ? captionEl.textContent.trim() : '';
+
+        /* all gallery videos come from the GALLERY_VIDEOS config (Cloudinary MP4 links) */
+        var entry = (typeof GALLERY_VIDEOS !== 'undefined') ? GALLERY_VIDEOS[caption] : null;
+        var videoUrl = entry && entry.video ? entry.video.trim() : '';
+
+        if (videoUrl) {
+          openLightboxVideo(videoUrl);
+        } else {
+          console.warn('Gallery item "' + caption + '" has no Cloudinary video link yet. Add it in GALLERY_VIDEOS.');
+        }
+      });
+    });
+
+    closeBtns.forEach(function (btn) {
+      btn.addEventListener('click', closeLightbox);
+    });
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeLightbox();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeLightbox();
+    });
+  }
+
+  /* ===== FORM → WHATSAPP ===== */
+  function sendToWhatsApp() {
+    var name  = document.getElementById('f-name').value.trim();
+    var phone = document.getElementById('f-phone').value.trim();
+    var date  = document.getElementById('f-date').value;
+    var type  = document.getElementById('f-type').value;
+    var area  = document.getElementById('f-area').value;
+    var msg   = document.getElementById('f-msg').value.trim();
+
+    if (!name || !phone) {
+      alert('אנא מלאו לפחות שם מלא וטלפון.');
+      return;
+    }
+
+    var dateStr = date;
+    if (date) {
+      var p = date.split('-');
+      dateStr = p[2] + '/' + p[1] + '/' + p[0];
+    }
+
+    var lines = [
+      '👋 היי Kasa Events, אני מתעניין/ת בעמדת 360!',
+      '',
+      '👤 שם: ' + name,
+      '📞 טלפון: ' + phone,
+      date ? '📅 תאריך האירוע: ' + dateStr : '',
+      type ? '🎉 סוג האירוע: ' + type : '',
+      area ? '📍 אזור: ' + area : '',
+      msg  ? '💬 הערות: ' + msg : '',
+      '',
+      'אשמח לקבל פרטים נוספים ולבדוק זמינות 🙏'
+    ].filter(function (l) { return l !== ''; }).join('\n');
+
+    var cleaned = lines.replace(/\n{3,}/g, '\n\n');
+    window.open(waLink(cleaned), '_blank');
+    showFormSuccess();
+  }
+
+  /* premium success modal + gold confetti after a lead form is submitted */
+  function showFormSuccess() {
+    var overlay = document.getElementById('form-success-overlay');
+    if (!overlay) return;
+    overlay.classList.add('open');
+    document.body.classList.add('lightbox-open');
+    if (typeof fireConfetti === 'function') fireConfetti();
+  }
+  (function wireFormSuccessClose() {
+    document.addEventListener('DOMContentLoaded', function () {
+      var overlay = document.getElementById('form-success-overlay');
+      var closeBtn = document.getElementById('form-success-close');
+      if (!overlay) return;
+      function close() {
+        overlay.classList.remove('open');
+        document.body.classList.remove('lightbox-open');
+      }
+      if (closeBtn) closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+      });
+    });
+  })();
+</script>
+
+<!-- ===== ACCESSIBILITY WIDGET ===== -->
+<button class="a11y-toggle" id="a11y-toggle" aria-label="פתיחת תפריט נגישות" aria-expanded="false" aria-controls="a11y-panel" title="נגישות">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="3.5" r="2"/><path d="M21 6.5c0 .6-.4 1-1 1.1l-5 .7v3.2l1.9 6.4c.2.6-.2 1.2-.8 1.4-.6.2-1.2-.2-1.4-.8L12.7 14h-1.4l-1.6 5.5c-.2.6-.8 1-1.4.8-.6-.2-1-.8-.8-1.4L9.4 11.5V8.3L4.4 7.6C3.8 7.5 3.3 7 3.4 6.4c.1-.6.6-1 1.2-.9l5.4.8c.7.1 1.3.1 2 0l5.4-.8c.6-.1 1.1.3 1.2.9z"/></svg>
+</button>
+<div class="a11y-panel" id="a11y-panel" role="dialog" aria-label="אפשרויות נגישות" aria-modal="false">
+  <button class="a11y-close" id="a11y-close" aria-label="סגירת תפריט נגישות">✕</button>
+  <h3>תפריט נגישות</h3>
+  <p class="a11y-sub">התאמת האתר לצרכים שלך</p>
+  <div class="a11y-grid">
+    <button class="a11y-btn" data-a11y="font-up" type="button"><span class="a11y-ico" aria-hidden="true">A+</span>הגדל טקסט</button>
+    <button class="a11y-btn" data-a11y="font-down" type="button"><span class="a11y-ico" aria-hidden="true">A−</span>הקטן טקסט</button>
+    <button class="a11y-btn" data-a11y="contrast" type="button"><span class="a11y-ico" aria-hidden="true">◐</span>ניגודיות גבוהה</button>
+    <button class="a11y-btn" data-a11y="invert" type="button"><span class="a11y-ico" aria-hidden="true">🌓</span>היפוך צבעים</button>
+    <button class="a11y-btn" data-a11y="links" type="button"><span class="a11y-ico" aria-hidden="true">🔗</span>הדגשת קישורים</button>
+    <button class="a11y-btn" data-a11y="noanim" type="button"><span class="a11y-ico" aria-hidden="true">⏸</span>עצירת אנימציות</button>
+    <button class="a11y-btn" data-a11y="readable" type="button"><span class="a11y-ico" aria-hidden="true">𝐀𝐚</span>פונט קריא</button>
+    <button class="a11y-btn" data-a11y="spacing" type="button"><span class="a11y-ico" aria-hidden="true">↕</span>מרווח שורות</button>
+    <button class="a11y-btn" data-a11y="bigcursor" type="button"><span class="a11y-ico" aria-hidden="true">⬉</span>סמן גדול</button>
+  </div>
+  <button class="a11y-reset" id="a11y-reset" type="button">איפוס הכל</button>
+</div>
+<script>
+(function(){
+  var html = document.documentElement;
+  var toggle = document.getElementById('a11y-toggle');
+  var panel = document.getElementById('a11y-panel');
+  var closeBtn = document.getElementById('a11y-close');
+  var resetBtn = document.getElementById('a11y-reset');
+  if(!toggle || !panel) return;
+
+  var STORE_KEY = 'kasa_a11y';
+  var fontStep = 0; // -2 .. +4
+  var toggles = { contrast:false, invert:false, links:false, noanim:false, readable:false, spacing:false, bigcursor:false };
+
+  function save(){
+    try { localStorage.setItem(STORE_KEY, JSON.stringify({ fontStep: fontStep, toggles: toggles })); } catch(e){}
+  }
+  function applyAll(){
+    // font scaling
+    var scale = 1 + (fontStep * 0.08);
+    html.style.fontSize = (scale * 100) + '%';
+    // toggle classes
+    Object.keys(toggles).forEach(function(k){
+      html.classList.toggle('a11y-' + k, !!toggles[k]);
+    });
+    // reflect active state on buttons
+    panel.querySelectorAll('.a11y-btn[data-a11y]').forEach(function(btn){
+      var key = btn.getAttribute('data-a11y');
+      if (key in toggles) btn.classList.toggle('active', !!toggles[key]);
+    });
+  }
+  function load(){
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if(raw){ var d = JSON.parse(raw); if(typeof d.fontStep==='number') fontStep=d.fontStep; if(d.toggles) toggles=Object.assign(toggles,d.toggles); }
+    } catch(e){}
+    applyAll();
+  }
+
+  function openPanel(){ panel.classList.add('open'); toggle.setAttribute('aria-expanded','true'); }
+  function closePanel(){ panel.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+
+  toggle.addEventListener('click', function(){
+    if(panel.classList.contains('open')) closePanel(); else openPanel();
+  });
+  closeBtn.addEventListener('click', closePanel);
+
+  panel.querySelectorAll('.a11y-btn[data-a11y]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var action = btn.getAttribute('data-a11y');
+      if(action === 'font-up'){ fontStep = Math.min(4, fontStep + 1); }
+      else if(action === 'font-down'){ fontStep = Math.max(-2, fontStep - 1); }
+      else if(action in toggles){ toggles[action] = !toggles[action]; }
+      applyAll();
+      save();
+    });
+  });
+
+  resetBtn.addEventListener('click', function(){
+    fontStep = 0;
+    Object.keys(toggles).forEach(function(k){ toggles[k] = false; });
+    html.style.fontSize = '';
+    applyAll();
+    save();
+  });
+
+  // close on Escape
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && panel.classList.contains('open')) closePanel(); });
+
+  load();
+})();
+</script>
+
+<!-- ===== LEGAL MODALS ===== -->
+<div class="legal-modal" id="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+  <div class="legal-modal-backdrop" data-legal-close></div>
+  <div class="legal-modal-box">
+    <button class="legal-modal-close" data-legal-close aria-label="סגירה">✕</button>
+    <h2 id="legal-modal-title"></h2>
+    <div class="legal-modal-body" id="legal-modal-body"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var modal = document.getElementById('legal-modal');
+  var titleEl = document.getElementById('legal-modal-title');
+  var bodyEl = document.getElementById('legal-modal-body');
+  if(!modal) return;
+
+  var CONTENT = {
+    privacy: {
+      title: 'מדיניות פרטיות',
+      html: '<p>ברוכים הבאים לאתר Kasa Events.</p>'
+        + '<p>אנו מכבדים את פרטיות המבקרים באתר ופועלים לשמירה על המידע האישי הנמסר לנו.</p>'
+        + '<h3>איזה מידע אנו אוספים?</h3>'
+        + '<ul><li>שם מלא</li><li>מספר טלפון</li><li>כתובת דוא"ל (במידה ונמסרה)</li><li>פרטי האירוע שנמסרו בטופס</li></ul>'
+        + '<h3>למה אנו משתמשים במידע?</h3>'
+        + '<ul><li>יצירת קשר עם הלקוח</li><li>מתן הצעת מחיר</li><li>תיאום האירוע</li><li>שיפור השירות וחוויית המשתמש באתר</li></ul>'
+        + '<p>המידע לא יימכר ולא יועבר לצדדים שלישיים, למעט אם הדבר נדרש על פי חוק או לצורך מתן השירות.</p>'
+        + '<p>לשאלות בנושא פרטיות ניתן ליצור קשר באמצעות טופס יצירת הקשר באתר או דרך WhatsApp.</p>'
+    },
+    terms: {
+      title: 'תנאי שימוש',
+      html: '<p>השימוש באתר מהווה הסכמה לתנאים הבאים:</p>'
+        + '<ul>'
+        + '<li>האתר נועד להציג מידע על שירותי Kasa Events.</li>'
+        + '<li>כל התמונות, הסרטונים והעיצובים באתר הינם רכוש Kasa Events ואין לעשות בהם שימוש ללא אישור מראש ובכתב.</li>'
+        + '<li>שליחת טופס באתר אינה מהווה אישור להזמנת אירוע.</li>'
+        + '<li>הזמנת שירות תתבצע רק לאחר אישור ותשלום מקדמה בהתאם להסכם ההתקשרות.</li>'
+        + '<li>הנהלת האתר רשאית לעדכן את התוכן באתר מעת לעת.</li>'
+        + '</ul>'
+    },
+    accessibility: {
+      title: 'הצהרת נגישות',
+      html: '<p>Kasa Events פועלת להעניק חוויית גלישה נוחה ונגישה לכלל המשתמשים.</p>'
+        + '<p>באתר בוצעו התאמות שונות, ובהן:</p>'
+        + '<ul><li>התאמה למובייל</li><li>ניווט פשוט וברור</li><li>כותרות מסודרות</li><li>ניגודיות צבעים גבוהה</li></ul>'
+        + '<p>אם נתקלתם בבעיה בנושא נגישות, נשמח לקבל את פנייתכם ולעשות כל מאמץ לטפל בה בהקדם.</p>'
+    }
+  };
+
+  function openLegal(key){
+    var c = CONTENT[key];
+    if(!c) return;
+    titleEl.textContent = c.title;
+    bodyEl.innerHTML = c.html;
+    modal.querySelector('.legal-modal-box').scrollTop = 0;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLegal(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // open from any element carrying data-legal
+  document.addEventListener('click', function(e){
+    var trigger = e.target.closest('[data-legal]');
+    if(trigger){ e.preventDefault(); openLegal(trigger.getAttribute('data-legal')); return; }
+    if(e.target.closest('[data-legal-close]')){ closeLegal(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLegal();
+  });
+
+  // consent checkbox enables the submit button
+  var consent = document.getElementById('consent-checkbox');
+  var submit = document.getElementById('lead-submit');
+  if(consent && submit){
+    function sync(){ submit.disabled = !consent.checked; }
+    consent.addEventListener('change', sync);
+    sync();
+  }
+})();
+</script>
+</body>
+</html>
