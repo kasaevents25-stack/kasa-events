@@ -52,6 +52,7 @@ nav.scrolled .nav-logo{font-size:1.29rem}
 .nav-cta{background:var(--gold);color:var(--black);font-weight:700;font-size:.88rem;padding:10px 22px;border-radius:var(--radius-sm);transition:background var(--transition),transform var(--transition)}
 .nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;padding:8px;transition:gap .45s ease-in-out,transform .45s ease-in-out}
+.nav-social{display:none}
 .hamburger span{display:block;width:24px;height:2px;background:var(--champagne);border-radius:2px;transition:width .45s ease-in-out,background var(--transition),opacity var(--transition),transform var(--transition)}
 nav.scrolled .hamburger{gap:4.5px}
 nav.scrolled .hamburger span{width:22px}
@@ -657,6 +658,15 @@ body{padding-bottom:92px}
 @media (max-width:900px){
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex}
+  /* 3-column layout keeps the logo perfectly centered regardless of side widths.
+     direction:ltr forces column 1 to be physically on the LEFT even on this RTL page. */
+  .nav-inner{display:grid;grid-template-columns:1fr auto 1fr;grid-template-rows:auto;align-items:center;direction:ltr}
+  .nav-inner .hamburger{grid-column:1;grid-row:1;justify-self:start;align-self:center}
+  .nav-inner .nav-logo{grid-column:2;grid-row:1;justify-self:center;text-align:center;direction:rtl}
+  .nav-social{grid-column:3;grid-row:1;justify-self:end;display:flex;flex-direction:row;align-items:center;gap:15px}
+  .nav-social a{display:flex;align-items:center;justify-content:center;color:var(--gold);transition:color var(--transition),transform var(--transition)}
+  .nav-social a:hover{color:var(--gold-light);transform:translateY(-1px)}
+  .nav-social svg{width:23px;height:23px;fill:currentColor;display:block}
   section{padding:60px 0}
 }
 @media (max-width:600px){
@@ -852,6 +862,17 @@ html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg 
       <li><a href="#faq">שאלות</a></li>
     </ul>
     <a href="#contact" class="nav-cta">בדיקת זמינות</a>
+    <div class="nav-social" aria-label="קישורים חברתיים">
+      <a href="https://www.instagram.com/kasa_events1?igsh=N2M3Z3Jxa25qajIy&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.21 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.52.01-4.76.07-.9.04-1.38.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.33-.28.81-.32 1.71C3.4 8.48 3.4 8.85 3.4 12s0 3.52.06 4.76c.04.9.19 1.38.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.33.13.81.28 1.71.32 1.24.06 1.61.07 4.76.07s3.52 0 4.76-.07c.9-.04 1.38-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.33.28-.81.32-1.71.06-1.24.07-1.61.07-4.76s0-3.52-.07-4.76c-.04-.9-.19-1.38-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.33-.13-.81-.28-1.71-.32C15.52 4.01 15.15 4 12 4zm0 3.06A4.94 4.94 0 1112 17a4.94 4.94 0 010-9.88zm0 1.8a3.14 3.14 0 100 6.28 3.14 3.14 0 000-6.28zm6.28-.62a1.15 1.15 0 11-2.3 0 1.15 1.15 0 012.3 0z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@kasa_events?_r=1&_t=ZS-97f6a2kvZe1" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 5.82a4.28 4.28 0 01-1.06-2.82h-3.2v12.3a2.6 2.6 0 01-2.6 2.5 2.6 2.6 0 01-2.6-2.6 2.6 2.6 0 013.2-2.53V7.4a5.77 5.77 0 00-.6-.03A5.8 5.8 0 004 13.2a5.8 5.8 0 0011.6 0V8.9a7.5 7.5 0 004.4 1.4V7.1a4.3 4.3 0 01-3.4-1.28z"/></svg>
+      </a>
+      <a href="tel:0529762788" aria-label="טלפון">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.15 15.15 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.2 2.2z"/></svg>
+      </a>
+    </div>
     <button class="hamburger" id="hamburger" aria-label="פתח תפריט">
       <span></span><span></span><span></span>
     </button>
