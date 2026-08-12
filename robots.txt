@@ -1,2 +1,4 @@
--e User-agent: *
+User-agent: *
 Allow: /
+
+Sitemap: https://www.kasa-events.co.il/sitemap.xml
