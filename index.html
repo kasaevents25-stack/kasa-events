@@ -929,7 +929,11 @@ html.a11y-contrast .a11y-panel *,html.a11y-invert .a11y-panel *{filter:none !imp
 html.a11y-contrast .a11y-panel h3,html.a11y-invert .a11y-panel h3{color:#111 !important}
 html.a11y-contrast .a11y-panel .a11y-sub,html.a11y-invert .a11y-panel .a11y-sub{color:#666 !important}
 html.a11y-contrast .a11y-btn,html.a11y-invert .a11y-btn{background:#fafafa !important;color:#222 !important;border-color:#e2e2e2 !important}
+/* keep the letters/icons/label INSIDE each button dark (the global contrast rule turns spans white,
+   which made A+ / A- and the icons disappear on the light button). */
+html.a11y-contrast .a11y-btn *,html.a11y-invert .a11y-btn *{color:#222 !important}
 html.a11y-contrast .a11y-btn.active,html.a11y-invert .a11y-btn.active{background:#1a1a1a !important;color:#fff !important;border-color:#1a1a1a !important}
+html.a11y-contrast .a11y-btn.active *,html.a11y-invert .a11y-btn.active *{color:#fff !important}
 html.a11y-contrast .a11y-reset,html.a11y-invert .a11y-reset{background:#c0392b !important;color:#fff !important}
 html.a11y-contrast .a11y-close,html.a11y-invert .a11y-close{background:#eee !important;color:#333 !important}
 
