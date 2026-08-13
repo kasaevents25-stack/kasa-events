@@ -168,10 +168,13 @@ nav.scrolled .hamburger span{width:22px}
 
 /* staggered entrance: headline -> +0.2s subtitle -> +0.2s buttons */
 .hero-in{opacity:0;transform:translateY(22px);animation:heroIn .8s cubic-bezier(0.22,1,0.36,1) forwards}
-.hero-h1.hero-in{animation-delay:0s}
+/* LCP element (main title): visible from the first paint (opacity:1) with only a gentle slide,
+   so Largest Contentful Paint is not delayed by an opacity:0 fade. Same look, faster LCP. */
+.hero-h1.hero-in{opacity:1;animation:heroInSlide .8s cubic-bezier(0.22,1,0.36,1) forwards;animation-delay:0s}
 .hero-sub.hero-in{animation-delay:.2s}
 .hero-btns.hero-in{animation-delay:.4s}
 @keyframes heroIn{to{opacity:1;transform:translateY(0)}}
+@keyframes heroInSlide{from{transform:translateY(22px)}to{transform:translateY(0)}}
 
 .hero-h1-wrap{position:relative;display:flex;align-items:center;justify-content:center;width:fit-content;margin:0 auto}
 
