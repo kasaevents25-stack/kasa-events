@@ -3391,6 +3391,22 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
     });
     setTimeout(go, 600); // fallback so the link never gets stuck if the callback doesn't fire
   }, true);
+
+  // GA4: track every phone-call click (all current & future tel: links, incl. mobile) via delegation.
+  // beacon transport ensures the hit is sent even as the dialer app opens. The tel: link is NOT
+  // intercepted, so the dialer opens exactly as before.
+  document.addEventListener('click', function(e){
+    var telEl = e.target.closest('a[href^="tel:"]');
+    if(!telEl) return;
+    if(typeof gtag !== 'function') return; // GA not available — let the link work normally
+    gtag('event', 'phone_click', {
+      link_url: telEl.getAttribute('href') || '',
+      link_id: telEl.id || '',
+      link_location: telEl.className || '',
+      transport_type: 'beacon'
+    });
+    // no preventDefault — the dialer opens as usual
+  }, true);
 })();
 </script>
 </body>
