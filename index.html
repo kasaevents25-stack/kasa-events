@@ -3357,18 +3357,36 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
     sync();
   }
 
-  // GA4: track every WhatsApp click (works for all current & future WhatsApp links via delegation)
+  // GA4: track every WhatsApp click (works for all current & future WhatsApp links via delegation).
+  // Uses beacon transport + event_callback so the hit is sent BEFORE the browser leaves for WhatsApp.
   document.addEventListener('click', function(e){
-    var waEl = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href*="whatsapp.com/send"]');
+    var waEl = e.target.closest(
+      'a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href*="whatsapp.com/send"], ' +
+      '#mobile-wa-link, #footer-wa-link, #sticky-bar-wa-link, .scta-wa, .mobile-wa-btn'
+    );
     if(!waEl) return;
-    if(typeof gtag === 'function'){
-      gtag('event', 'whatsapp_click', {
-        link_url: waEl.href,
-        link_id: waEl.id || '',
-        link_location: waEl.className || ''
-      });
+    if(typeof gtag !== 'function') return; // GA not available — let the link work normally
+
+    var url = waEl.href;
+    var target = waEl.getAttribute('target');
+    // If it opens in a new tab, the current page does NOT unload, so the hit sends fine — don't intercept.
+    if(target === '_blank'){
+      gtag('event', 'whatsapp_click', { link_url: url, link_id: waEl.id || '', link_location: waEl.className || '', transport_type: 'beacon' });
+      return;
     }
-    // do not preventDefault — the WhatsApp link keeps working exactly as before
+
+    // Same-tab navigation: hold navigation briefly until the event is sent (with a safety timeout).
+    e.preventDefault();
+    var navigated = false;
+    function go(){ if(navigated) return; navigated = true; window.location.href = url; }
+    gtag('event', 'whatsapp_click', {
+      link_url: url,
+      link_id: waEl.id || '',
+      link_location: waEl.className || '',
+      transport_type: 'beacon',
+      event_callback: go
+    });
+    setTimeout(go, 600); // fallback so the link never gets stuck if the callback doesn't fire
   }, true);
 })();
 </script>
