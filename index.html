@@ -2405,6 +2405,7 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
       ].filter(function (l) { return l !== ''; }).join('\n');
 
       var cleaned = lines.replace(/\n{3,}/g, '\n\n');
+      if(typeof gtag === 'function'){ gtag('event', 'whatsapp_click', { link_location: 'lead_form' }); }
       window.open(waLink(cleaned), '_blank');
       closeModal();
       showFormSuccess();
@@ -3109,6 +3110,7 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
     ].filter(function (l) { return l !== ''; }).join('\n');
 
     var cleaned = lines.replace(/\n{3,}/g, '\n\n');
+    if(typeof gtag === 'function'){ gtag('event', 'whatsapp_click', { link_location: 'lead_form' }); }
     window.open(waLink(cleaned), '_blank');
     showFormSuccess();
   }
@@ -3354,6 +3356,20 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
     consent.addEventListener('change', sync);
     sync();
   }
+
+  // GA4: track every WhatsApp click (works for all current & future WhatsApp links via delegation)
+  document.addEventListener('click', function(e){
+    var waEl = e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href*="whatsapp.com/send"]');
+    if(!waEl) return;
+    if(typeof gtag === 'function'){
+      gtag('event', 'whatsapp_click', {
+        link_url: waEl.href,
+        link_id: waEl.id || '',
+        link_location: waEl.className || ''
+      });
+    }
+    // do not preventDefault — the WhatsApp link keeps working exactly as before
+  }, true);
 })();
 </script>
 </body>
