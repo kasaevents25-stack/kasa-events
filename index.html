@@ -3110,7 +3110,10 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
     ].filter(function (l) { return l !== ''; }).join('\n');
 
     var cleaned = lines.replace(/\n{3,}/g, '\n\n');
-    if(typeof gtag === 'function'){ gtag('event', 'whatsapp_click', { link_location: 'lead_form' }); }
+    if(typeof gtag === 'function'){
+      gtag('event', 'whatsapp_click', { link_location: 'lead_form' });
+      gtag('event', 'generate_lead', { form_location: 'contact_form', event_type: type || '', area: area || '' });
+    }
     window.open(waLink(cleaned), '_blank');
     showFormSuccess();
   }
