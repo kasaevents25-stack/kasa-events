@@ -7,6 +7,7 @@
 <title>עמדת צילום 360 לאירועים – המדריך המלא | Kasa Events</title>
 <meta name="description" content="מדריך מלא לעמדת צילום 360 לאירועים: איך זה עובד, כמה מקום צריך, מה מקבלים האורחים ואיך בוחרים נכון. Kasa Events — עמדת 360 עם צוות מקצועי לחתונות, בר/בת מצווה ואירועים עסקיים במרכז ובדרום." />
 <meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://www.kasa-events.co.il/emdat-tzilum-360-lairuim" />
 <meta name="author" content="Kasa Events" />
 <meta name="language" content="Hebrew" />
 <meta name="geo.region" content="IL" />
@@ -16,6 +17,7 @@
 <meta property="og:locale" content="he_IL" />
 <meta property="og:title" content="עמדת צילום 360 לאירועים – המדריך המלא | Kasa Events" />
 <meta property="og:description" content="כל מה שצריך לדעת על עמדת צילום 360 לאירועים: איך זה עובד, כמה מקום צריך, מה מקבלים האורחים ואיך בוחרים ספק — עם צוות מקצועי שמפעיל את העמדה לאורך האירוע." />
+<meta property="og:url" content="https://www.kasa-events.co.il/emdat-tzilum-360-lairuim" />
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="עמדת צילום 360 לאירועים – המדריך המלא | Kasa Events" />
@@ -36,19 +38,24 @@
       "headline": "עמדת צילום 360 לאירועים – המדריך המלא",
       "description": "מדריך מקיף לעמדת צילום 360 לאירועים: איך זה עובד, כמה מקום צריך, מה מקבלים האורחים ואיך בוחרים ספק נכון.",
       "inLanguage": "he",
-      "author": { "@type": "Organization", "name": "Kasa Events" },
-      "publisher": { "@type": "Organization", "name": "Kasa Events" },
+      "url": "https://www.kasa-events.co.il/emdat-tzilum-360-lairuim",
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.kasa-events.co.il/emdat-tzilum-360-lairuim" },
+      "author": { "@type": "Organization", "name": "Kasa Events", "@id": "https://www.kasa-events.co.il/#business" },
+      "publisher": { "@type": "Organization", "name": "Kasa Events", "@id": "https://www.kasa-events.co.il/#business" },
       "about": "עמדת צילום 360 לאירועים"
     },
     {
       "@type": "Service",
       "name": "עמדת צילום 360 לאירועים",
       "serviceType": "עמדת צילום 360",
+      "url": "https://www.kasa-events.co.il/emdat-tzilum-360-lairuim",
       "provider": {
         "@type": "LocalBusiness",
+        "@id": "https://www.kasa-events.co.il/#business",
         "name": "Kasa Events",
         "telephone": "+972-52-976-2788",
         "email": "Kasa.events25@gmail.com",
+        "url": "https://www.kasa-events.co.il/",
         "areaServed": [
           { "@type": "Place", "name": "מרכז הארץ, ישראל" },
           { "@type": "Place", "name": "דרום הארץ, ישראל" }
@@ -93,6 +100,23 @@
           "@type": "Question",
           "name": "באילו אזורים Kasa Events נותנת שירות?",
           "acceptedAnswer": { "@type": "Answer", "text": "Kasa Events נותנת שירות במרכז ובדרום הארץ." }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "דף הבית",
+          "item": "https://www.kasa-events.co.il/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "עמדת צילום 360 לאירועים – המדריך המלא",
+          "item": "https://www.kasa-events.co.il/emdat-tzilum-360-lairuim"
         }
       ]
     }
@@ -188,11 +212,43 @@ p{color:var(--text)}
 .space-card h3{color:var(--champagne)}
 .space-card p{font-size:.88rem;color:var(--muted)}
 
-/* gallery (reusing real site media) */
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:8px}
-.g-item{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(201,168,76,.16);aspect-ratio:9/16;background:var(--card)}
-.g-item video{width:100%;height:100%;object-fit:cover;display:block}
-.g-cap{position:absolute;inset:auto 0 0 0;padding:22px 14px 12px;background:linear-gradient(to top,rgba(10,10,10,.82),transparent);color:var(--champagne);font-size:.82rem;font-weight:700}
+/* gallery — full carousel system copied from the home page (index.html) */
+.divider{width:56px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px;margin:0 auto 20px}
+.gallery-sub{font-size:.98rem;color:var(--muted);max-width:560px;margin:0 auto 4px;line-height:1.8}
+.gallery-carousel{max-width:600px;margin:26px auto 0;position:relative}
+.gallery-viewport{overflow:hidden;position:relative;padding:6px 0}
+.gallery-track{display:flex;align-items:stretch;will-change:transform;transition:transform .55s cubic-bezier(0.22,1,0.36,1);touch-action:pan-y}
+.gallery-slide{flex:0 0 42%;max-width:42%;padding:0 9px;box-sizing:border-box;display:flex;cursor:pointer}
+.gallery-item{flex:1;width:100%;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:var(--card);position:relative;transition:transform .5s cubic-bezier(0.22,1,0.36,1),opacity .5s ease,filter .5s ease,box-shadow .5s ease,border-color .5s ease;transform:scale(.88);opacity:.55;filter:brightness(.7) saturate(.85);border:1px solid rgba(201,168,76,.14)}
+.gallery-slide.is-active .gallery-item{
+  transform:scale(1);
+  opacity:1;
+  filter:brightness(1) saturate(1.05);
+  border-color:rgba(232,201,106,.6);
+  box-shadow:0 0 0 1px rgba(232,201,106,.4),
+             0 0 18px rgba(201,168,76,.35),
+             0 0 44px rgba(201,168,76,.22),
+             0 20px 50px rgba(0,0,0,.5);
+}
+.gallery-item::after{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(232,201,106,.5),rgba(201,168,76,.05) 40%,rgba(232,201,106,.35) 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .5s ease;pointer-events:none}
+.gallery-slide.is-active .gallery-item::after{opacity:1}
+.gallery-item video{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;display:block;background:transparent}
+/* blurred, zoomed copy of the thumbnail fills the card behind the contained media (no black bars) */
+.gallery-item::before{content:'';position:absolute;inset:0;z-index:0;background-image:var(--thumb,none);background-size:cover;background-position:center;filter:blur(22px) brightness(.5) saturate(1.05);transform:scale(1.25);pointer-events:none}
+.gallery-item.no-thumb::before{background:linear-gradient(150deg,var(--card-alt),var(--card))}
+.gallery-item-click-catcher{position:absolute;inset:0;z-index:2;background:transparent;border:none;cursor:pointer;padding:0}
+.gallery-overlay{position:absolute;inset:0;z-index:3;display:flex;align-items:flex-end;padding:14px;pointer-events:none}
+.gallery-overlay span{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.video-badge{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);font-size:.64rem;font-weight:800;border-radius:6px;padding:3px 8px;letter-spacing:.05em;z-index:3}
+.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(17,17,17,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(201,168,76,.35);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:background .25s ease,border-color .25s ease,transform .25s ease}
+.gallery-arrow:hover{background:rgba(201,168,76,.18);border-color:var(--gold);color:var(--gold-light)}
+.gallery-arrow:active{transform:translateY(-50%) scale(.92)}
+.gallery-arrow svg{width:15px;height:15px;fill:none;color:var(--champagne)}
+.gallery-arrow-prev{right:2px}
+.gallery-arrow-next{left:2px}
+.gallery-dots{display:flex;justify-content:center;gap:7px;margin-top:16px}
+.gallery-dot{width:7px;height:7px;border-radius:50%;background:rgba(201,168,76,.25);border:none;padding:0;cursor:pointer;transition:background .3s ease,transform .3s ease}
+.gallery-dot.active{background:linear-gradient(135deg,var(--gold),var(--gold-light));transform:scale(1.3);box-shadow:0 0 8px rgba(201,168,76,.6)}
 .gallery-cta{margin-top:22px;text-align:center}
 
 /* FAQ (mirrors site faq) */
@@ -226,6 +282,13 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
   section{padding:38px 0}
   .hero{padding:40px 0 30px}
   .includes li{padding:13px 44px 13px 14px;font-size:.9rem}
+  .gallery-carousel{margin-top:22px}
+  .gallery-slide{flex:0 0 50%;max-width:50%;padding:0 8px}
+  .gallery-item{border-radius:16px}
+  .gallery-arrow{width:32px;height:32px}
+  .gallery-arrow svg{width:13px;height:13px}
+  .gallery-arrow-prev{right:-2px}
+  .gallery-arrow-next{left:-2px}
 }
 </style>
 </head>
@@ -435,39 +498,87 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
     </div>
   </section>
 
-  <!-- ===== 8. Gallery (reusing existing site media) ===== -->
+  <!-- ===== 8. Gallery (same carousel as the home page, reusing existing site media) ===== -->
   <section id="gallery">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head" style="text-align:center;margin-left:auto;margin-right:auto">
+        <div class="divider"></div>
         <h2>גלריה – אירועים אמיתיים</h2>
-        <p class="lead">כמה רגעים אמיתיים מעמדת ה-360 שלנו באירועים במרכז ובדרום הארץ.</p>
+        <p class="gallery-sub">הצצה לרגעים היפים מהאירועים שלנו עם עמדת הצילום 360.</p>
       </div>
-      <div class="gallery-grid">
-        <div class="g-item">
-          <video src="https://res.cloudinary.com/dchc5d5lr/video/upload/q_auto:good,f_auto,w_720/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_320,c_scale,f_auto,q_auto/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.jpg" muted loop playsinline preload="none" aria-label="עמדת צילום 360 באירוע של Kasa Events"></video>
-          <div class="g-cap">עמדת צילום 360 באירוע</div>
+
+      <div class="gallery-carousel">
+        <div class="gallery-viewport" id="gallery-viewport">
+          <div class="gallery-track" id="gallery-track">
+
+            <div class="gallery-slide is-active">
+              <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_80,c_scale,f_auto,q_auto/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.jpg')">
+                <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/q_auto:good,f_auto,w_720/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_320,c_scale,f_auto,q_auto/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.jpg" muted playsinline preload="none"></video>
+                <div class="video-badge">VIDEO</div>
+                <div class="gallery-overlay"><span>עמדת צילום 360 באירוע</span></div>
+              </div>
+            </div>
+
+            <div class="gallery-slide">
+              <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_80,c_scale,f_auto,q_auto/copy_6AFB24FB-7768-44E6-B37B-29D121F90158_ata0tf.jpg')">
+                <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/q_auto:good,f_auto,w_720/copy_6AFB24FB-7768-44E6-B37B-29D121F90158_ata0tf.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_320,c_scale,f_auto,q_auto/copy_6AFB24FB-7768-44E6-B37B-29D121F90158_ata0tf.jpg" muted playsinline preload="none"></video>
+                <div class="video-badge">VIDEO</div>
+                <div class="gallery-overlay"><span>אירוע עם עמדת צילום 360 של Kasa Events</span></div>
+              </div>
+            </div>
+
+            <div class="gallery-slide">
+              <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_80,c_scale,f_auto,q_auto/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.jpg')">
+                <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/q_auto:good,f_auto,w_720/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_320,c_scale,f_auto,q_auto/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.jpg" muted playsinline preload="none"></video>
+                <div class="video-badge">VIDEO</div>
+                <div class="gallery-overlay"><span>עמדת צילום 360 באירוע</span></div>
+              </div>
+            </div>
+
+            <div class="gallery-slide">
+              <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_80,c_scale,f_auto,q_auto/IMG_1239_c5cztf.jpg')">
+                <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/q_auto:good,f_auto,w_720/IMG_1239_c5cztf.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_320,c_scale,f_auto,q_auto/IMG_1239_c5cztf.jpg" muted playsinline preload="none"></video>
+                <div class="video-badge">VIDEO</div>
+                <div class="gallery-overlay"><span>אירוע עם עמדת צילום 360 של Kasa Events</span></div>
+              </div>
+            </div>
+
+            <div class="gallery-slide">
+              <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_80,c_scale,f_auto,q_auto/20260527_202207792_ut4rzi.jpg')">
+                <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/q_auto:good,f_auto,w_720/20260527_202207792_ut4rzi.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_320,c_scale,f_auto,q_auto/20260527_202207792_ut4rzi.jpg" muted playsinline preload="none"></video>
+                <div class="video-badge">VIDEO</div>
+                <div class="gallery-overlay"><span>עמדת צילום 360 באירוע</span></div>
+              </div>
+            </div>
+
+            <div class="gallery-slide">
+              <div class="gallery-item" style="--thumb:url('https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_80,c_scale,f_auto,q_auto/IMG_1238_mdpsgy.jpg')">
+                <video class="gallery-video gallery-local-video" src="https://res.cloudinary.com/dchc5d5lr/video/upload/q_auto:good,f_auto,w_720/du_9/IMG_1238_mdpsgy.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_320,c_scale,f_auto,q_auto/IMG_1238_mdpsgy.jpg" muted playsinline preload="none"></video>
+                <div class="video-badge">VIDEO</div>
+                <div class="gallery-overlay"><span>אירוע עם עמדת צילום 360 של Kasa Events</span></div>
+              </div>
+            </div>
+
+          </div>
         </div>
-        <div class="g-item">
-          <video src="https://res.cloudinary.com/dchc5d5lr/video/upload/q_auto:good,f_auto,w_720/copy_6AFB24FB-7768-44E6-B37B-29D121F90158_ata0tf.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_320,c_scale,f_auto,q_auto/copy_6AFB24FB-7768-44E6-B37B-29D121F90158_ata0tf.jpg" muted loop playsinline preload="none" aria-label="עמדת צילום 360 באירוע של Kasa Events"></video>
-          <div class="g-cap">אירוע עם עמדת צילום 360 של Kasa Events</div>
-        </div>
-        <div class="g-item">
-          <video src="https://res.cloudinary.com/dchc5d5lr/video/upload/q_auto:good,f_auto,w_720/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_320,c_scale,f_auto,q_auto/copy_F36D5451-F678-499A-BA91-F82D7FF0BF86_c2rvmb.jpg" muted loop playsinline preload="none" aria-label="עמדת צילום 360 באירוע של Kasa Events"></video>
-          <div class="g-cap">עמדת צילום 360 באירוע</div>
-        </div>
-        <div class="g-item">
-          <video src="https://res.cloudinary.com/dchc5d5lr/video/upload/q_auto:good,f_auto,w_720/IMG_1239_c5cztf.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_320,c_scale,f_auto,q_auto/IMG_1239_c5cztf.jpg" muted loop playsinline preload="none" aria-label="עמדת צילום 360 באירוע של Kasa Events"></video>
-          <div class="g-cap">אירוע עם עמדת צילום 360 של Kasa Events</div>
-        </div>
-        <div class="g-item">
-          <video src="https://res.cloudinary.com/dchc5d5lr/video/upload/q_auto:good,f_auto,w_720/20260527_202207792_ut4rzi.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_320,c_scale,f_auto,q_auto/20260527_202207792_ut4rzi.jpg" muted loop playsinline preload="none" aria-label="עמדת צילום 360 באירוע של Kasa Events"></video>
-          <div class="g-cap">עמדת צילום 360 באירוע</div>
-        </div>
-        <div class="g-item">
-          <video src="https://res.cloudinary.com/dchc5d5lr/video/upload/q_auto:good,f_auto,w_720/du_9/IMG_1238_mdpsgy.mp4" poster="https://res.cloudinary.com/dchc5d5lr/video/upload/so_2,w_320,c_scale,f_auto,q_auto/IMG_1238_mdpsgy.jpg" muted loop playsinline preload="none" aria-label="עמדת צילום 360 באירוע של Kasa Events"></video>
-          <div class="g-cap">אירוע עם עמדת צילום 360 של Kasa Events</div>
+
+        <button class="gallery-arrow gallery-arrow-prev" id="gallery-prev" aria-label="הסרטון הקודם" type="button">
+          <svg viewBox="0 0 24 24"><path d="M15.5 19L8.5 12l7-7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="gallery-arrow gallery-arrow-next" id="gallery-next" aria-label="הסרטון הבא" type="button">
+          <svg viewBox="0 0 24 24"><path d="M8.5 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="gallery-dots" id="gallery-dots">
+          <button class="gallery-dot active" data-i="0" aria-label="וידאו 1"></button>
+          <button class="gallery-dot" data-i="1" aria-label="וידאו 2"></button>
+          <button class="gallery-dot" data-i="2" aria-label="וידאו 3"></button>
+          <button class="gallery-dot" data-i="3" aria-label="וידאו 4"></button>
+          <button class="gallery-dot" data-i="4" aria-label="וידאו 5"></button>
+          <button class="gallery-dot" data-i="5" aria-label="וידאו 6"></button>
         </div>
       </div>
+
       <div class="gallery-cta">
         <a href="https://www.kasa-events.co.il/#gallery" class="btn-outline">לגלריית האירועים</a>
       </div>
@@ -559,18 +670,206 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
       });
     });
 
-    // Play gallery videos only when they scroll into view (keeps things light on mobile)
-    if('IntersectionObserver' in window){
-      var vids = document.querySelectorAll('.g-item video');
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          var v = e.target;
-          if(e.isIntersecting){ if(v.getAttribute('src')){ v.play().catch(function(){}); } }
-          else { v.pause(); }
+    // ===== GALLERY CAROUSEL — full logic copied from the home page (index.html) =====
+    (function initGalleryCarousel(){
+      var viewport = document.getElementById('gallery-viewport');
+      var track = document.getElementById('gallery-track');
+      var slides = document.querySelectorAll('.gallery-slide');
+      var dots = document.querySelectorAll('.gallery-dot');
+      var videos = document.querySelectorAll('.gallery-video');
+      if (!viewport || !track || !slides.length) return;
+
+      // Responsive poster delivery: size each poster to the REAL rendered width x DPR.
+      function optimizePosterWidths() {
+        var dpr = window.devicePixelRatio || 1;
+        slides.forEach(function (slide) {
+          var v = slide.querySelector('.gallery-video');
+          if (!v) return;
+          var cssW = v.getBoundingClientRect().width;
+          if (!cssW) return;
+          var target = Math.ceil((cssW * dpr) / 80) * 80;
+          if (target < 240) target = 240;
+          if (target > 900) target = 900;
+          var poster = v.getAttribute('poster');
+          if (poster) {
+            var newPoster = poster.replace(/(\/upload\/so_2,)w_\d+(,c_scale,)/, '$1w_' + target + '$2');
+            if (newPoster !== poster) v.setAttribute('poster', newPoster);
+          }
         });
-      }, { threshold: 0.35 });
-      vids.forEach(function(v){ io.observe(v); });
-    }
+      }
+      optimizePosterWidths();
+
+      var current = 0;
+      var total = slides.length;
+      var autoTimer = null;
+
+      var soundEnabled = false; // becomes true after the visitor's first tap/click while in the gallery
+      var galleryVisible = false; // true only while the gallery is on screen
+
+      function playActiveVideo() {
+        if (!galleryVisible) return;
+        var v = slides[current].querySelector('.gallery-video');
+        if (!v || !v.getAttribute('src')) return;
+        try { v.currentTime = 0; } catch (e) {}
+        v.muted = !soundEnabled;
+        v.volume = 1;
+        var playPromise = v.play();
+        if (playPromise && playPromise.catch) {
+          playPromise.catch(function () {
+            if (!soundEnabled) {
+              v.muted = true;
+              var p2 = v.play();
+              if (p2 && p2.catch) { p2.catch(function () {}); }
+            }
+          });
+        }
+      }
+
+      function pauseOtherVideos() {
+        var activeSlide = slides[current];
+        videos.forEach(function (v) {
+          var ownerSlide = v.closest('.gallery-slide');
+          if (ownerSlide !== activeSlide) {
+            v.pause();
+            v.currentTime = 0;
+            v.muted = true;
+          }
+        });
+      }
+
+      // enable sound on the active gallery video — only when the gallery is on screen
+      function enableSoundOnce() {
+        if (soundEnabled) return;
+        if (!galleryVisible) return;
+        soundEnabled = true;
+        var v = slides[current].querySelector('.gallery-video');
+        if (v && v.getAttribute('src')) {
+          v.muted = false;
+          v.volume = 1;
+          var pp = v.play();
+          if (pp && pp.catch) { pp.catch(function () {}); }
+        }
+        document.removeEventListener('pointerdown', enableSoundOnce);
+        document.removeEventListener('touchstart', enableSoundOnce);
+        document.removeEventListener('click', enableSoundOnce);
+      }
+      document.addEventListener('pointerdown', enableSoundOnce, { passive: true });
+      document.addEventListener('touchstart', enableSoundOnce, { passive: true });
+      document.addEventListener('click', enableSoundOnce);
+
+      function position() {
+        var slide = slides[current];
+        var slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+        var viewportCenter = viewport.offsetWidth / 2;
+        var offset = viewportCenter - slideCenter;
+        track.style.transform = 'translateX(' + offset + 'px)';
+        slides.forEach(function (s, idx) { s.classList.toggle('is-active', idx === current); });
+        dots.forEach(function (d, idx) { d.classList.toggle('active', idx === current); });
+      }
+
+      function update() {
+        position();
+        pauseOtherVideos();
+        playActiveVideo();
+      }
+
+      function show(i) { current = (i + total) % total; update(); }
+      function next() { show(current + 1); }
+      function prev() { show(current - 1); }
+
+      function startAuto() { stopAuto(); } // advances when the active video ends
+      function stopAuto() { if (autoTimer) clearInterval(autoTimer); autoTimer = null; }
+      function restartAuto() { stopAuto(); startAuto(); }
+
+      // when the active gallery video finishes, move to the next one and play it
+      videos.forEach(function (vid) {
+        vid.addEventListener('ended', function () {
+          if (!galleryVisible) return;
+          var activeVid = slides[current].querySelector('.gallery-video');
+          if (vid !== activeVid) return;
+          next();
+        });
+      });
+
+      // dot navigation
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          show(parseInt(dot.getAttribute('data-i'), 10));
+          restartAuto();
+        });
+      });
+
+      // arrow navigation
+      var prevBtn = document.getElementById('gallery-prev');
+      var nextBtn = document.getElementById('gallery-next');
+      if (prevBtn) prevBtn.addEventListener('click', function () { prev(); restartAuto(); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { next(); restartAuto(); });
+
+      // tap a peeking side video to bring it to center
+      slides.forEach(function (s, idx) {
+        s.addEventListener('click', function () {
+          if (idx !== current) { show(idx); restartAuto(); }
+        });
+      });
+
+      // pause on hover (desktop)
+      viewport.addEventListener('mouseenter', stopAuto);
+      viewport.addEventListener('mouseleave', startAuto);
+
+      // swipe support (mobile)
+      var touchStartX = 0, touchEndX = 0, SWIPE_THRESHOLD = 35;
+      viewport.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAuto();
+      }, { passive: true });
+      viewport.addEventListener('touchend', function (e) {
+        touchEndX = e.changedTouches[0].screenX;
+        var diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > SWIPE_THRESHOLD) {
+          if (diff > 0) { prev(); } else { next(); }
+        }
+        startAuto();
+      }, { passive: true });
+
+      window.addEventListener('resize', position);
+
+      // stop sound/video when the visitor leaves the page (tab switch, lock, close)
+      function pauseAllGalleryVideos() {
+        videos.forEach(function (v) { try { v.pause(); v.muted = true; } catch (e) {} });
+      }
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) { pauseAllGalleryVideos(); }
+        else if (galleryVisible) { playActiveVideo(); }
+      });
+      window.addEventListener('pagehide', pauseAllGalleryVideos);
+      window.addEventListener('blur', function () {
+        videos.forEach(function (v) { try { v.muted = true; } catch (e) {} });
+      });
+
+      // play video + auto-rotation only while the gallery is on screen
+      if ('IntersectionObserver' in window) {
+        var playObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              galleryVisible = true;
+              playActiveVideo();
+              startAuto();
+            } else {
+              galleryVisible = false;
+              var v = slides[current].querySelector('.gallery-video');
+              if (v) { v.pause(); }
+              stopAuto();
+            }
+          });
+        }, { threshold: 0.4, rootMargin: '200px 0px 200px 0px' });
+        playObserver.observe(viewport);
+      } else {
+        galleryVisible = true;
+        startAuto();
+      }
+
+      update();
+    })();
   })();
 </script>
 </body>
