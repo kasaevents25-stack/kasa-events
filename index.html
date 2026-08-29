@@ -969,7 +969,7 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
 .footer-guide a{color:var(--gold);font-size:.82rem;font-weight:500;text-decoration:none;transition:color var(--transition),text-shadow var(--transition)}
 .footer-guide a:hover{color:var(--gold-light);text-shadow:0 0 10px rgba(201,168,76,.5)}
 
-.legal-modal{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
+.legal-modal{position:fixed;inset:0;z-index:650;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
 .legal-modal.open{opacity:1;visibility:visible}
 .legal-modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .legal-modal-box{position:relative;z-index:1;width:100%;max-width:560px;max-height:86vh;overflow-y:auto;background:linear-gradient(160deg,#121212,var(--black));border:1px solid var(--gold-border);border-radius:var(--radius-lg);box-shadow:0 0 0 1px rgba(201,168,76,.18),0 0 50px rgba(201,168,76,.16),0 24px 60px rgba(0,0,0,.6);padding:30px 26px 28px;direction:rtl;text-align:right;transform:translateY(16px) scale(.98);transition:transform .35s cubic-bezier(.4,0,.2,1)}
@@ -3549,6 +3549,9 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
   function openLegal(key){
     var c = CONTENT[key];
     if(!c) return;
+    // if the consent bubble is currently showing, tuck it away while the policy is read
+    // (this is NOT a consent decision — see __ccHideForLegal / __ccRestoreAfterLegal)
+    if(typeof window.__ccHideForLegal === 'function') window.__ccHideForLegal();
     titleEl.textContent = c.title;
     bodyEl.innerHTML = c.html;
     modal.querySelector('.legal-modal-box').scrollTop = 0;
@@ -3558,6 +3561,8 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
   function closeLegal(){
     modal.classList.remove('open');
     document.body.style.overflow = '';
+    // bring the consent bubble back if it was hidden for the policy and no choice was made yet
+    if(typeof window.__ccRestoreAfterLegal === 'function') window.__ccRestoreAfterLegal();
   }
 
   // open from any element carrying data-legal
@@ -3751,6 +3756,25 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
 
   // expose a global so the footer link (and anything else) can reopen preferences
   window.openPrivacySettings = openModal;
+
+  // ---- hooks for the "privacy policy" link INSIDE the bubble ----
+  // Opening the policy is NOT a consent decision: we only hide the bubble temporarily,
+  // then restore it on policy close IF the visitor still hasn't made a choice.
+  var hiddenForLegal = false;
+  window.__ccHideForLegal = function(){
+    if(banner && !banner.hidden && banner.classList.contains('cc-show')){
+      hiddenForLegal = true;
+      banner.classList.remove('cc-show');
+      document.body.classList.remove('cc-open'); // let the policy modal own the screen
+      setTimeout(function(){ if(hiddenForLegal) banner.hidden = true; }, 500);
+    }
+  };
+  window.__ccRestoreAfterLegal = function(){
+    if(!hiddenForLegal) return;      // wasn't hidden by us — do nothing
+    hiddenForLegal = false;
+    if(readConsent()) return;        // visitor already chose meanwhile — keep it hidden
+    showBanner();                     // bring the bubble back exactly as before (reuses fade/slide-up)
+  };
 
   // ---- init on load ----
   var existing = readConsent();
