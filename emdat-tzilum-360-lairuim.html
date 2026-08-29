@@ -138,6 +138,7 @@ body{
   font-family:'Heebo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   background:var(--black);color:var(--text);line-height:1.7;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  padding-bottom:92px;
 }
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -154,6 +155,22 @@ img{max-width:100%;display:block}
 .nav-logo span{color:var(--gold)}
 .nav-cta{background:var(--gold);color:var(--black);font-weight:700;font-size:.88rem;padding:10px 22px;border-radius:var(--radius-sm);transition:background var(--transition),transform var(--transition);white-space:nowrap}
 .nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:.88rem;font-weight:500;color:var(--text);transition:color var(--transition)}
+.nav-links a:hover{color:var(--gold)}
+#main-nav .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:8px;cursor:pointer;transition:gap .45s ease-in-out,transform .45s ease-in-out}
+#main-nav .nav-social{display:none}
+#main-nav .hamburger span{display:block;width:24px;height:2px;background:var(--champagne);border-radius:2px;transition:width .45s ease-in-out,background var(--transition),opacity var(--transition),transform var(--transition)}
+#main-nav.scrolled .hamburger{gap:4.5px}
+#main-nav.scrolled .hamburger span{width:22px}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--black);z-index:350;flex-direction:column;align-items:center;justify-content:center;gap:30px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1.35rem;font-weight:700;color:var(--champagne);transition:color var(--transition)}
+.mobile-menu a:hover,.mobile-menu a:active{color:var(--gold)}
+.mobile-close{position:absolute;top:calc(env(safe-area-inset-top,0px) + 18px);right:20px;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:rgba(201,168,76,.12);border:1px solid var(--gold-border);font-size:1.5rem;color:var(--champagne);line-height:1;padding:0;cursor:pointer;z-index:2;transition:background .2s ease,transform .2s ease}
+.mobile-close:active{background:rgba(201,168,76,.22);transform:scale(.94)}
+.mobile-menu .mobile-wa-btn{display:flex;align-items:center;gap:12px;background:#25D366;color:#062e14;font-weight:800;font-size:1.05rem;padding:15px 30px;border-radius:50px;box-shadow:0 4px 24px rgba(37,211,102,.35)}
+.mobile-menu .mobile-wa-btn svg{fill:#062e14}
 
 /* ===== breadcrumbs ===== */
 .breadcrumbs{padding:88px 0 0;font-size:.8rem;color:var(--muted)}
@@ -210,6 +227,11 @@ p{color:var(--text)}
 .tl-num{position:absolute;top:0;right:0;width:28px;height:28px;border-radius:50%;background:var(--black);border:1px solid var(--gold-border);color:var(--gold);font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;z-index:1;box-shadow:0 0 0 4px var(--black)}
 .tl-step h3{color:var(--champagne);font-size:.98rem;font-weight:700;margin:3px 0 8px}
 .tl-step p{font-size:.88rem;color:var(--muted);line-height:1.6;margin:0}
+
+/* callout — subtle gold highlight box for key notes */
+.callout{margin-top:22px;background:linear-gradient(150deg,rgba(230,199,106,.09),rgba(201,168,76,.03));border:1px solid var(--gold-border);border-radius:16px;padding:18px 20px;box-shadow:0 0 0 1px rgba(230,199,106,.05) inset}
+.callout p{margin:0;font-size:.92rem;color:var(--text);line-height:1.7}
+.callout strong{color:var(--champagne)}
 
 /* includes list (checkmarks) */
 .includes{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:8px}
@@ -304,6 +326,19 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
 .footer-links a:hover{color:var(--gold-light)}
 .footer-copy{font-size:.78rem;color:var(--muted);line-height:1.7}
 
+/* nav mobile — hide links/cta, show hamburger + social (exact from index.html) */
+@media (max-width:900px){
+  #main-nav .nav-links,#main-nav .nav-cta{display:none}
+  #main-nav .hamburger{display:flex}
+  #main-nav .nav-inner{display:grid;grid-template-columns:1fr auto 1fr;grid-template-rows:auto;align-items:center;direction:ltr}
+  #main-nav .hamburger{grid-column:1;grid-row:1;justify-self:start;align-self:center}
+  #main-nav .nav-logo{grid-column:2;grid-row:1;justify-self:center;text-align:center;direction:rtl}
+  #main-nav .nav-social{grid-column:3;grid-row:1;justify-self:end;display:flex;flex-direction:row;align-items:center;gap:15px}
+  #main-nav .nav-social a{display:flex;align-items:center;justify-content:center;color:var(--gold);transition:color var(--transition),transform var(--transition)}
+  #main-nav .nav-social a:hover{color:var(--gold-light);transform:translateY(-1px)}
+  #main-nav .nav-social svg{width:23px;height:23px;fill:currentColor;display:block}
+}
+
 @media (max-width:600px){
   section{padding:38px 0}
   .hero{padding:40px 0 30px}
@@ -322,17 +357,221 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
   .faq-item.open .faq-a{padding:0 18px 14px}
   .faq-icon{width:20px;height:20px;font-size:.78rem}
 }
+
+/* ===== STICKY CTA BAR + ACCESSIBILITY WIDGET (copied 1:1 from index.html) ===== */
+.sticky-cta-bar{
+  display:flex;position:fixed;left:0;right:0;z-index:150;
+  bottom:calc(12px + env(safe-area-inset-bottom));
+  padding:0 16px;gap:12px;
+  max-width:480px;width:calc(100% - 32px);margin:0 auto;
+  transition:opacity .6s ease-in-out,transform .6s ease-in-out,filter .6s ease-in-out;
+}
+/* on mobile only: smoothly slide + blur the fixed bar away while the quote form is in view (prevents overlap with the submit button) */
+@media (max-width:600px){
+  .sticky-cta-bar.sticky-hidden{opacity:0;transform:translateY(120%);filter:blur(8px);pointer-events:none}
+}
+/* only genuinely narrow iPhones (SE, mini) get a slightly slimmer bar so text stays on one line */
+@media (max-width:360px){
+  .sticky-cta-bar{gap:9px}
+  .sticky-cta-bar a,.sticky-cta-bar button{font-size:.76rem;padding:8px 8px;gap:5px}
+}
+.sticky-cta-bar a,.sticky-cta-bar button{
+  flex:1;text-align:center;font-weight:700;font-size:.82rem;padding:9px 10px;line-height:1.2;white-space:nowrap;
+  border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;
+  font-family:inherit;cursor:pointer;border:none;
+  transition:transform .25s cubic-bezier(0.34,1.56,0.64,1),box-shadow .3s ease,filter .3s ease;
+}
+.sticky-cta-bar a:hover,.sticky-cta-bar button:hover{transform:translateY(-1.5px)}
+.sticky-cta-bar a:active,.sticky-cta-bar button:active{transform:scale(.95)}
+.sticky-cta-bar .scta-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);box-shadow:0 0 0 1px rgba(201,168,76,.3),0 0 4px rgba(255,248,224,.5) inset,0 0 18px rgba(201,168,76,.45),0 4px 16px rgba(201,168,76,.3)}
+.sticky-cta-bar .scta-gold:hover{filter:brightness(1.07);box-shadow:0 0 0 1px rgba(201,168,76,.4),0 0 4px rgba(255,248,224,.6) inset,0 0 26px rgba(201,168,76,.6),0 8px 22px rgba(201,168,76,.36)}
+.sticky-cta-bar .scta-wa{background:#25D366;color:#062e14;box-shadow:0 0 0 1px rgba(37,211,102,.35),0 0 18px rgba(37,211,102,.45),0 4px 16px rgba(37,211,102,.26)}
+.sticky-cta-bar .scta-wa svg{fill:#062e14}
+/* ===== ACCESSIBILITY WIDGET ===== */
+.a11y-toggle{position:fixed;bottom:84px;left:16px;z-index:400;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));border:2px solid #fff;box-shadow:0 4px 18px rgba(0,0,0,.4),0 0 0 1px rgba(201,168,76,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:transform .2s ease}
+.a11y-toggle:hover{transform:scale(1.06)}
+.a11y-toggle:focus-visible{outline:3px solid #1a73e8;outline-offset:2px}
+.a11y-toggle svg{width:30px;height:30px;fill:#0A0A0A}
+.a11y-panel{position:fixed;bottom:84px;left:16px;z-index:401;width:300px;max-width:calc(100vw - 32px);max-height:78vh;overflow-y:auto;background:#fff;color:#1a1a1a;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.5);padding:16px;display:none;direction:rtl;font-family:'Heebo',Arial,sans-serif}
+.a11y-panel.open{display:block}
+.a11y-panel h2{font-size:1.05rem;font-weight:800;margin:0 0 4px;color:#111;text-align:center;padding:0 34px}
+.a11y-panel .a11y-sub{font-size:.74rem;color:#666;margin:0 0 12px}
+.a11y-close{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:#f0f0f0;border:none;font-size:1.2rem;line-height:1;color:#333;cursor:pointer}
+.a11y-close:hover{background:#e3e3e3}
+.a11y-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.a11y-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:11px 6px;background:#f6f6f6;border:2px solid #eee;border-radius:11px;font-family:inherit;font-size:.76rem;font-weight:600;color:#222;cursor:pointer;text-align:center;transition:background .15s ease;min-height:64px}
+.a11y-btn:hover{background:#efefef}
+.a11y-btn:focus-visible{outline:3px solid #1a73e8;outline-offset:1px}
+.a11y-btn.active{background:#e8f0fe;border-color:#1a73e8;color:#1a4ba0}
+.a11y-btn .a11y-ico{font-size:1.25rem;line-height:1}
+.a11y-reset{margin-top:10px;width:100%;padding:10px;background:#111;color:#fff;border:none;border-radius:11px;font-family:inherit;font-size:.84rem;font-weight:700;cursor:pointer}
+.a11y-reset:hover{background:#000}
+.a11y-statement{margin-top:10px;font-size:.68rem;color:#888;text-align:center;line-height:1.5}
+
+body{padding-bottom:92px}
+
+/* ===== ACCESSIBILITY WIDGET ===== */
+.a11y-toggle{position:fixed;bottom:84px;left:16px;z-index:400;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#0A0A0A;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.4),0 0 0 1px rgba(201,168,76,.4);transition:transform .2s ease,box-shadow .2s ease}
+.a11y-toggle:hover{transform:scale(1.06)}
+.a11y-toggle:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.a11y-toggle svg{width:28px;height:28px;fill:#0A0A0A}
+.a11y-panel{position:fixed;bottom:144px;left:16px;z-index:401;width:300px;max-width:calc(100vw - 32px);max-height:70vh;overflow-y:auto;background:#fff;color:#1a1a1a;border-radius:16px;box-shadow:0 16px 50px rgba(0,0,0,.5);padding:18px;display:none;direction:rtl;text-align:right;font-family:'Heebo',sans-serif}
+.a11y-panel.open{display:block}
+.a11y-panel h3{margin:0 0 4px;font-size:1.05rem;font-weight:800;color:#111;text-align:center;padding:0 34px}
+.a11y-panel .a11y-sub{margin:0 0 14px;font-size:.78rem;color:#666;text-align:center}
+.a11y-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.a11y-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:11px 6px;border:1.5px solid #e2e2e2;border-radius:11px;background:#fafafa;color:#222;font-size:.74rem;font-weight:600;font-family:inherit;cursor:pointer;text-align:center;line-height:1.25;transition:border-color .15s ease,background .15s ease}
+.a11y-btn:hover{background:#f0ead7;border-color:var(--gold)}
+.a11y-btn:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.a11y-btn.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.a11y-btn .a11y-ico{font-size:1.25rem;line-height:1}
+.a11y-reset{margin-top:12px;width:100%;padding:11px;border:none;border-radius:11px;background:#c0392b;color:#fff;font-size:.85rem;font-weight:700;font-family:inherit;cursor:pointer}
+.a11y-reset:hover{background:#a83224}
+.a11y-close{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;border:none;background:#eee;color:#333;font-size:1.1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.a11y-close:hover{background:#ddd}
+
+/* applied accessibility states (scoped to <html> classes) */
+html.a11y-contrast body{background:#000 !important}
+html.a11y-contrast .why-card,html.a11y-contrast .price-card,html.a11y-contrast section,html.a11y-contrast nav{background:#000 !important}
+html.a11y-contrast p,html.a11y-contrast li,html.a11y-contrast span,html.a11y-contrast h1,html.a11y-contrast h2,html.a11y-contrast h3,html.a11y-contrast h4,html.a11y-contrast a,html.a11y-contrast div{color:#fff !important;text-shadow:none !important}
+html.a11y-contrast .gold,html.a11y-contrast [class*="gold"]{color:#ffd84d !important}
+/* --- comprehensive high-contrast coverage so NOTHING disappears --- */
+/* hamburger lines stay bright white */
+html.a11y-contrast .hamburger span{background:#fff !important}
+/* header social icons stay bright gold and visible */
+html.a11y-contrast .nav-social a{color:#ffd84d !important}
+html.a11y-contrast .nav-social svg{fill:#ffd84d !important}
+/* logo always readable */
+html.a11y-contrast .nav-logo,html.a11y-contrast .nav-logo span{color:#fff !important}
+html.a11y-contrast .nav-logo span{color:#ffd84d !important}
+/* gallery arrows: visible white icon on dark, gold border */
+html.a11y-contrast .gallery-arrow,html.a11y-contrast [class*="arrow"]{background:#111 !important;color:#fff !important;border:1px solid #ffd84d !important}
+html.a11y-contrast .gallery-arrow svg,html.a11y-contrast [class*="arrow"] svg{fill:#fff !important;stroke:#fff !important}
+/* gallery dots visible */
+html.a11y-contrast .gallery-dot{background:#666 !important}
+html.a11y-contrast .gallery-dot.active{background:#ffd84d !important}
+/* keep brand CTA buttons on their own colors with readable text (do not force white-on-white) */
+html.a11y-contrast .scta-wa,html.a11y-contrast [class*="whatsapp"]{background:#25D366 !important;color:#062e14 !important}
+html.a11y-contrast .scta-wa *,html.a11y-contrast [class*="whatsapp"] *{color:#062e14 !important}
+html.a11y-contrast .scta-wa svg{fill:#062e14 !important}
+html.a11y-contrast .scta-gold,html.a11y-contrast .nav-cta,html.a11y-contrast .price-btn-primary,html.a11y-contrast .form-submit,html.a11y-contrast .hero-cta-primary{background:#ffd84d !important;color:#000 !important;border:1px solid #ffd84d !important}
+html.a11y-contrast .scta-gold *,html.a11y-contrast .nav-cta *,html.a11y-contrast .price-btn-primary *,html.a11y-contrast .form-submit *{color:#000 !important}
+html.a11y-contrast .scta-gold svg,html.a11y-contrast .form-submit svg{fill:#000 !important}
+/* outline/secondary buttons: white text + gold border on black */
+html.a11y-contrast .price-btn-outline,html.a11y-contrast .hero-cta-secondary,html.a11y-contrast .gallery-cta,html.a11y-contrast button{border-color:#ffd84d !important}
+/* form fields readable */
+html.a11y-contrast input,html.a11y-contrast select,html.a11y-contrast textarea{background:#111 !important;color:#fff !important;border:1px solid #ffd84d !important}
+html.a11y-contrast input::placeholder,html.a11y-contrast textarea::placeholder{color:#bbb !important}
+/* footer + all backgrounds solid black, text white */
+html.a11y-contrast footer,html.a11y-contrast .footer-legal,html.a11y-contrast #gallery,html.a11y-contrast #faq,html.a11y-contrast #trust-strip{background:#000 !important}
+html.a11y-contrast .footer-legal a{color:#ffd84d !important}
+/* cards & bordered blocks get a visible gold outline so they don't merge into black */
+html.a11y-contrast .why-card,html.a11y-contrast .price-card,html.a11y-contrast .review-card,html.a11y-contrast .faq-item{border:1px solid rgba(255,216,77,.5) !important}
+/* svgs default to white unless already handled above */
+html.a11y-contrast svg:not(.nav-social svg):not(.scta-wa svg):not(.scta-gold svg){fill:currentColor}
+html.a11y-invert{filter:invert(1) hue-rotate(180deg)}
+html.a11y-invert img,html.a11y-invert video,html.a11y-invert .gallery-item{filter:invert(1) hue-rotate(180deg)}
+html.a11y-invert .a11y-toggle,html.a11y-invert .a11y-panel{filter:invert(1) hue-rotate(180deg) !important;-webkit-filter:invert(1) hue-rotate(180deg) !important}
+html.a11y-links a{text-decoration:underline !important;text-underline-offset:3px !important;font-weight:700 !important;outline:2px dashed currentColor;outline-offset:2px}
+html.a11y-noanim *,html.a11y-noanim *::before,html.a11y-noanim *::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+html.a11y-readable body,html.a11y-readable p,html.a11y-readable li,html.a11y-readable span,html.a11y-readable a,html.a11y-readable h1,html.a11y-readable h2,html.a11y-readable h3,html.a11y-readable h4,html.a11y-readable button{font-family:Arial,Helvetica,sans-serif !important;letter-spacing:.02em !important}
+html.a11y-spacing p,html.a11y-spacing li,html.a11y-spacing span{line-height:2 !important;letter-spacing:.04em !important;word-spacing:.12em !important}
+html.a11y-bigcursor,html.a11y-bigcursor *{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M6 2l30 18-14 3 8 16-6 3-8-16-10 10z' fill='%23000' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E") 4 2,auto !important}
+@media (max-width:520px){.a11y-toggle{width:46px;height:46px;bottom:78px}.a11y-toggle svg{width:25px;height:25px}.a11y-panel{bottom:132px}}
+
+/* ===== ACCESSIBILITY WIDGET — always visible & immune to high-contrast/invert/filter (fix) ===== */
+/* the toggle button and panel must never be affected by any accessibility color/filter mode,
+   so the user can always reopen the menu and turn a mode off. Physical colors are pinned. */
+.a11y-toggle,.a11y-panel{
+  backdrop-filter:none !important;-webkit-backdrop-filter:none !important;
+  mix-blend-mode:normal !important;opacity:1 !important;
+  isolation:isolate;forced-color-adjust:none !important;
+}
+html.a11y-contrast .a11y-toggle,html.a11y-contrast .a11y-panel{filter:none !important;-webkit-filter:none !important}
+/* keep the toggle button's original gold look and visibility in every mode */
+html.a11y-contrast .a11y-toggle,html.a11y-invert .a11y-toggle{
+  background:linear-gradient(135deg,var(--gold),var(--gold-light)) !important;
+  border:2px solid #fff !important;color:#0A0A0A !important;
+  box-shadow:0 4px 18px rgba(0,0,0,.4),0 0 0 1px rgba(201,168,76,.4),0 0 0 3px rgba(0,0,0,.35) !important;
+  z-index:2147483000 !important;pointer-events:auto !important;visibility:visible !important;display:flex !important;
+}
+html.a11y-contrast .a11y-toggle svg,html.a11y-invert .a11y-toggle svg{fill:#0A0A0A !important;color:#0A0A0A !important}
+/* keep the panel readable (white card, dark text) in every mode */
+html.a11y-contrast .a11y-panel,html.a11y-invert .a11y-panel{
+  background:#fff !important;color:#1a1a1a !important;z-index:2147483000 !important;
+  pointer-events:auto !important;visibility:visible !important;
+}
+html.a11y-contrast .a11y-panel *,html.a11y-invert .a11y-panel *{filter:none !important;-webkit-filter:none !important;mix-blend-mode:normal !important;opacity:1 !important;text-shadow:none !important}
+html.a11y-contrast .a11y-panel h3,html.a11y-invert .a11y-panel h3{color:#111 !important}
+html.a11y-contrast .a11y-panel .a11y-sub,html.a11y-invert .a11y-panel .a11y-sub{color:#666 !important}
+html.a11y-contrast .a11y-btn,html.a11y-invert .a11y-btn{background:#fafafa !important;color:#222 !important;border-color:#e2e2e2 !important}
+/* keep the letters/icons/label INSIDE each button dark (the global contrast rule turns spans white,
+   which made A+ / A- and the icons disappear on the light button). */
+html.a11y-contrast .a11y-btn *,html.a11y-invert .a11y-btn *{color:#222 !important}
+html.a11y-contrast .a11y-btn.active,html.a11y-invert .a11y-btn.active{background:#1a1a1a !important;color:#fff !important;border-color:#1a1a1a !important}
+html.a11y-contrast .a11y-btn.active *,html.a11y-invert .a11y-btn.active *{color:#fff !important}
+html.a11y-contrast .a11y-reset,html.a11y-invert .a11y-reset{background:#c0392b !important;color:#fff !important}
+html.a11y-contrast .a11y-close,html.a11y-invert .a11y-close{background:#eee !important;color:#333 !important}
+
+/* ===== FLOATING "RESET ACCESSIBILITY" BUTTON ===== */
+.a11y-reset-float{position:fixed;bottom:146px;left:16px;z-index:402;display:flex;align-items:center;gap:7px;padding:9px 14px 9px 11px;border-radius:999px;background:#c0392b;color:#fff;border:2px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.4),0 0 0 1px rgba(192,57,43,.5);font-family:'Heebo',sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;direction:rtl;transition:transform .2s ease,background .2s ease}
+.a11y-reset-float[hidden]{display:none !important}
+.a11y-reset-float:hover{transform:scale(1.05);background:#a83224}
+.a11y-reset-float:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.a11y-reset-float svg{width:17px;height:17px;fill:#fff;flex-shrink:0}
+@media (max-width:520px){.a11y-reset-float{bottom:138px;font-size:.75rem;padding:8px 12px 8px 10px}.a11y-reset-float svg{width:15px;height:15px}}
+/* immune to all accessibility color/filter modes so it stays visible & readable */
+.a11y-reset-float{backdrop-filter:none !important;-webkit-backdrop-filter:none !important;mix-blend-mode:normal !important;opacity:1 !important;isolation:isolate;forced-color-adjust:none !important}
+html.a11y-contrast .a11y-reset-float{filter:none !important;-webkit-filter:none !important;background:#c0392b !important;color:#fff !important;border:2px solid #fff !important;z-index:2147483000 !important;pointer-events:auto !important;visibility:visible !important}
+html.a11y-contrast .a11y-reset-float svg,html.a11y-invert .a11y-reset-float svg{fill:#fff !important}
+html.a11y-contrast .a11y-reset-float span,html.a11y-invert .a11y-reset-float span{color:#fff !important}
+html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !important;-webkit-filter:invert(1) hue-rotate(180deg) !important;z-index:2147483000 !important}
 </style>
 </head>
 <body>
 
-<!-- ===== Nav (logo + CTA only; scroll/hover behavior taken from home) ===== -->
+<!-- ===== Nav (copied 1:1 from index.html; links point to home sections) ===== -->
 <nav id="main-nav">
   <div class="container nav-inner">
     <a href="https://www.kasa-events.co.il/" class="nav-logo" aria-label="Kasa Events — לדף הבית">Kasa <span>Events</span></a>
+    <ul class="nav-links">
+      <li><a href="https://www.kasa-events.co.il/#why">למה אנחנו</a></li>
+      <li><a href="https://www.kasa-events.co.il/#pricing">חבילות</a></li>
+      <li><a href="https://www.kasa-events.co.il/#gallery">גלריה</a></li>
+      <li><a href="https://www.kasa-events.co.il/#testimonials">ביקורות</a></li>
+      <li><a href="https://www.kasa-events.co.il/#faq">שאלות</a></li>
+    </ul>
     <a href="https://www.kasa-events.co.il/#contact" class="nav-cta">בדיקת זמינות</a>
+    <div class="nav-social" aria-label="קישורים חברתיים">
+      <a href="https://www.instagram.com/kasa_events1" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.21 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.52.01-4.76.07-.9.04-1.38.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.33-.28.81-.32 1.71C3.4 8.48 3.4 8.85 3.4 12s0 3.52.06 4.76c.04.9.19 1.38.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.33.13.81.28 1.71.32 1.24.06 1.61.07 4.76.07s3.52 0 4.76-.07c.9-.04 1.38-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.33.28-.81.32-1.71.06-1.24.07-1.61.07-4.76s0-3.52-.07-4.76c-.04-.9-.19-1.38-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.33-.13-.81-.28-1.71-.32C15.52 4.01 15.15 4 12 4zm0 3.06A4.94 4.94 0 1112 17a4.94 4.94 0 010-9.88zm0 1.8a3.14 3.14 0 100 6.28 3.14 3.14 0 000-6.28zm6.28-.62a1.15 1.15 0 11-2.3 0 1.15 1.15 0 012.3 0z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@kasa_events" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 5.82a4.28 4.28 0 01-1.06-2.82h-3.2v12.3a2.6 2.6 0 01-2.6 2.5 2.6 2.6 0 01-2.6-2.6 2.6 2.6 0 013.2-2.53V7.4a5.77 5.77 0 00-.6-.03A5.8 5.8 0 004 13.2a5.8 5.8 0 0011.6 0V8.9a7.5 7.5 0 004.4 1.4V7.1a4.3 4.3 0 01-3.4-1.28z"/></svg>
+      </a>
+      <a href="tel:0529762788" aria-label="טלפון">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.15 15.15 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.2 2.2z"/></svg>
+      </a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="תפריט ניווט">
+  <button class="mobile-close" id="mobile-close" aria-label="סגור">✕</button>
+  <a href="https://www.kasa-events.co.il/#why" onclick="closeMobile()">למה אנחנו</a>
+  <a href="https://www.kasa-events.co.il/#pricing" onclick="closeMobile()">חבילות</a>
+  <a href="https://www.kasa-events.co.il/#gallery" onclick="closeMobile()">גלריה</a>
+  <a href="https://www.kasa-events.co.il/#testimonials" onclick="closeMobile()">ביקורות</a>
+  <a href="https://www.kasa-events.co.il/#faq" onclick="closeMobile()">שאלות</a>
+  <a href="https://wa.me/972529762788" class="mobile-wa-btn" target="_blank" rel="noopener" onclick="closeMobile()">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;fill:#062e14;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    וואטסאפ מיידי
+  </a>
+</div>
+
 
 
 <!-- ===== Breadcrumbs ===== -->
@@ -404,7 +643,7 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
           <p>האורח מקבל את הסרטון ישירות לנייד באמצעות WhatsApp, SMS או AirDrop — מוכן לשיתוף מיידי.</p>
         </li>
       </ol>
-      <p class="lead" style="margin-top:18px"><strong style="color:var(--champagne)">חשוב לדעת:</strong> העמדה מופעלת על ידי צוות מקצועי לאורך כל האירוע. זהו שירות מלא — העמדה אינה נמסרת ללקוח או לאורחים לתפעול עצמי, כך שאתם פנויים ליהנות מהאירוע.</p>
+      <div class="callout"><p><strong>חשוב לדעת:</strong> העמדה מופעלת על ידי צוות מקצועי לאורך כל האירוע. זהו שירות מלא — העמדה אינה נמסרת ללקוח או לאורחים לתפעול עצמי, כך שאתם פנויים ליהנות מהאירוע.</p></div>
     </div>
   </section>
 
@@ -515,7 +754,7 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
           <p>שווה לשאול איך מנוהל הקהל סביב העמדה, כדי לשמור על סדר ועל חוויה נעימה גם כשיש ביקוש.</p>
         </li>
       </ul>
-      <p class="lead choose-summary">ב-Kasa Events חלק מהנקודות האלה כבר כלולות בשירות: צוות מקצועי שמפעיל את העמדה לאורך האירוע, 2 מעמדי תאורת LED מקצועיים, עיצוב מותאם אישית לסרטון, שליחה מיידית לאורחים בזמן אמת ועמודי תור לניהול הקהל.</p>
+      <div class="callout choose-summary"><p>ב-Kasa Events חלק מהנקודות האלה כבר כלולות בשירות: צוות מקצועי שמפעיל את העמדה לאורך האירוע, 2 מעמדי תאורת LED מקצועיים, עיצוב מותאם אישית לסרטון, שליחה מיידית לאורחים בזמן אמת ועמודי תור לניהול הקהל.</p></div>
     </div>
   </section>
 
@@ -669,6 +908,40 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
   </div>
 </footer>
 
+<!-- ===== STICKY CTA BAR (copied 1:1 from index.html) ===== -->
+<div class="sticky-cta-bar" aria-label="פעולות מהירות">
+  <a href="https://www.kasa-events.co.il/#contact" class="scta-gold" id="sticky-bar-avail-btn">📅 בדיקת זמינות</a>
+  <a href="#" class="scta-wa" id="sticky-bar-wa-link">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    דברו בוואטסאפ
+  </a>
+</div>
+
+<!-- ===== ACCESSIBILITY WIDGET (copied 1:1 from index.html) ===== -->
+<button class="a11y-toggle" id="a11y-toggle" aria-label="פתיחת תפריט נגישות" aria-expanded="false" aria-controls="a11y-panel" title="נגישות">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="3.5" r="2"/><path d="M21 6.5c0 .6-.4 1-1 1.1l-5 .7v3.2l1.9 6.4c.2.6-.2 1.2-.8 1.4-.6.2-1.2-.2-1.4-.8L12.7 14h-1.4l-1.6 5.5c-.2.6-.8 1-1.4.8-.6-.2-1-.8-.8-1.4L9.4 11.5V8.3L4.4 7.6C3.8 7.5 3.3 7 3.4 6.4c.1-.6.6-1 1.2-.9l5.4.8c.7.1 1.3.1 2 0l5.4-.8c.6-.1 1.1.3 1.2.9z"/></svg>
+</button>
+<button class="a11y-reset-float" id="a11y-reset-float" type="button" aria-label="איפוס הגדרות נגישות" title="איפוס נגישות" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L8 6l4 4V7a5 5 0 11-5 5H5a7 7 0 107-7z"/></svg>
+  <span>איפוס נגישות</span>
+</button>
+<div class="a11y-panel" id="a11y-panel" role="dialog" aria-label="אפשרויות נגישות" aria-modal="false">
+  <button class="a11y-close" id="a11y-close" aria-label="סגירת תפריט נגישות">✕</button>
+  <h3>תפריט נגישות</h3>
+  <p class="a11y-sub">התאמת האתר לצרכים שלך</p>
+  <div class="a11y-grid">
+    <button class="a11y-btn" data-a11y="font-up" type="button"><span class="a11y-ico" aria-hidden="true">A+</span>הגדל טקסט</button>
+    <button class="a11y-btn" data-a11y="font-down" type="button"><span class="a11y-ico" aria-hidden="true">A−</span>הקטן טקסט</button>
+    <button class="a11y-btn" data-a11y="contrast" type="button"><span class="a11y-ico" aria-hidden="true">◐</span>ניגודיות גבוהה</button>
+    <button class="a11y-btn" data-a11y="invert" type="button"><span class="a11y-ico" aria-hidden="true">🌓</span>היפוך צבעים</button>
+    <button class="a11y-btn" data-a11y="links" type="button"><span class="a11y-ico" aria-hidden="true">🔗</span>הדגשת קישורים</button>
+    <button class="a11y-btn" data-a11y="noanim" type="button"><span class="a11y-ico" aria-hidden="true">⏸</span>עצירת אנימציות</button>
+    <button class="a11y-btn" data-a11y="readable" type="button"><span class="a11y-ico" aria-hidden="true">𝐀𝐚</span>פונט קריא</button>
+    <button class="a11y-btn" data-a11y="spacing" type="button"><span class="a11y-ico" aria-hidden="true">↕</span>מרווח שורות</button>
+    <button class="a11y-btn" data-a11y="bigcursor" type="button"><span class="a11y-ico" aria-hidden="true">⬉</span>סמן גדול</button>
+  </div>
+  <button class="a11y-reset" id="a11y-reset" type="button">איפוס הכל</button>
+</div>
 <script>
   // NAV scroll behavior — copied from index.html (shrinks + hides on scroll, returns at top)
   (function(){
@@ -688,6 +961,31 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
         }
       }, { passive: true });
     }
+  })();
+
+  // MOBILE MENU — copied from index.html (hamburger toggles #mobile-menu.open)
+  function closeMobile() {
+    var mm = document.getElementById('mobile-menu');
+    if(mm) mm.classList.remove('open');
+    document.body.style.overflow = '';
+    var hb = document.getElementById('hamburger');
+    if (hb) hb.setAttribute('aria-expanded', 'false');
+  }
+  (function(){
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobile-menu');
+    var mobileClose = document.getElementById('mobile-close');
+    if(!hamburger || !mobileMenu) return;
+    function openMobile() {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      hamburger.setAttribute('aria-expanded', 'true');
+    }
+    hamburger.addEventListener('click', function () {
+      if (mobileMenu.classList.contains('open')) { closeMobile(); }
+      else { openMobile(); }
+    });
+    if(mobileClose) mobileClose.addEventListener('click', closeMobile);
   })();
 
   // Event pills — visual active-state toggle (design only, no content change)
@@ -923,6 +1221,123 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
       update();
     })();
   })();
+</script>
+
+<script>
+  // Sticky bar WhatsApp link setup (same target as home)
+  (function(){
+    var waEl = document.getElementById('sticky-bar-wa-link');
+    if(waEl) waEl.setAttribute('href', 'https://wa.me/972529762788?text=' + encodeURIComponent('היי Kasa Events, אני רוצה לבדוק זמינות לאירוע ☺️'));
+  })();
+</script>
+<script>
+(function(){
+  var html = document.documentElement;
+  var toggle = document.getElementById('a11y-toggle');
+  var panel = document.getElementById('a11y-panel');
+  var closeBtn = document.getElementById('a11y-close');
+  var resetBtn = document.getElementById('a11y-reset');
+  if(!toggle || !panel) return;
+
+  var STORE_KEY = 'kasa_a11y';
+  var fontStep = 0; // -2 .. +4
+  var toggles = { contrast:false, invert:false, links:false, noanim:false, readable:false, spacing:false, bigcursor:false };
+  var resetFloat = document.getElementById('a11y-reset-float');
+
+  // true when at least one accessibility setting is actually active
+  function hasActiveA11ySettings(){
+    if (fontStep !== 0) return true;
+    var keys = Object.keys(toggles);
+    for (var i=0;i<keys.length;i++){ if (toggles[keys[i]]) return true; }
+    return false;
+  }
+  function updateResetFloat(){
+    if (!resetFloat) return;
+    if (hasActiveA11ySettings()) { resetFloat.hidden = false; }
+    else { resetFloat.hidden = true; }
+  }
+
+  function save(){
+    try { localStorage.setItem(STORE_KEY, JSON.stringify({ fontStep: fontStep, toggles: toggles })); } catch(e){}
+  }
+  function applyAll(){
+    // font scaling
+    var scale = 1 + (fontStep * 0.08);
+    html.style.fontSize = (scale * 100) + '%';
+    // toggle classes
+    Object.keys(toggles).forEach(function(k){
+      html.classList.toggle('a11y-' + k, !!toggles[k]);
+    });
+    // reflect active state on buttons
+    panel.querySelectorAll('.a11y-btn[data-a11y]').forEach(function(btn){
+      var key = btn.getAttribute('data-a11y');
+      if (key in toggles) btn.classList.toggle('active', !!toggles[key]);
+    });
+    // show/hide the floating reset button based on real active state
+    updateResetFloat();
+  }
+  function load(){
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if(raw){ var d = JSON.parse(raw); if(typeof d.fontStep==='number') fontStep=d.fontStep; if(d.toggles) toggles=Object.assign(toggles,d.toggles); }
+    } catch(e){}
+    applyAll();
+  }
+
+  // one place that fully resets everything to default
+  function resetAllA11y(){
+    fontStep = 0;
+    Object.keys(toggles).forEach(function(k){ toggles[k] = false; });
+    html.style.fontSize = '';
+    // remove every a11y-* class from <html> as a safety net
+    Object.keys(toggles).forEach(function(k){ html.classList.remove('a11y-' + k); });
+    applyAll();
+    // clear saved settings so they don't return after a refresh
+    try { localStorage.removeItem(STORE_KEY); } catch(e){}
+  }
+
+  function openPanel(){ panel.classList.add('open'); toggle.setAttribute('aria-expanded','true'); }
+  function closePanel(){ panel.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+
+  toggle.addEventListener('click', function(){
+    if(panel.classList.contains('open')) closePanel(); else openPanel();
+  });
+  closeBtn.addEventListener('click', closePanel);
+
+  panel.querySelectorAll('.a11y-btn[data-a11y]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var action = btn.getAttribute('data-a11y');
+      if(action === 'font-up'){ fontStep = Math.min(4, fontStep + 1); }
+      else if(action === 'font-down'){ fontStep = Math.max(-2, fontStep - 1); }
+      else if(action in toggles){ toggles[action] = !toggles[action]; }
+      applyAll();
+      save();
+    });
+  });
+
+  resetBtn.addEventListener('click', function(){
+    resetAllA11y();
+  });
+  if (resetFloat) {
+    resetFloat.addEventListener('click', function(){
+      resetAllA11y();      // clears everything + hides itself (updateResetFloat inside applyAll)
+    });
+  }
+
+  // close on Escape
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && panel.classList.contains('open')) closePanel(); });
+
+  // close when clicking/tapping outside the panel (pointerdown covers both iPhone touch and desktop click).
+  // clicks inside the panel or on the toggle button are ignored so they don't close it by mistake.
+  document.addEventListener('pointerdown', function(e){
+    if (!panel.classList.contains('open')) return;
+    if (panel.contains(e.target)) return;   // inside the panel — keep it open
+    if (toggle.contains(e.target)) return;  // the toggle handles its own open/close
+    closePanel();
+  });
+
+  load();
+})();
 </script>
 </body>
 </html>
