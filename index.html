@@ -1000,29 +1000,57 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
 .form-privacy-notice a:hover{color:var(--gold-light)}
 .form-submit:disabled{opacity:.5;cursor:not-allowed;filter:grayscale(.3)}
 
-/* ===== PRIVACY / COOKIE CONSENT — banner + preferences (matches site black/gold RTL) ===== */
-.cc-banner{position:fixed;left:0;right:0;bottom:0;z-index:600;direction:rtl;
-  background:linear-gradient(160deg,#141414,var(--black));border-top:1px solid var(--gold-border);
-  box-shadow:0 -8px 30px rgba(0,0,0,.5),0 0 40px rgba(201,168,76,.06);
-  padding:16px 18px calc(16px + env(safe-area-inset-bottom));
-  transform:translateY(110%);transition:transform .5s cubic-bezier(.22,1,.36,1)}
-.cc-banner.cc-show{transform:translateY(0)}
-.cc-banner-inner{max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px}
-.cc-banner-text{flex:1 1 300px;font-size:.84rem;line-height:1.65;color:var(--text)}
-.cc-banner-text a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
-.cc-banner-text a:hover{color:var(--gold-light)}
-.cc-banner-actions{display:flex;flex-wrap:wrap;gap:9px;flex-shrink:0}
-.cc-btn{font-family:inherit;font-size:.82rem;font-weight:700;padding:10px 18px;border-radius:999px;cursor:pointer;border:1px solid var(--gold-border);background:transparent;color:var(--champagne);transition:background .25s ease,border-color .25s ease,color .25s ease,transform .2s ease,box-shadow .25s ease;white-space:nowrap}
+/* ===== PRIVACY / COOKIE CONSENT — compact premium bubble (matches site black/gold RTL) ===== */
+/* the wrapper only positions the bubble; the bubble itself is the visible card */
+.cc-banner{position:fixed;left:0;right:0;z-index:600;direction:rtl;display:flex;justify-content:center;
+  bottom:calc(18px + env(safe-area-inset-bottom));
+  padding:0 18px;pointer-events:none}
+.cc-bubble{position:relative;pointer-events:auto;width:100%;max-width:640px;
+  background:radial-gradient(120% 140% at 100% 0%,#181818,#0A0A0A 70%);
+  border:1px solid var(--gold-border);border-radius:22px;
+  padding:20px 22px 18px;
+  box-shadow:0 0 0 1px rgba(201,168,76,.14),0 0 34px rgba(201,168,76,.16),0 18px 50px rgba(0,0,0,.6);
+  opacity:0;transform:translateY(24px) scale(.97);
+  transition:opacity .5s ease,transform .55s cubic-bezier(.22,1,.36,1)}
+.cc-banner.cc-show .cc-bubble{opacity:1;transform:translateY(0) scale(1)}
+.cc-x{position:absolute;top:12px;left:12px;width:30px;height:30px;border-radius:50%;
+  background:rgba(201,168,76,.1);border:1px solid var(--gold-border);color:var(--champagne);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;
+  transition:background .2s ease,transform .2s ease}
+.cc-x svg{width:15px;height:15px;fill:none}
+.cc-x:hover{background:rgba(201,168,76,.22);transform:scale(1.08)}
+.cc-x:focus-visible{outline:3px solid #1a73e8;outline-offset:2px}
+.cc-bubble-head{display:flex;align-items:center;gap:10px;margin:0 0 10px;padding-left:34px}
+.cc-shield{flex-shrink:0;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:var(--gold);background:var(--gold-dim);border:1px solid var(--gold-border)}
+.cc-shield svg{width:20px;height:20px}
+.cc-title{font-size:1.05rem;font-weight:800;color:var(--champagne);margin:0;line-height:1.3}
+.cc-title span{color:var(--gold)}
+.cc-text{font-size:.84rem;line-height:1.65;color:var(--text);margin:0 0 8px}
+.cc-text-sub{color:var(--muted);font-size:.8rem;margin:0 0 16px}
+.cc-text a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
+.cc-text a:hover{color:var(--gold-light)}
+.cc-bubble-actions{display:flex;flex-wrap:wrap;gap:10px}
+.cc-btn{font-family:inherit;font-size:.84rem;font-weight:700;padding:11px 20px;border-radius:999px;cursor:pointer;border:1px solid var(--gold-border);background:transparent;color:var(--champagne);transition:background .25s ease,border-color .25s ease,color .25s ease,transform .2s ease,box-shadow .25s ease;white-space:nowrap;flex:1;text-align:center;min-width:130px}
 .cc-btn:hover{border-color:var(--gold);color:var(--gold-light);transform:translateY(-1px)}
 .cc-btn:focus-visible{outline:3px solid #1a73e8;outline-offset:2px}
 .cc-btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);border-color:var(--gold);box-shadow:0 0 18px rgba(201,168,76,.35),0 4px 14px rgba(201,168,76,.28)}
 .cc-btn-primary:hover{color:var(--black);filter:brightness(1.06);box-shadow:0 0 26px rgba(201,168,76,.5)}
 @media (max-width:600px){
-  .cc-banner{padding:14px 14px calc(14px + env(safe-area-inset-bottom))}
-  .cc-banner-text{font-size:.8rem;flex-basis:100%}
-  .cc-banner-actions{width:100%}
-  .cc-btn{flex:1;text-align:center;padding:11px 10px;font-size:.78rem}
+  .cc-banner{bottom:calc(16px + env(safe-area-inset-bottom));padding:0 16px}
+  .cc-bubble{padding:18px 18px 16px;border-radius:20px}
+  .cc-title{font-size:.98rem}
+  .cc-text{font-size:.82rem}
+  .cc-text-sub{font-size:.78rem}
+  .cc-btn{font-size:.82rem;padding:12px 14px;min-width:0}
 }
+@media (max-width:360px){
+  .cc-bubble-actions{gap:8px}
+  .cc-btn{flex:1 1 100%}
+}
+/* while the consent bubble is showing, tuck away the floating controls so nothing overlaps it */
+body.cc-open .sticky-cta-bar{opacity:0 !important;transform:translateY(140%) !important;pointer-events:none !important;transition:opacity .4s ease,transform .4s ease}
+body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-float{opacity:0 !important;pointer-events:none !important;transition:opacity .3s ease}
 
 /* preferences modal reuses the legal-modal shell; these are the category rows */
 .cc-modal{position:fixed;inset:0;z-index:620;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
@@ -3382,12 +3410,21 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
 
 <!-- ===== PRIVACY / COOKIE CONSENT ===== -->
 <div class="cc-banner" id="cc-banner" role="dialog" aria-live="polite" aria-label="הודעת פרטיות ועוגיות" hidden>
-  <div class="cc-banner-inner">
-    <p class="cc-banner-text">אנחנו משתמשים בטכנולוגיות הכרחיות להפעלת האתר, ובכפוף לבחירתך גם בכלי ניתוח וביצועים המסייעים לנו להבין את השימוש באתר ולשפר אותו. ניתן לאשר, לדחות טכנולוגיות שאינן הכרחיות או לבחור העדפות. מידע נוסף ב<a data-legal="privacy">מדיניות הפרטיות</a>.</p>
-    <div class="cc-banner-actions">
+  <div class="cc-bubble">
+    <button type="button" class="cc-x" id="cc-close-x" aria-label="סגירת הודעת פרטיות">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="cc-bubble-head">
+      <span class="cc-shield" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2.5l7 2.6v5.2c0 4.5-3 8.3-7 9.7-4-1.4-7-5.2-7-9.7V5.1l7-2.6z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.6 12.2l2.3 2.3 4-4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <h3 class="cc-title">אנחנו מכבדים את <span>הפרטיות</span> שלך</h3>
+    </div>
+    <p class="cc-text">אנחנו משתמשים בטכנולוגיות הכרחיות להפעלת האתר, ובכפוף לבחירתך גם בכלי ניתוח וביצועים המסייעים לנו להבין את השימוש באתר ולשפר אותו.</p>
+    <p class="cc-text cc-text-sub">ניתן לאשר הכל או להתאים את ההעדפות שלך. מידע נוסף ב<a data-legal="privacy">מדיניות הפרטיות</a>.</p>
+    <div class="cc-bubble-actions">
       <button type="button" class="cc-btn cc-btn-primary" id="cc-accept-all">אישור הכל</button>
-      <button type="button" class="cc-btn" id="cc-reject">דחיית לא הכרחיים</button>
-      <button type="button" class="cc-btn" id="cc-open-prefs">הגדרות</button>
+      <button type="button" class="cc-btn" id="cc-open-prefs">התאמת העדפות</button>
     </div>
   </div>
 </div>
@@ -3680,8 +3717,8 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
   var tAnalytics = document.getElementById('cc-analytics');
   var tMarketing = document.getElementById('cc-marketing');
 
-  function showBanner(){ if(banner){ banner.hidden = false; requestAnimationFrame(function(){ banner.classList.add('cc-show'); }); } }
-  function hideBanner(){ if(banner){ banner.classList.remove('cc-show'); setTimeout(function(){ banner.hidden = true; }, 500); } }
+  function showBanner(){ if(banner){ banner.hidden = false; document.body.classList.add('cc-open'); requestAnimationFrame(function(){ banner.classList.add('cc-show'); }); } }
+  function hideBanner(){ if(banner){ banner.classList.remove('cc-show'); document.body.classList.remove('cc-open'); setTimeout(function(){ banner.hidden = true; }, 500); } }
   function openModal(){
     var c = readConsent();
     if(tAnalytics) tAnalytics.checked = !!(c && c.analytics);
@@ -3697,7 +3734,7 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
   // banner buttons
   var byId = function(id){ return document.getElementById(id); };
   if(byId('cc-accept-all'))  byId('cc-accept-all').addEventListener('click', acceptAll);
-  if(byId('cc-reject'))      byId('cc-reject').addEventListener('click', rejectNonEssential);
+  if(byId('cc-close-x'))     byId('cc-close-x').addEventListener('click', rejectNonEssential); // X = reject non-essential (no analytics)
   if(byId('cc-open-prefs'))  byId('cc-open-prefs').addEventListener('click', openModal);
   // modal buttons
   if(byId('cc-save'))        byId('cc-save').addEventListener('click', savePrefs);
