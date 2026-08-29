@@ -143,16 +143,22 @@ a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .container{width:100%;max-width:1080px;margin:0 auto;padding:0 20px}
 
-/* ===== top bar (simple, links back to home) ===== */
-.topbar{position:sticky;top:0;z-index:100;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,.14)}
-.topbar-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-.nav-logo{font-size:1.4rem;font-weight:900;color:var(--champagne);letter-spacing:-.02em;white-space:nowrap}
+/* ===== NAV — premium shrinking glass header (copied from index.html) ===== */
+nav{position:fixed;top:0;right:0;left:0;z-index:300;padding:16px 0;background-color:#0A0A0A;background:#0A0A0A;isolation:isolate;will-change:padding,transform,opacity;transition:transform .8s cubic-bezier(.33,1,.68,1),opacity .8s cubic-bezier(.33,1,.68,1),padding .45s ease-in-out,box-shadow .45s ease-in-out,border-color .45s ease-in-out}
+nav::before{content:'';position:absolute;left:0;right:0;bottom:100%;height:200px;background-color:#0A0A0A;pointer-events:none}
+nav.nav-hidden{transform:translateY(-100%);opacity:0;pointer-events:none;border-bottom:none!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+nav.scrolled{padding:13.5px 0;background:#0A0A0A;border-bottom:1px solid var(--gold-border);box-shadow:0 4px 24px rgba(0,0,0,.45),0 0 24px rgba(201,168,76,.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:1.4rem;font-weight:900;color:var(--champagne);letter-spacing:-.02em;white-space:nowrap;transition:font-size .45s ease-in-out}
+nav.scrolled .nav-logo{font-size:1.29rem}
 .nav-logo span{color:var(--gold)}
-.topbar-cta{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);font-weight:800;font-size:.85rem;padding:9px 20px;border-radius:999px;transition:transform var(--transition),box-shadow var(--transition);box-shadow:0 3px 18px rgba(201,168,76,.3)}
-.topbar-cta:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(201,168,76,.4)}
+.nav-cta{background:var(--gold);color:var(--black);font-weight:700;font-size:.88rem;padding:10px 22px;border-radius:var(--radius-sm);transition:background var(--transition),transform var(--transition);white-space:nowrap}
+.nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
+/* body gets top padding so fixed nav doesn't cover content */
+body{padding-top:0}
 
 /* ===== breadcrumbs ===== */
-.breadcrumbs{padding:16px 0 0;font-size:.8rem;color:var(--muted)}
+.breadcrumbs{padding:88px 0 0;font-size:.8rem;color:var(--muted)}
 .breadcrumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .breadcrumbs a{color:var(--gold);transition:color .25s ease}
 .breadcrumbs a:hover{color:var(--gold-light)}
@@ -192,18 +198,33 @@ p{color:var(--text)}
 .card:hover{border-color:var(--gold-border);transform:translateY(-3px)}
 .card p{font-size:.92rem;color:var(--muted);line-height:1.7}
 
-/* numbered process steps */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:8px;counter-reset:step}
-.step{position:relative;background:var(--card);border:1px solid rgba(201,168,76,.14);border-radius:20px;padding:24px 20px 20px}
-.step-num{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);font-weight:900;font-size:1.05rem;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.step h3{color:var(--champagne);font-size:1rem;margin-bottom:6px}
-.step p{font-size:.9rem;color:var(--muted);line-height:1.65}
+/* event pills — capsule buttons (same concept as the home city chips, with an active/glow state) */
+.event-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:640px;margin:10px auto 0}
+.event-pill{display:inline-block;padding:9px 20px;font-size:.9rem;font-weight:600;color:var(--champagne);background:linear-gradient(150deg,rgba(230,199,106,.07),rgba(201,168,76,.03));border:1px solid var(--gold-border);border-radius:999px;letter-spacing:.01em;box-shadow:0 0 0 1px rgba(230,199,106,.05) inset;cursor:pointer;font-family:inherit;transition:transform .45s cubic-bezier(.22,1,.36,1),background .35s ease,border-color .35s ease,box-shadow .35s ease,color .35s ease}
+.event-pill:hover{color:var(--gold-light);background:linear-gradient(150deg,rgba(230,199,106,.16),rgba(201,168,76,.07));border-color:rgba(230,199,106,.55);box-shadow:0 0 0 1px rgba(230,199,106,.12) inset,0 0 22px rgba(216,180,90,.3);transform:translateY(-2px)}
+.event-pill.active{color:var(--black);background:linear-gradient(135deg,var(--gold),var(--gold-light));border-color:var(--gold);box-shadow:0 0 0 1px rgba(232,201,106,.5),0 0 18px rgba(201,168,76,.5),0 0 40px rgba(201,168,76,.25)}
+
+/* process steps — compact luxury timeline (no big boxes) */
+.timeline{margin:6px 0 0;padding:0;list-style:none;position:relative}
+.timeline::before{content:'';position:absolute;top:6px;bottom:6px;right:13px;width:1px;background:linear-gradient(to bottom,rgba(201,168,76,.5),rgba(201,168,76,.12))}
+.tl-step{position:relative;padding:0 40px 18px 0;min-height:28px}
+.tl-step:last-child{padding-bottom:0}
+.tl-num{position:absolute;top:0;right:0;width:28px;height:28px;border-radius:50%;background:var(--black);border:1px solid var(--gold-border);color:var(--gold);font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;z-index:1;box-shadow:0 0 0 4px var(--black)}
+.tl-step h3{color:var(--champagne);font-size:.98rem;font-weight:700;margin:3px 0 3px}
+.tl-step p{font-size:.88rem;color:var(--muted);line-height:1.6;margin:0}
 
 /* includes list (checkmarks) */
 .includes{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:8px}
 .includes li{position:relative;padding:14px 48px 14px 16px;background:var(--card);border:1px solid rgba(201,168,76,.14);border-radius:14px;font-size:.94rem;color:var(--text);line-height:1.5}
 .includes li::before{content:"✓";position:absolute;right:16px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;background:var(--gold-dim);color:var(--gold);font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center}
 .includes-cta{margin-top:22px;text-align:center}
+
+/* how-to-choose — clean luxury checklist (no boxes) */
+.checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px 28px}
+.checklist li{position:relative;padding:0 30px 0 0}
+.checklist li::before{content:'';position:absolute;top:6px;right:6px;width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));box-shadow:0 0 8px rgba(201,168,76,.5)}
+.checklist h3{color:var(--champagne);font-size:.96rem;font-weight:700;margin:0 0 2px}
+.checklist p{color:var(--muted);font-size:.86rem;line-height:1.55;margin:0}
 
 /* space requirements */
 .space-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:8px}
@@ -251,18 +272,24 @@ p{color:var(--text)}
 .gallery-dot.active{background:linear-gradient(135deg,var(--gold),var(--gold-light));transform:scale(1.3);box-shadow:0 0 8px rgba(201,168,76,.6)}
 .gallery-cta{margin-top:22px;text-align:center}
 
-/* FAQ (mirrors site faq) */
-.faq-list{margin-top:8px;display:flex;flex-direction:column;gap:10px}
-.faq-item{border:1px solid rgba(201,168,76,.18);border-radius:14px;overflow:hidden;background:var(--card)}
-.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;background:none;color:var(--champagne);font-size:.95rem;font-weight:700;text-align:right;cursor:pointer;transition:color .25s ease;font-family:inherit}
+/* FAQ — exact styling copied from index.html */
+.faq-list{margin-top:28px;display:flex;flex-direction:column;gap:11px;position:relative}
+.faq-item{
+  background:rgba(255,255,255,.03);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(201,168,76,.14);
+  border-radius:14px;
+  overflow:hidden;
+  transition:border-color .35s ease,box-shadow .35s ease,transform .25s ease;
+}
+.faq-item:hover{border-color:rgba(201,168,76,.32);transform:translateY(-1px)}
+.faq-item.open{border-color:rgba(232,201,106,.45);box-shadow:0 0 0 1px rgba(201,168,76,.18),0 0 28px rgba(201,168,76,.12),0 14px 32px rgba(0,0,0,.35)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:none;color:var(--champagne);font-size:.83rem;font-weight:700;text-align:right;cursor:pointer;transition:color .25s ease;font-family:inherit}
 .faq-q:hover{color:var(--gold)}
-.faq-icon{flex-shrink:0;width:22px;height:22px;position:relative;transition:transform .35s ease}
-.faq-icon::before,.faq-icon::after{content:"";position:absolute;background:var(--gold);border-radius:2px;top:50%;left:50%;transform:translate(-50%,-50%)}
-.faq-icon::before{width:12px;height:2px}
-.faq-icon::after{width:2px;height:12px;transition:transform .35s ease}
-.faq-item.open .faq-icon::after{transform:translate(-50%,-50%) scaleY(0)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(0.22,1,0.36,1),padding .4s ease,opacity .35s ease;font-size:.9rem;color:var(--muted);line-height:1.75;padding:0 20px;opacity:0}
-.faq-item.open .faq-a{max-height:360px;padding:0 20px 16px;opacity:1}
+.faq-icon{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:transparent;border:1px solid rgba(201,168,76,.5);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:.78rem;font-weight:600;line-height:1;transition:transform .35s cubic-bezier(0.34,1.56,0.64,1),background .3s ease,border-color .3s ease,color .3s ease}
+.faq-item.open .faq-icon{transform:rotate(135deg);background:var(--gold);border-color:var(--gold);color:var(--black)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(0.22,1,0.36,1),padding .4s ease,opacity .35s ease;font-size:.8rem;color:var(--muted);line-height:1.75;padding:0 18px;opacity:0}
+.faq-item.open .faq-a{max-height:300px;padding:0 18px 14px;opacity:1}
 
 /* closing CTA */
 .final{text-align:center;background:radial-gradient(ellipse 75% 120% at 50% 0%,rgba(201,168,76,.12),transparent 70%);border-radius:24px;border:1px solid rgba(201,168,76,.2);padding:44px 24px;margin:10px 0 0}
@@ -295,12 +322,13 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
 <body>
 
 <!-- ===== Top bar ===== -->
-<header class="topbar">
-  <div class="container topbar-inner">
+<!-- ===== Nav (same behavior as home page) ===== -->
+<nav id="main-nav">
+  <div class="container nav-inner">
     <a href="https://www.kasa-events.co.il/" class="nav-logo" aria-label="Kasa Events — לדף הבית">Kasa <span>Events</span></a>
-    <a href="https://www.kasa-events.co.il/#contact" class="topbar-cta">בדיקת זמינות</a>
+    <a href="https://www.kasa-events.co.il/#contact" class="nav-cta">בדיקת זמינות</a>
   </div>
-</header>
+</nav>
 
 <!-- ===== Breadcrumbs ===== -->
 <nav class="breadcrumbs container" aria-label="פירורי לחם">
@@ -344,34 +372,34 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
         <h2>איך זה עובד באירוע?</h2>
         <p class="lead">התהליך פשוט לאורחים ומנוהל מאחורי הקלעים על ידי הצוות שלנו — מההקמה ועד לסרטון המוכן ביד של האורח.</p>
       </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num" aria-hidden="true">1</div>
+      <ol class="timeline">
+        <li class="tl-step">
+          <span class="tl-num" aria-hidden="true">1</span>
           <h3>הגעה והקמה</h3>
           <p>הצוות מגיע מראש, מקים את העמדה, התאורה והשטיח, ומכין הכול לפני שהאורחים מתחילים להגיע.</p>
-        </div>
-        <div class="step">
-          <div class="step-num" aria-hidden="true">2</div>
+        </li>
+        <li class="tl-step">
+          <span class="tl-num" aria-hidden="true">2</span>
           <h3>האורחים מגיעים לעמדה</h3>
           <p>האורחים עולים על הבמה, לבד או בקבוצה, והצוות מכוון אותם ומסביר איך לעמוד כדי לקבל תוצאה מושלמת.</p>
-        </div>
-        <div class="step">
-          <div class="step-num" aria-hidden="true">3</div>
+        </li>
+        <li class="tl-step">
+          <span class="tl-num" aria-hidden="true">3</span>
           <h3>צילום</h3>
           <p>המצלמה נעה סביב האורחים ומצלמת אותם ב-360 מעלות, תוך שהצוות שומר על קצב וזרימה נעימה.</p>
-        </div>
-        <div class="step">
-          <div class="step-num" aria-hidden="true">4</div>
+        </li>
+        <li class="tl-step">
+          <span class="tl-num" aria-hidden="true">4</span>
           <h3>יצירת הסרטון</h3>
           <p>הסרטון עובר עריכה מהירה עם אפקטים, מוזיקה והעיצוב שהותאם לאירוע — הכול במקום ובזמן אמת.</p>
-        </div>
-        <div class="step">
-          <div class="step-num" aria-hidden="true">5</div>
+        </li>
+        <li class="tl-step">
+          <span class="tl-num" aria-hidden="true">5</span>
           <h3>שליחה לאורח</h3>
           <p>האורח מקבל את הסרטון ישירות לנייד באמצעות WhatsApp, SMS או AirDrop — מוכן לשיתוף מיידי.</p>
-        </div>
-      </div>
-      <p class="lead" style="margin-top:20px"><strong style="color:var(--champagne)">חשוב לדעת:</strong> העמדה מופעלת על ידי צוות מקצועי לאורך כל האירוע. זהו שירות מלא — העמדה אינה נמסרת ללקוח או לאורחים לתפעול עצמי, כך שאתם פנויים ליהנות מהאירוע.</p>
+        </li>
+      </ol>
+      <p class="lead" style="margin-top:18px"><strong style="color:var(--champagne)">חשוב לדעת:</strong> העמדה מופעלת על ידי צוות מקצועי לאורך כל האירוע. זהו שירות מלא — העמדה אינה נמסרת ללקוח או לאורחים לתפעול עצמי, כך שאתם פנויים ליהנות מהאירוע.</p>
     </div>
   </section>
 
@@ -429,23 +457,11 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
         <h2>לאילו אירועים עמדת 360 מתאימה?</h2>
         <p class="lead">עמדת צילום 360 משתלבת כמעט בכל סוג של אירוע, ומוסיפה פינת חוויה שהאורחים חוזרים אליה שוב ושוב.</p>
       </div>
-      <div class="grid">
-        <div class="card">
-          <h3>חתונות</h3>
-          <p>פינת אטרקציה שמייצרת סרטונים מרגשים לזוג ולאורחים, ומשאירה זיכרון תנועתי מהערב הגדול.</p>
-        </div>
-        <div class="card">
-          <h3>בר ובת מצווה</h3>
-          <p>חוויה אנרגטית שמדברת בשפה של הצעירים — סרטונים דינמיים ומוכנים לשיתוף מיידי.</p>
-        </div>
-        <div class="card">
-          <h3>אירועים פרטיים</h3>
-          <p>ימי הולדת, מסיבות ואירועים משפחתיים — פינה שמכניסה תנועה ושמחה לכל חגיגה.</p>
-        </div>
-        <div class="card">
-          <h3>אירועי חברה ואירועים עסקיים</h3>
-          <p>ערבי גיבוש, השקות ואירועי לקוחות — חוויה ממותגת שאפשר להתאים לעיצוב של החברה.</p>
-        </div>
+      <div class="event-pills">
+        <button type="button" class="event-pill active">חתונות</button>
+        <button type="button" class="event-pill">בר ובת מצווה</button>
+        <button type="button" class="event-pill">אירועים פרטיים</button>
+        <button type="button" class="event-pill">אירועי חברה ועסקים</button>
       </div>
     </div>
   </section>
@@ -468,33 +484,33 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
         <h2>איך לבחור עמדת צילום 360 לאירוע?</h2>
         <p class="lead">לא כל עמדת 360 זהה. לפני שסוגרים ספק, כדאי לבדוק כמה נקודות שמשפיעות ישירות על התוצאה ועל חוויית האורחים.</p>
       </div>
-      <div class="grid">
-        <div class="card">
+      <ul class="checklist">
+        <li>
           <h3>איכות הצילום</h3>
           <p>כדאי לבדוק מול הספק את רזולוציית הצילום, החדות ויציבות התנועה — אלה משפיעים על כמה הסרטון ייראה מקצועי.</p>
-        </div>
-        <div class="card">
+        </li>
+        <li>
           <h3>תאורה</h3>
           <p>שווה לוודא שיש תאורה ייעודית לעמדה, כדי שהאורחים ייראו מוארים ומחמיאים בכל תנאי אולם.</p>
-        </div>
-        <div class="card">
+        </li>
+        <li>
           <h3>תפעול מקצועי</h3>
           <p>בדקו האם צוות מלווה את העמדה לאורך האירוע — זה שומר על זרימה, מכוון את האורחים ומונע תקלות.</p>
-        </div>
-        <div class="card">
+        </li>
+        <li>
           <h3>מהירות קבלת הסרטונים</h3>
           <p>בררו כיצד ומתי האורחים מקבלים את הסרטונים, כדי לשמור על האנרגיה ולעודד שיתוף כבר באירוע.</p>
-        </div>
-        <div class="card">
+        </li>
+        <li>
           <h3>התאמת העיצוב לאירוע</h3>
           <p>כדאי לבדוק אם ניתן להתאים את הסרטון לאירוע — מוזיקה, אפקטים ומיתוג שהופכים אותו לחלק מהחוויה.</p>
-        </div>
-        <div class="card">
+        </li>
+        <li>
           <h3>ניהול הקהל סביב העמדה</h3>
           <p>שווה לשאול איך מנוהל הקהל סביב העמדה, כדי לשמור על סדר ועל חוויה נעימה גם כשיש ביקוש.</p>
-        </div>
-      </div>
-      <p class="lead" style="margin-top:20px">ב-Kasa Events חלק מהנקודות האלה כבר כלולות בשירות: צוות מקצועי שמפעיל את העמדה לאורך האירוע, 2 מעמדי תאורת LED מקצועיים, עיצוב מותאם אישית לסרטון, שליחה מיידית לאורחים בזמן אמת ועמודי תור לניהול הקהל.</p>
+        </li>
+      </ul>
+      <p class="lead" style="margin-top:18px">ב-Kasa Events חלק מהנקודות האלה כבר כלולות בשירות: צוות מקצועי שמפעיל את העמדה לאורך האירוע, 2 מעמדי תאורת LED מקצועיים, עיצוב מותאם אישית לסרטון, שליחה מיידית לאורחים בזמן אמת ועמודי תור לניהול הקהל.</p>
     </div>
   </section>
 
@@ -593,27 +609,27 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
       </div>
       <div class="faq-list">
         <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">מהי עמדת צילום 360?<span class="faq-icon" aria-hidden="true"></span></button>
+          <button class="faq-q" type="button" aria-expanded="false">מהי עמדת צילום 360?<span class="faq-icon" aria-hidden="true">+</span></button>
           <div class="faq-a"><p>עמדת 360 היא במה שעליה עומדים האורחים בזמן שמצלמה נעה סביבם ומצלמת אותם מכל הזוויות, ויוצרת סרטון 360 דינמי שאפשר להוסיף לו אפקטים, מוזיקה ועיצוב מותאם.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">כמה מקום צריך לעמדת 360?<span class="faq-icon" aria-hidden="true"></span></button>
+          <button class="faq-q" type="button" aria-expanded="false">כמה מקום צריך לעמדת 360?<span class="faq-icon" aria-hidden="true">+</span></button>
           <div class="faq-a"><p>לעמדה ללא רקע מומלץ שטח של כ-2.5×2.5 מטר, ולעמדה עם רקע מומלץ שטח של כ-4×4 מטר.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">איך מקבלים את הסרטון?<span class="faq-icon" aria-hidden="true"></span></button>
+          <button class="faq-q" type="button" aria-expanded="false">איך מקבלים את הסרטון?<span class="faq-icon" aria-hidden="true">+</span></button>
           <div class="faq-a"><p>האורח מקבל את הסרטון באמצעות WhatsApp, SMS או AirDrop, בהתאם לאפשרויות הזמינות באירוע — בדרך כלל כבר במהלך האירוע.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">האם יש צוות שמפעיל את העמדה?<span class="faq-icon" aria-hidden="true"></span></button>
+          <button class="faq-q" type="button" aria-expanded="false">האם יש צוות שמפעיל את העמדה?<span class="faq-icon" aria-hidden="true">+</span></button>
           <div class="faq-a"><p>כן. צוות מקצועי מפעיל את העמדה לאורך כל האירוע, מלווה את האורחים ומנהל את התור סביב העמדה. העמדה אינה נמסרת לתפעול עצמי.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">לאילו אירועים העמדה מתאימה?<span class="faq-icon" aria-hidden="true"></span></button>
+          <button class="faq-q" type="button" aria-expanded="false">לאילו אירועים העמדה מתאימה?<span class="faq-icon" aria-hidden="true">+</span></button>
           <div class="faq-a"><p>חתונות, בר ובת מצווה, אירועים פרטיים ואירועי חברה ואירועים עסקיים.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">באילו אזורים Kasa Events נותנת שירות?<span class="faq-icon" aria-hidden="true"></span></button>
+          <button class="faq-q" type="button" aria-expanded="false">באילו אזורים Kasa Events נותנת שירות?<span class="faq-icon" aria-hidden="true">+</span></button>
           <div class="faq-a"><p>Kasa Events נותנת שירות במרכז ובדרום הארץ.</p></div>
         </div>
       </div>
@@ -649,6 +665,37 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
 </footer>
 
 <script>
+  // NAV scroll behavior — copied from index.html (shrinks + hides on scroll, returns at top)
+  (function(){
+    var nav = document.getElementById('main-nav');
+    if(nav){
+      var scrollTicking = false;
+      function onScrollDirection() {
+        var y = window.scrollY;
+        nav.classList.toggle('scrolled', y > 80);
+        nav.classList.toggle('nav-hidden', y > 60);
+        scrollTicking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!scrollTicking) {
+          window.requestAnimationFrame(onScrollDirection);
+          scrollTicking = true;
+        }
+      }, { passive: true });
+    }
+  })();
+
+  // Event pills — visual active-state toggle (design only, no content change)
+  (function(){
+    var pills = document.querySelectorAll('.event-pill');
+    pills.forEach(function(pill){
+      pill.addEventListener('click', function(){
+        pills.forEach(function(p){ p.classList.remove('active'); });
+        pill.classList.add('active');
+      });
+    });
+  })();
+
   // FAQ accordion (self-contained, no external libraries)
   (function(){
     var items = document.querySelectorAll('.faq-item');
