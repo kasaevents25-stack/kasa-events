@@ -152,10 +152,21 @@ nav.scrolled{padding:13.5px 0;background:#0A0A0A;border-bottom:1px solid var(--g
 .nav-logo{font-size:1.4rem;font-weight:900;color:var(--champagne);letter-spacing:-.02em;white-space:nowrap;transition:font-size .45s ease-in-out}
 nav.scrolled .nav-logo{font-size:1.29rem}
 .nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:.88rem;font-weight:500;color:var(--text);transition:color var(--transition)}
+.nav-links a:hover{color:var(--gold)}
 .nav-cta{background:var(--gold);color:var(--black);font-weight:700;font-size:.88rem;padding:10px 22px;border-radius:var(--radius-sm);transition:background var(--transition),transform var(--transition);white-space:nowrap}
 .nav-cta:hover{background:var(--gold-light);transform:translateY(-1px)}
-/* body gets top padding so fixed nav doesn't cover content */
-body{padding-top:0}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;padding:8px;transition:gap .45s ease-in-out,transform .45s ease-in-out}
+.nav-social{display:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--champagne);border-radius:2px;transition:width .45s ease-in-out,background var(--transition),opacity var(--transition),transform var(--transition)}
+nav.scrolled .hamburger{gap:4.5px}
+nav.scrolled .hamburger span{width:22px}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--black);z-index:350;flex-direction:column;align-items:center;justify-content:center;gap:30px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1.35rem;font-weight:700;color:var(--champagne);transition:color var(--transition)}
+.mobile-menu a:hover,.mobile-menu a:active{color:var(--gold)}
+.mobile-close{position:absolute;top:24px;left:24px;background:none;border:none;color:var(--champagne);font-size:1.8rem;cursor:pointer;line-height:1}
 
 /* ===== breadcrumbs ===== */
 .breadcrumbs{padding:88px 0 0;font-size:.8rem;color:var(--muted)}
@@ -205,12 +216,12 @@ p{color:var(--text)}
 .event-pill.active{color:var(--black);background:linear-gradient(135deg,var(--gold),var(--gold-light));border-color:var(--gold);box-shadow:0 0 0 1px rgba(232,201,106,.5),0 0 18px rgba(201,168,76,.5),0 0 40px rgba(201,168,76,.25)}
 
 /* process steps — compact luxury timeline (no big boxes) */
-.timeline{margin:6px 0 0;padding:0;list-style:none;position:relative}
+.timeline{margin:10px 0 0;padding:0;list-style:none;position:relative}
 .timeline::before{content:'';position:absolute;top:6px;bottom:6px;right:13px;width:1px;background:linear-gradient(to bottom,rgba(201,168,76,.5),rgba(201,168,76,.12))}
-.tl-step{position:relative;padding:0 40px 18px 0;min-height:28px}
+.tl-step{position:relative;padding:0 40px 34px 0;min-height:28px}
 .tl-step:last-child{padding-bottom:0}
 .tl-num{position:absolute;top:0;right:0;width:28px;height:28px;border-radius:50%;background:var(--black);border:1px solid var(--gold-border);color:var(--gold);font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;z-index:1;box-shadow:0 0 0 4px var(--black)}
-.tl-step h3{color:var(--champagne);font-size:.98rem;font-weight:700;margin:3px 0 3px}
+.tl-step h3{color:var(--champagne);font-size:.98rem;font-weight:700;margin:3px 0 8px}
 .tl-step p{font-size:.88rem;color:var(--muted);line-height:1.6;margin:0}
 
 /* includes list (checkmarks) */
@@ -220,11 +231,12 @@ p{color:var(--text)}
 .includes-cta{margin-top:22px;text-align:center}
 
 /* how-to-choose — clean luxury checklist (no boxes) */
-.checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px 28px}
+.checklist{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px 32px}
 .checklist li{position:relative;padding:0 30px 0 0}
 .checklist li::before{content:'';position:absolute;top:6px;right:6px;width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));box-shadow:0 0 8px rgba(201,168,76,.5)}
-.checklist h3{color:var(--champagne);font-size:.96rem;font-weight:700;margin:0 0 2px}
+.checklist h3{color:var(--champagne);font-size:.96rem;font-weight:700;margin:0 0 6px}
 .checklist p{color:var(--muted);font-size:.86rem;line-height:1.55;margin:0}
+.choose-summary{margin-top:30px}
 
 /* space requirements */
 .space-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:8px}
@@ -305,6 +317,19 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
 .footer-links a:hover{color:var(--gold-light)}
 .footer-copy{font-size:.78rem;color:var(--muted);line-height:1.7}
 
+/* nav mobile — hide links/cta, show hamburger (matches index.html) */
+@media (max-width:900px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .nav-inner{display:grid;grid-template-columns:1fr auto 1fr;grid-template-rows:auto;align-items:center;direction:ltr}
+  .nav-inner .hamburger{grid-column:1;grid-row:1;justify-self:start;align-self:center}
+  .nav-inner .nav-logo{grid-column:2;grid-row:1;justify-self:center;text-align:center;direction:rtl}
+  .nav-inner .nav-social{grid-column:3;grid-row:1;justify-self:end;display:flex;flex-direction:row;align-items:center;gap:15px}
+  .nav-social a{display:flex;align-items:center;justify-content:center;color:var(--gold);transition:color var(--transition),transform var(--transition)}
+  .nav-social a:hover{color:var(--gold-light);transform:translateY(-1px)}
+  .nav-social svg{width:20px;height:20px;fill:currentColor}
+}
+
 @media (max-width:600px){
   section{padding:38px 0}
   .hero{padding:40px 0 30px}
@@ -321,14 +346,45 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
 </head>
 <body>
 
-<!-- ===== Top bar ===== -->
-<!-- ===== Nav (same behavior as home page) ===== -->
+<!-- ===== Nav (same look + behavior as home page, links point to home sections) ===== -->
 <nav id="main-nav">
   <div class="container nav-inner">
     <a href="https://www.kasa-events.co.il/" class="nav-logo" aria-label="Kasa Events — לדף הבית">Kasa <span>Events</span></a>
+    <ul class="nav-links">
+      <li><a href="https://www.kasa-events.co.il/#why">למה אנחנו</a></li>
+      <li><a href="https://www.kasa-events.co.il/#pricing">חבילות</a></li>
+      <li><a href="https://www.kasa-events.co.il/#gallery">גלריה</a></li>
+      <li><a href="https://www.kasa-events.co.il/#testimonials">ביקורות</a></li>
+      <li><a href="https://www.kasa-events.co.il/#faq">שאלות</a></li>
+    </ul>
     <a href="https://www.kasa-events.co.il/#contact" class="nav-cta">בדיקת זמינות</a>
+    <div class="nav-social" aria-label="קישורים חברתיים">
+      <a href="https://www.instagram.com/kasa_events1" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.6-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.6 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.06-.42-2.23C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.4 2.21 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.52.01-4.76.07-.9.04-1.38.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.33-.28.81-.32 1.71C3.4 8.48 3.4 8.85 3.4 12s0 3.52.06 4.76c.04.9.19 1.38.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.33.13.81.28 1.71.32 1.24.06 1.61.07 4.76.07s3.52 0 4.76-.07c.9-.04 1.38-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.33.28-.81.32-1.71.06-1.24.07-1.61.07-4.76s0-3.52-.07-4.76c-.04-.9-.19-1.38-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.33-.13-.81-.28-1.71-.32C15.52 4.01 15.15 4 12 4zm0 3.06A4.94 4.94 0 1112 17a4.94 4.94 0 010-9.88zm0 1.8a3.14 3.14 0 100 6.28 3.14 3.14 0 000-6.28zm6.28-.62a1.15 1.15 0 11-2.3 0 1.15 1.15 0 012.3 0z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@kasa_events" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 5.82a4.28 4.28 0 01-1.06-2.82h-3.2v12.3a2.6 2.6 0 01-2.6 2.5 2.6 2.6 0 01-2.6-2.6 2.6 2.6 0 013.2-2.53V7.4a5.77 5.77 0 00-.6-.03A5.8 5.8 0 004 13.2a5.8 5.8 0 0011.6 0V8.9a7.5 7.5 0 004.4 1.4V7.1a4.3 4.3 0 01-3.4-1.28z"/></svg>
+      </a>
+      <a href="tel:0529762788" aria-label="טלפון">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.15 15.15 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.2 2.2z"/></svg>
+      </a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="פתח תפריט" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="תפריט ניווט">
+  <button class="mobile-close" id="mobile-close" aria-label="סגור">✕</button>
+  <a href="https://www.kasa-events.co.il/#why">למה אנחנו</a>
+  <a href="https://www.kasa-events.co.il/#pricing">חבילות</a>
+  <a href="https://www.kasa-events.co.il/#gallery">גלריה</a>
+  <a href="https://www.kasa-events.co.il/#testimonials">ביקורות</a>
+  <a href="https://www.kasa-events.co.il/#faq">שאלות</a>
+  <a href="https://www.kasa-events.co.il/#contact" class="nav-cta">בדיקת זמינות</a>
+</div>
+
 
 <!-- ===== Breadcrumbs ===== -->
 <nav class="breadcrumbs container" aria-label="פירורי לחם">
@@ -510,7 +566,7 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
           <p>שווה לשאול איך מנוהל הקהל סביב העמדה, כדי לשמור על סדר ועל חוויה נעימה גם כשיש ביקוש.</p>
         </li>
       </ul>
-      <p class="lead" style="margin-top:18px">ב-Kasa Events חלק מהנקודות האלה כבר כלולות בשירות: צוות מקצועי שמפעיל את העמדה לאורך האירוע, 2 מעמדי תאורת LED מקצועיים, עיצוב מותאם אישית לסרטון, שליחה מיידית לאורחים בזמן אמת ועמודי תור לניהול הקהל.</p>
+      <p class="lead choose-summary">ב-Kasa Events חלק מהנקודות האלה כבר כלולות בשירות: צוות מקצועי שמפעיל את העמדה לאורך האירוע, 2 מעמדי תאורת LED מקצועיים, עיצוב מותאם אישית לסרטון, שליחה מיידית לאורחים בזמן אמת ועמודי תור לניהול הקהל.</p>
     </div>
   </section>
 
@@ -682,6 +738,17 @@ footer{border-top:1px solid rgba(201,168,76,.12);padding:34px 0;margin-top:46px;
           scrollTicking = true;
         }
       }, { passive: true });
+    }
+    // hamburger / mobile menu
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobile-menu');
+    var mobileClose = document.getElementById('mobile-close');
+    function openMobile(){ if(mobileMenu){ mobileMenu.classList.add('open'); if(hamburger) hamburger.setAttribute('aria-expanded','true'); } }
+    function closeMobile(){ if(mobileMenu){ mobileMenu.classList.remove('open'); if(hamburger) hamburger.setAttribute('aria-expanded','false'); } }
+    if(hamburger) hamburger.addEventListener('click', openMobile);
+    if(mobileClose) mobileClose.addEventListener('click', closeMobile);
+    if(mobileMenu){
+      mobileMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMobile); });
     }
   })();
 
