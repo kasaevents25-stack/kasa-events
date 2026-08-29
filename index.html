@@ -995,15 +995,94 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
 .form-consent label{font-size:.82rem;line-height:1.6;color:var(--muted);cursor:pointer}
 .form-consent label a{color:var(--gold);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
 .form-consent label a:hover{color:var(--gold-light)}
+.form-privacy-notice{margin:2px 0 12px;font-size:.74rem;line-height:1.65;color:var(--muted);text-align:right;direction:rtl}
+.form-privacy-notice a{color:var(--gold);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.form-privacy-notice a:hover{color:var(--gold-light)}
 .form-submit:disabled{opacity:.5;cursor:not-allowed;filter:grayscale(.3)}
+
+/* ===== PRIVACY / COOKIE CONSENT — banner + preferences (matches site black/gold RTL) ===== */
+.cc-banner{position:fixed;left:0;right:0;bottom:0;z-index:600;direction:rtl;
+  background:linear-gradient(160deg,#141414,var(--black));border-top:1px solid var(--gold-border);
+  box-shadow:0 -8px 30px rgba(0,0,0,.5),0 0 40px rgba(201,168,76,.06);
+  padding:16px 18px calc(16px + env(safe-area-inset-bottom));
+  transform:translateY(110%);transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.cc-banner.cc-show{transform:translateY(0)}
+.cc-banner-inner{max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px}
+.cc-banner-text{flex:1 1 300px;font-size:.84rem;line-height:1.65;color:var(--text)}
+.cc-banner-text a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
+.cc-banner-text a:hover{color:var(--gold-light)}
+.cc-banner-actions{display:flex;flex-wrap:wrap;gap:9px;flex-shrink:0}
+.cc-btn{font-family:inherit;font-size:.82rem;font-weight:700;padding:10px 18px;border-radius:999px;cursor:pointer;border:1px solid var(--gold-border);background:transparent;color:var(--champagne);transition:background .25s ease,border-color .25s ease,color .25s ease,transform .2s ease,box-shadow .25s ease;white-space:nowrap}
+.cc-btn:hover{border-color:var(--gold);color:var(--gold-light);transform:translateY(-1px)}
+.cc-btn:focus-visible{outline:3px solid #1a73e8;outline-offset:2px}
+.cc-btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);border-color:var(--gold);box-shadow:0 0 18px rgba(201,168,76,.35),0 4px 14px rgba(201,168,76,.28)}
+.cc-btn-primary:hover{color:var(--black);filter:brightness(1.06);box-shadow:0 0 26px rgba(201,168,76,.5)}
+@media (max-width:600px){
+  .cc-banner{padding:14px 14px calc(14px + env(safe-area-inset-bottom))}
+  .cc-banner-text{font-size:.8rem;flex-basis:100%}
+  .cc-banner-actions{width:100%}
+  .cc-btn{flex:1;text-align:center;padding:11px 10px;font-size:.78rem}
+}
+
+/* preferences modal reuses the legal-modal shell; these are the category rows */
+.cc-modal{position:fixed;inset:0;z-index:620;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
+.cc-modal.open{opacity:1;visibility:visible}
+.cc-modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.cc-modal-box{position:relative;z-index:1;width:100%;max-width:560px;max-height:86vh;overflow-y:auto;background:linear-gradient(160deg,#121212,var(--black));border:1px solid var(--gold-border);border-radius:var(--radius-lg);box-shadow:0 0 0 1px rgba(201,168,76,.18),0 0 50px rgba(201,168,76,.16),0 24px 60px rgba(0,0,0,.6);padding:28px 24px 24px;direction:rtl;text-align:right;transform:translateY(16px) scale(.98);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.cc-modal.open .cc-modal-box{transform:translateY(0) scale(1)}
+.cc-modal-box::-webkit-scrollbar{width:7px}
+.cc-modal-box::-webkit-scrollbar-thumb{background:var(--gold-border);border-radius:8px}
+.cc-modal-close{position:absolute;top:14px;left:14px;width:38px;height:38px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--gold-border);color:var(--champagne);font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--transition),transform var(--transition)}
+.cc-modal-close:hover{background:rgba(201,168,76,.22);transform:scale(1.06)}
+.cc-modal-close:focus-visible{outline:3px solid #1a73e8;outline-offset:2px}
+.cc-modal-box h2{font-size:1.4rem;font-weight:900;color:var(--champagne);margin:0 0 4px;padding-left:44px}
+.cc-modal-box h2::after{content:'';display:block;width:54px;height:3px;margin-top:10px;border-radius:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.cc-modal-intro{margin:16px 0 6px;font-size:.86rem;line-height:1.7;color:var(--muted)}
+.cc-cat{border:1px solid rgba(201,168,76,.16);border-radius:14px;padding:14px 16px;margin-top:12px;background:rgba(255,255,255,.02)}
+.cc-cat-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cc-cat-title{font-size:.98rem;font-weight:700;color:var(--champagne)}
+.cc-cat-desc{margin-top:6px;font-size:.82rem;line-height:1.6;color:var(--muted)}
+.cc-locked{font-size:.72rem;font-weight:700;color:var(--gold);background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:999px;padding:4px 12px;white-space:nowrap}
+/* toggle switch */
+.cc-switch{position:relative;flex-shrink:0;width:46px;height:26px;display:inline-block}
+.cc-switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.cc-slider{position:absolute;inset:0;background:#333;border:1px solid rgba(201,168,76,.25);border-radius:999px;transition:background .3s ease,border-color .3s ease}
+.cc-slider::before{content:'';position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;background:#888;transition:transform .3s cubic-bezier(.34,1.56,.64,1),background .3s ease}
+.cc-switch input:checked + .cc-slider{background:linear-gradient(135deg,var(--gold),var(--gold-light));border-color:var(--gold)}
+.cc-switch input:checked + .cc-slider::before{transform:translateX(-20px);background:#0A0A0A}
+.cc-switch input:focus-visible + .cc-slider{outline:3px solid #1a73e8;outline-offset:2px}
+.cc-modal-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.cc-modal-actions .cc-btn{flex:1;text-align:center;min-width:120px}
+@media (max-width:600px){
+  .cc-modal-box{padding:24px 18px 20px}
+  .cc-modal-box h2{font-size:1.22rem}
+}
 </style>
-<!-- Google Analytics 4 (async — does not block rendering) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2C37Q52VRV"></script>
+<!-- ============================================================
+     Google Analytics 4 — CONSENT-GATED.
+     The GA library is NOT loaded on page load. gtag() is defined as a
+     safe queue immediately, so every existing gtag('event', …) call
+     works without errors and simply buffers. Nothing is sent to Google
+     until the visitor grants "analytics" consent (see the consent
+     manager script near the end of the file), at which point the GA
+     library is injected and the buffered hits are flushed.
+     ============================================================ -->
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){ dataLayer.push(arguments); }
+  // Consent Mode v2 defaults — everything non-essential denied until the user chooses.
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
   gtag('js', new Date());
-  gtag('config', 'G-2C37Q52VRV');
+  // NOTE: gtag('config', …) is intentionally NOT called here.
+  // It runs only after the GA library loads following analytics consent.
 </script>
 </head>
 <body>
@@ -1826,9 +1905,10 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
             <textarea id="f-msg" placeholder="מספר אורחים, מיקום, בקשות מיוחדות..."></textarea>
           </div>
         </div>
+        <p class="form-privacy-notice">מסירת הפרטים היא מרצונך ואינה חובה על פי חוק. ללא מסירת הפרטים הנדרשים לא נוכל לחזור אליך, לבדוק זמינות או לטפל בפנייתך. המידע ישמש לצורך יצירת קשר, בדיקת זמינות, מתן הצעת מחיר, תיאום ומתן השירות. המידע עשוי להימסר לספקי שירות ככל שהדבר נדרש לצורך התקשורת עמך ומתן השירות. בעל השליטה במידע הוא דוד קסה / Kasa Events. לפניות בנושא פרטיות וכן למימוש זכויות עיון ותיקון במידע ניתן לפנות לכתובת <a href="mailto:Kasa.events25@gmail.com">Kasa.events25@gmail.com</a>. מידע נוסף מופיע ב<a data-legal="privacy">מדיניות הפרטיות</a>.</p>
         <div class="form-consent">
           <input type="checkbox" id="consent-checkbox" />
-          <label for="consent-checkbox">אני מאשר/ת כי קראתי את <a data-legal="privacy">מדיניות הפרטיות</a> ומסכים/ה להשארת פרטיי לצורך יצירת קשר.</label>
+          <label for="consent-checkbox">קראתי את <a data-legal="privacy">מדיניות הפרטיות</a> ואני מאשר/ת את שליחת פרטיי לצורך טיפול בפנייה.</label>
         </div>
         <button class="form-submit" onclick="sendToWhatsApp()" id="lead-submit" disabled>
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1893,6 +1973,8 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
         <a data-legal="terms">תנאי שימוש</a>
         <span class="sep" aria-hidden="true">•</span>
         <a data-legal="accessibility">הצהרת נגישות</a>
+        <span class="sep" aria-hidden="true">•</span>
+        <a data-open-privacy-settings href="#">הגדרות פרטיות</a>
       </div>
     </div>
   </div>
@@ -2424,7 +2506,7 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
       ].filter(function (l) { return l !== ''; }).join('\n');
 
       var cleaned = lines.replace(/\n{3,}/g, '\n\n');
-      if(typeof gtag === 'function'){ gtag('event', 'whatsapp_click', { link_location: 'lead_form' }); }
+      if(window.__ccAnalytics && typeof gtag === 'function'){ gtag('event', 'whatsapp_click', { link_location: 'lead_form' }); }
       window.open(waLink(cleaned), '_blank');
       closeModal();
       showFormSuccess();
@@ -3129,7 +3211,7 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
     ].filter(function (l) { return l !== ''; }).join('\n');
 
     var cleaned = lines.replace(/\n{3,}/g, '\n\n');
-    if(typeof gtag === 'function'){
+    if(window.__ccAnalytics && typeof gtag === 'function'){
       gtag('event', 'whatsapp_click', { link_location: 'lead_form' });
       gtag('event', 'generate_lead', { form_location: 'contact_form', event_type: type || '', area: area || '' });
     }
@@ -3298,6 +3380,56 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
 })();
 </script>
 
+<!-- ===== PRIVACY / COOKIE CONSENT ===== -->
+<div class="cc-banner" id="cc-banner" role="dialog" aria-live="polite" aria-label="הודעת פרטיות ועוגיות" hidden>
+  <div class="cc-banner-inner">
+    <p class="cc-banner-text">אנחנו משתמשים בטכנולוגיות הכרחיות להפעלת האתר, ובכפוף לבחירתך גם בכלי ניתוח וביצועים המסייעים לנו להבין את השימוש באתר ולשפר אותו. ניתן לאשר, לדחות טכנולוגיות שאינן הכרחיות או לבחור העדפות. מידע נוסף ב<a data-legal="privacy">מדיניות הפרטיות</a>.</p>
+    <div class="cc-banner-actions">
+      <button type="button" class="cc-btn cc-btn-primary" id="cc-accept-all">אישור הכל</button>
+      <button type="button" class="cc-btn" id="cc-reject">דחיית לא הכרחיים</button>
+      <button type="button" class="cc-btn" id="cc-open-prefs">הגדרות</button>
+    </div>
+  </div>
+</div>
+
+<div class="cc-modal" id="cc-modal" role="dialog" aria-modal="true" aria-labelledby="cc-modal-title">
+  <div class="cc-modal-backdrop" data-cc-close></div>
+  <div class="cc-modal-box">
+    <button class="cc-modal-close" data-cc-close aria-label="סגירה">✕</button>
+    <h2 id="cc-modal-title">הגדרות פרטיות</h2>
+    <p class="cc-modal-intro">כאן ניתן לבחור אילו טכנולוגיות יופעלו באתר. ההגדרות ההכרחיות פעילות תמיד לצורך תפקוד האתר. שאר הקטגוריות כבויות כברירת מחדל עד לבחירתך.</p>
+
+    <div class="cc-cat">
+      <div class="cc-cat-head">
+        <span class="cc-cat-title">הכרחיים ופונקציונליים</span>
+        <span class="cc-locked">פעיל תמיד</span>
+      </div>
+      <p class="cc-cat-desc">נדרשים להפעלה תקינה של האתר ולשמירת העדפות חיוניות או פונקציונליות, כגון שמירת העדפות נגישות ובחירת הפרטיות שלך.</p>
+    </div>
+
+    <div class="cc-cat">
+      <div class="cc-cat-head">
+        <span class="cc-cat-title">ניתוח וביצועים</span>
+        <label class="cc-switch"><input type="checkbox" id="cc-analytics" aria-label="הפעלת ניתוח וביצועים"><span class="cc-slider"></span></label>
+      </div>
+      <p class="cc-cat-desc">מסייעים לנו להבין באופן סטטיסטי כיצד נעשה שימוש באתר ולשפר את חוויית המשתמש. כולל Google Analytics 4.</p>
+    </div>
+
+    <div class="cc-cat">
+      <div class="cc-cat-head">
+        <span class="cc-cat-title">שיווק ופרסום</span>
+        <label class="cc-switch"><input type="checkbox" id="cc-marketing" aria-label="הפעלת שיווק ופרסום"><span class="cc-slider"></span></label>
+      </div>
+      <p class="cc-cat-desc">עשויים לשמש בעתיד למדידת קמפיינים ולהתאמת פרסום. כרגע אין באתר כלי שיווק/פרסום פעילים, ולכן הפעלת הקטגוריה אינה טוענת דבר בשלב זה.</p>
+    </div>
+
+    <div class="cc-modal-actions">
+      <button type="button" class="cc-btn cc-btn-primary" id="cc-save">שמירת העדפות</button>
+      <button type="button" class="cc-btn" id="cc-accept-all-2">אישור הכל</button>
+    </div>
+  </div>
+</div>
+
 <!-- ===== LEGAL MODALS ===== -->
 <div class="legal-modal" id="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
   <div class="legal-modal-backdrop" data-legal-close></div>
@@ -3317,14 +3449,45 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
   var CONTENT = {
     privacy: {
       title: 'מדיניות פרטיות',
-      html: '<p>ברוכים הבאים לאתר Kasa Events.</p>'
-        + '<p>אנו מכבדים את פרטיות המבקרים באתר ופועלים לשמירה על המידע האישי הנמסר לנו.</p>'
-        + '<h3>איזה מידע אנו אוספים?</h3>'
-        + '<ul><li>שם מלא</li><li>מספר טלפון</li><li>כתובת דוא"ל (במידה ונמסרה)</li><li>פרטי האירוע שנמסרו בטופס</li></ul>'
-        + '<h3>למה אנו משתמשים במידע?</h3>'
-        + '<ul><li>יצירת קשר עם הלקוח</li><li>מתן הצעת מחיר</li><li>תיאום האירוע</li><li>שיפור השירות וחוויית המשתמש באתר</li></ul>'
-        + '<p>המידע לא יימכר ולא יועבר לצדדים שלישיים, למעט אם הדבר נדרש על פי חוק או לצורך מתן השירות.</p>'
-        + '<p>לשאלות בנושא פרטיות ניתן ליצור קשר באמצעות טופס יצירת הקשר באתר או דרך WhatsApp.</p>'
+      html: '<p><strong>עודכן לאחרונה:</strong> 29 באוגוסט 2026</p>'
+        + '<p>מדיניות פרטיות זו מתארת כיצד Kasa Events אוספת, משתמשת ושומרת מידע בקשר לאתר ולשירותים שלנו. אנו מכבדים את פרטיותך ופועלים לשמור על המידע בהתאם לדין החל.</p>'
+        + '<h3>א. מי אנחנו</h3>'
+        + '<p>Kasa Events — שירותי עמדת צילום 360 לאירועים.</p>'
+        + '<ul><li>בעל השליטה במידע: דוד קסה / Kasa Events</li><li>דוא"ל לפניות בנושא פרטיות: <a href="mailto:Kasa.events25@gmail.com">Kasa.events25@gmail.com</a></li></ul>'
+        + '<h3>ב. איזה מידע עשוי להיאסף</h3>'
+        + '<p>מידע שאתה מוסר ביוזמתך בטופס יצירת הקשר, ובכלל זה:</p>'
+        + '<ul><li>שם</li><li>מספר טלפון</li><li>תאריך האירוע</li><li>סוג האירוע</li><li>אזור</li><li>תוכן הפנייה / הערות שהוקלדו</li></ul>'
+        + '<p>בנוסף, בכפוף לבחירתך במנגנון הפרטיות, עשוי להיאסף מידע טכני וסטטיסטי באמצעות Google Analytics 4 — כגון מידע על השימוש באתר, דפים שנצפו, אינטראקציות ומידע טכני כללי כפי שנאסף על ידי השירות. פרטי הטופס (שם וטלפון) אינם נשלחים ל-Google Analytics.</p>'
+        + '<h3>ג. מטרות השימוש במידע</h3>'
+        + '<ul><li>יצירת קשר עם הפונה</li><li>בדיקת זמינות</li><li>מתן הצעת מחיר</li><li>תיאום ומתן השירות</li><li>טיפול בפניות</li><li>תפעול ואבטחת האתר</li><li>שמירת העדפות משתמש (כגון נגישות ובחירת פרטיות)</li><li>ניתוח ושיפור האתר — כאשר ניתנה על ידך הבחירה המתאימה לקטגוריית „ניתוח וביצועים”</li></ul>'
+        + '<h3>ד. WhatsApp Business</h3>'
+        + '<p>פנייה מהאתר (למשל דרך טופס יצירת הקשר או כפתורי הוואטסאפ) עשויה להמשיך בהתכתבות באמצעות WhatsApp Business במספר 052-976-2788. בעת השימוש ב-WhatsApp עשוי לחול גם אופן עיבוד המידע של ספק השירות עצמו (WhatsApp/Meta), בהתאם לתנאיו ולמדיניותו. פניות מטופס יצירת הקשר מועברות אלינו באמצעות WhatsApp Business, ואיננו מנהלים כיום מערכת CRM או מאגר לידים נוסף.</p>'
+        + '<h3>ה. Google Analytics</h3>'
+        + '<p>האתר עושה שימוש ב-Google Analytics 4 לצורכי ניתוח וביצועים, וזאת אך ורק בהתאם לבחירתך במנגנון הפרטיות. השירות מסופק על ידי Google ועשוי לעשות שימוש במזהים ובטכנולוגיות כגון Cookies בהתאם לאופן הפעלתו. אם לא ניתנה הסכמה לקטגוריית „ניתוח וביצועים”, רכיב ה-Analytics אינו נטען ואינו פועל.</p>'
+        + '<h3>ו. Cloudinary</h3>'
+        + '<p>האתר עושה שימוש בשירות Cloudinary לאחסון ואספקת קובצי מדיה (סרטונים ותמונות) המוצגים בגלריה. Cloudinary משמש כספק תשתית/אספקת מדיה בלבד ואינו מקבל את פרטי טופס יצירת הקשר.</p>'
+        + '<h3>ז. Google Fonts</h3>'
+        + '<p>האתר טוען גופנים (Heebo) משרתי Google Fonts לצורך עיצוב וטיפוגרפיה. בעת טעינת הגופנים עשוי להתבצע חיבור לשרתי Google כחלק מאספקת הגופן.</p>'
+        + '<h3>ח. אחסון מקומי (localStorage)</h3>'
+        + '<p>האתר עשוי לעשות שימוש ב-localStorage או בטכנולוגיות דומות בדפדפן שלך לצורך: שמירת העדפות נגישות, שמירת בחירת הפרטיות/ההסכמה שלך, ותפקוד תקין של האתר. מדובר בטכנולוגיה פונקציונלית ואינה משמשת לפרסום.</p>'
+        + '<h3>ט. רשתות חברתיות וקישורים חיצוניים</h3>'
+        + '<p>האתר כולל קישורים לשירותים חיצוניים כגון Instagram, TikTok ו-WhatsApp. מעבר לשירות חיצוני כפוף גם למדיניות הפרטיות ולתנאי השימוש של אותו שירות. כרגע אין באתר פיקסלי פרסום (כגון Meta Pixel או TikTok Pixel) והם אינם פעילים.</p>'
+        + '<h3>י. חומרי אירועים</h3>'
+        + '<p>במסגרת מתן שירותי Kasa Events עשויים להיווצר ולהישמר באופן זמני תמונות וסרטונים מהאירוע. חומרי האירוע נשמרים לתקופה של עד 30 יום ולאחר מכן נמחקים, בכפוף לצרכים תפעוליים או לחובה על פי דין. שימוש בתמונות או בסרטונים מאירועים לצורכי פרסום באתר או בערוצי השיווק של Kasa Events נעשה באישור בעלי האירוע.</p>'
+        + '<h3>יא. תקופת שמירת מידע</h3>'
+        + '<ul><li>חומרי אירוע: עד 30 יום ולאחר מכן נמחקים, בכפוף לצרכים תפעוליים או לחובה על פי דין.</li><li>פניות WhatsApp: המידע עשוי להישמר במסגרת ההתכתבות ב-WhatsApp בהתאם לצורך בטיפול בפנייה/שירות ולדין החל.</li><li>העדפות מקומיות (נגישות/פרטיות): נשמרות בדפדפן עד שתמחק או תשנה אותן, או בהתאם למנגנון שנקבע באתר.</li><li>Analytics: בהתאם להגדרות השירות ולבחירתך במנגנון הפרטיות.</li></ul>'
+        + '<h3>יב. מסירת מידע לצדדים שלישיים</h3>'
+        + '<p>איננו מוכרים את המידע האישי שלך. המידע עשוי להיות מעובד באמצעות ספקים הנדרשים להפעלת האתר, לתקשורת עמך ולמתן השירות — לפי הצורך ובהתאם לדין. בין הספקים/הקטגוריות הרלוונטיים כיום: WhatsApp Business (תקשורת), Google Analytics (ניתוח, בכפוף להסכמה), Cloudinary (אספקת מדיה) ו-Google Fonts (גופנים). מסירת מידע עשויה להתבצע גם אם הדבר נדרש על פי דין או רשות מוסמכת.</p>'
+        + '<h3>יג. זכויות המשתמש</h3>'
+        + '<p>בכפוף לדין החל, באפשרותך לפנות אלינו בנוגע למידע אישי אודותיך, לרבות בקשות עיון ותיקון של מידע, לפי העניין. לפניות בנושא זה ניתן לפנות לכתובת <a href="mailto:Kasa.events25@gmail.com">Kasa.events25@gmail.com</a>. היקף הזכויות ואופן מימושן כפופים להוראות הדין.</p>'
+        + '<h3>יד. אבטחת מידע</h3>'
+        + '<p>אנו נוקטים אמצעים סבירים ומקובלים לצמצום סיכונים ולהגנה על המידע. עם זאת, אין מערכת אינטרנטית או אמצעי העברה שמבטיחים אבטחה מוחלטת, ולכן איננו יכולים להתחייב לכך שהמידע יהיה חסין לחלוטין מפני גישה או שימוש בלתי מורשים.</p>'
+        + '<h3>טו. שינויים במדיניות</h3>'
+        + '<p>אנו רשאים לעדכן מדיניות זו מעת לעת. בעת עדכון מהותי יעודכן גם התאריך בראש המדיניות. מומלץ לעיין במדיניות מעת לעת. מועד העדכון האחרון מופיע בראש עמוד זה.</p>'
+        + '<h3>שימוש ב-Cookies וטכנולוגיות דומות</h3>'
+        + '<p>האתר עושה שימוש ב-Cookies, ב-localStorage ובטכנולוגיות דומות, המחולקות לקטגוריות הבאות:</p>'
+        + '<ul><li><strong>הכרחיים/פונקציונליים:</strong> נדרשים לתפקוד האתר ולשמירת העדפות חיוניות (כגון העדפות נגישות ובחירת הפרטיות). פעילים תמיד כאשר הם נדרשים.</li><li><strong>ניתוח וביצועים:</strong> Google Analytics 4 — מופעל רק בכפוף להסכמתך.</li><li><strong>שיווק ופרסום:</strong> כרגע אין באתר פיקסל פרסומי פעיל. הקטגוריה שמורה לשימוש עתידי ואינה טוענת דבר בשלב זה.</li></ul>'
+        + '<p>ניתן לשנות את בחירתך בכל עת דרך הקישור „הגדרות פרטיות” בתחתית האתר.</p>'
     },
     terms: {
       title: 'תנאי שימוש',
@@ -3387,9 +3550,10 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
       '#mobile-wa-link, #footer-wa-link, #sticky-bar-wa-link, .scta-wa, .mobile-wa-btn'
     );
     if(!waEl) return;
-    if(typeof gtag !== 'function') return; // GA not available — let the link work normally
+    if(!window.__ccAnalytics || typeof gtag !== 'function') return; // no analytics consent — link works normally
 
-    var url = waEl.href;
+    // Only send the origin+path of the WhatsApp link to GA — never the ?text= message body.
+    var url = (waEl.href || '').split('?')[0];
     var target = waEl.getAttribute('target');
     // If it opens in a new tab, the current page does NOT unload, so the hit sends fine — don't intercept.
     if(target === '_blank'){
@@ -3417,7 +3581,7 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
   document.addEventListener('click', function(e){
     var telEl = e.target.closest('a[href^="tel:"]');
     if(!telEl) return;
-    if(typeof gtag !== 'function') return; // GA not available — let the link work normally
+    if(!window.__ccAnalytics || typeof gtag !== 'function') return; // no analytics consent — link works normally
     gtag('event', 'phone_click', {
       link_url: telEl.getAttribute('href') || '',
       link_id: telEl.id || '',
@@ -3428,5 +3592,139 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
   }, true);
 })();
 </script>
+<!-- ===== PRIVACY / COOKIE CONSENT MANAGER (no external libraries) ===== -->
+<script>
+(function(){
+  var STORE_KEY = 'kasa_consent';      // stores ONLY consent state — never name/phone/email/form text
+  var GA_ID = 'G-2C37Q52VRV';
+  var gaLoaded = false;
+
+  // ---- storage helpers ----
+  function readConsent(){
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if(!raw) return null;
+      var obj = JSON.parse(raw);
+      if(!obj || typeof obj !== 'object') return null;
+      return obj;
+    } catch(e){ return null; }
+  }
+  function saveConsent(analytics, marketing){
+    var data = {
+      necessary: true,                 // always on when required
+      analytics: !!analytics,
+      marketing: !!marketing,
+      ts: Date.now(),
+      v: 1
+    };
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch(e){}
+    return data;
+  }
+
+  // ---- Google Analytics loader (only after analytics consent) ----
+  function loadGA(){
+    if(gaLoaded) return;
+    gaLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+    // config runs once the library is present; buffered dataLayer hits are then processed
+    gtag('config', GA_ID, { anonymize_ip: true });
+  }
+
+  // ---- apply a consent decision to Consent Mode + GA + our own gate ----
+  function applyConsent(c){
+    window.__ccAnalytics = !!(c && c.analytics);
+    window.__ccMarketing = !!(c && c.marketing);
+    if(typeof gtag === 'function'){
+      gtag('consent', 'update', {
+        'analytics_storage': (c && c.analytics) ? 'granted' : 'denied',
+        'ad_storage':        (c && c.marketing) ? 'granted' : 'denied',
+        'ad_user_data':      (c && c.marketing) ? 'granted' : 'denied',
+        'ad_personalization':(c && c.marketing) ? 'granted' : 'denied'
+      });
+    }
+    if(c && c.analytics){
+      loadGA();
+    } else {
+      // analytics denied/withdrawn: stop future GA and clear removable GA cookies
+      window['ga-disable-' + GA_ID] = true;
+      clearGACookies();
+    }
+    // NOTE: marketing has no active pixels at present — nothing to load.
+  }
+
+  // ---- remove GA cookies we can clear from our own domain ----
+  function clearGACookies(){
+    try {
+      var host = location.hostname;
+      var domains = ['', host, '.' + host];
+      // also try the registrable domain (e.g. .kasa-events.co.il)
+      var parts = host.split('.');
+      if(parts.length > 2){ domains.push('.' + parts.slice(-3).join('.')); domains.push('.' + parts.slice(-2).join('.')); }
+      document.cookie.split(';').forEach(function(ck){
+        var name = ck.split('=')[0].trim();
+        if(/^_ga/.test(name) || name === '_gid' || name === '_gat'){
+          domains.forEach(function(d){
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + (d ? ('; domain=' + d) : '');
+          });
+        }
+      });
+    } catch(e){}
+  }
+
+  // ---- UI wiring ----
+  var banner   = document.getElementById('cc-banner');
+  var modal    = document.getElementById('cc-modal');
+  var tAnalytics = document.getElementById('cc-analytics');
+  var tMarketing = document.getElementById('cc-marketing');
+
+  function showBanner(){ if(banner){ banner.hidden = false; requestAnimationFrame(function(){ banner.classList.add('cc-show'); }); } }
+  function hideBanner(){ if(banner){ banner.classList.remove('cc-show'); setTimeout(function(){ banner.hidden = true; }, 500); } }
+  function openModal(){
+    var c = readConsent();
+    if(tAnalytics) tAnalytics.checked = !!(c && c.analytics);
+    if(tMarketing) tMarketing.checked = !!(c && c.marketing);
+    if(modal){ modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  }
+  function closeModal(){ if(modal){ modal.classList.remove('open'); document.body.style.overflow = ''; } }
+
+  function acceptAll(){ var c = saveConsent(true, true); applyConsent(c); hideBanner(); closeModal(); }
+  function rejectNonEssential(){ var c = saveConsent(false, false); applyConsent(c); hideBanner(); closeModal(); }
+  function savePrefs(){ var c = saveConsent(tAnalytics && tAnalytics.checked, tMarketing && tMarketing.checked); applyConsent(c); hideBanner(); closeModal(); }
+
+  // banner buttons
+  var byId = function(id){ return document.getElementById(id); };
+  if(byId('cc-accept-all'))  byId('cc-accept-all').addEventListener('click', acceptAll);
+  if(byId('cc-reject'))      byId('cc-reject').addEventListener('click', rejectNonEssential);
+  if(byId('cc-open-prefs'))  byId('cc-open-prefs').addEventListener('click', openModal);
+  // modal buttons
+  if(byId('cc-save'))        byId('cc-save').addEventListener('click', savePrefs);
+  if(byId('cc-accept-all-2'))byId('cc-accept-all-2').addEventListener('click', acceptAll);
+  // modal close (backdrop / X)
+  document.addEventListener('click', function(e){
+    if(e.target.closest('[data-cc-close]')) closeModal();
+    var opener = e.target.closest('[data-open-privacy-settings]');
+    if(opener){ e.preventDefault(); openModal(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal();
+  });
+
+  // expose a global so the footer link (and anything else) can reopen preferences
+  window.openPrivacySettings = openModal;
+
+  // ---- init on load ----
+  var existing = readConsent();
+  if(existing){
+    applyConsent(existing);   // returning visitor — honor saved choice, no banner
+  } else {
+    applyConsent({ analytics:false, marketing:false }); // new visitor — nothing non-essential yet
+    showBanner();
+  }
+})();
+</script>
+
 </body>
 </html>
