@@ -981,10 +981,21 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
 .legal-modal-scroll::-webkit-scrollbar{display:none;width:0;height:0}
 .legal-modal-scroll::-webkit-scrollbar-track{display:none}
 .legal-modal-scroll::-webkit-scrollbar-thumb{display:none}
-/* custom gold scroll indicator — right edge of the modal (visible on iOS too) */
+/* custom gold scrollbar — right edge of the modal. Interactive on desktop (drag + track click),
+   indicator-only on touch devices. The layer is only as wide as the rail, so it never covers text. */
 .legal-scroll-indicator{position:absolute;top:86px;bottom:22px;right:8px;width:4px;border-radius:999px;background:rgba(255,255,255,.06);pointer-events:none;opacity:0;transition:opacity .25s ease}
 .legal-scroll-indicator.on{opacity:1}
 .legal-scroll-indicator span{position:absolute;right:0;left:0;top:0;height:40px;border-radius:999px;background:linear-gradient(180deg,var(--gold-light),var(--gold));box-shadow:0 0 8px rgba(201,168,76,.55);will-change:transform}
+/* pointer-capable (mouse) devices: enable dragging the thumb and clicking the rail */
+@media (hover:hover) and (pointer:fine){
+  .legal-scroll-indicator.on{pointer-events:auto;cursor:pointer}
+  /* invisible padded hit-area so the thin rail is easy to grab, without covering the text */
+  .legal-scroll-indicator::before{content:'';position:absolute;top:0;bottom:0;left:-6px;right:-6px}
+  .legal-scroll-indicator span{pointer-events:auto;cursor:grab}
+  .legal-scroll-indicator span::before{content:'';position:absolute;top:0;bottom:0;left:-6px;right:-6px}
+  .legal-scroll-indicator.dragging span{cursor:grabbing;background:var(--gold-light);box-shadow:0 0 12px rgba(201,168,76,.8)}
+  .legal-scroll-indicator.dragging{cursor:grabbing}
+}
 .legal-modal-close{position:absolute;top:14px;left:14px;width:38px;height:38px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--gold-border);color:var(--champagne);font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--transition),transform var(--transition)}
 .legal-modal-close:hover{background:rgba(201,168,76,.22);transform:scale(1.06)}
 .legal-modal-box h2{font-size:1.5rem;font-weight:900;color:var(--champagne);margin:0 0 6px;padding-left:44px}
@@ -3594,6 +3605,64 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
     scrollEl.addEventListener('scroll', function(){ requestAnimationFrame(updateIndicator); }, { passive:true });
   }
   window.addEventListener('resize', function(){ if(modal.classList.contains('open')) updateIndicator(); });
+
+  /* ---- make the gold rail a real scrollbar on mouse devices (drag thumb + click track) ----
+     Touch devices keep it as a pure indicator; finger swiping on the text is untouched. */
+  (function(){
+    if(!scrollEl || !indicator || !indThumb) return;
+    var dragging = false, startY = 0, startScrollTop = 0, dragPointerId = null;
+
+    function metrics(){
+      var sh = scrollEl.scrollHeight, ch = scrollEl.clientHeight;
+      var trackH = indicator.clientHeight;
+      var thumbH = Math.max(34, Math.round(trackH * (ch / sh)));
+      return { maxScroll: sh - ch, maxThumb: trackH - thumbH, thumbH: thumbH, trackH: trackH };
+    }
+    function clamp(v, min, max){ return v < min ? min : (v > max ? max : v); }
+
+    // drag the thumb
+    indThumb.addEventListener('pointerdown', function(e){
+      if(e.button !== 0 && e.pointerType === 'mouse') return;
+      var m = metrics();
+      if(m.maxScroll <= 0 || m.maxThumb <= 0) return;
+      dragging = true; dragPointerId = e.pointerId;
+      startY = e.clientY;
+      startScrollTop = scrollEl.scrollTop;
+      indicator.classList.add('dragging');
+      if(indThumb.setPointerCapture){ try { indThumb.setPointerCapture(e.pointerId); } catch(err){} }
+      e.preventDefault();
+      e.stopPropagation();   // don't let it reach the track-click handler
+    });
+    indThumb.addEventListener('pointermove', function(e){
+      if(!dragging || e.pointerId !== dragPointerId) return;
+      var m = metrics();
+      if(m.maxThumb <= 0) return;
+      var delta = e.clientY - startY;                       // px moved along the rail
+      var scrollDelta = delta * (m.maxScroll / m.maxThumb); // rail px -> content px
+      scrollEl.scrollTop = clamp(startScrollTop + scrollDelta, 0, m.maxScroll);
+      e.preventDefault();
+    });
+    function endDrag(e){
+      if(!dragging || (e && e.pointerId !== dragPointerId)) return;
+      dragging = false; dragPointerId = null;
+      indicator.classList.remove('dragging');
+      if(e && indThumb.releasePointerCapture){ try { indThumb.releasePointerCapture(e.pointerId); } catch(err){} }
+    }
+    indThumb.addEventListener('pointerup', endDrag);
+    indThumb.addEventListener('pointercancel', endDrag);
+
+    // click on an empty part of the rail -> jump the content there
+    indicator.addEventListener('pointerdown', function(e){
+      if(dragging || e.target === indThumb) return;
+      var m = metrics();
+      if(m.maxScroll <= 0 || m.maxThumb <= 0) return;
+      var rect = indicator.getBoundingClientRect();
+      // centre the thumb on the click point, then convert to scrollTop
+      var thumbTop = clamp(e.clientY - rect.top - m.thumbH / 2, 0, m.maxThumb);
+      scrollEl.scrollTop = (thumbTop / m.maxThumb) * m.maxScroll;
+      e.preventDefault();
+    });
+  })();
 
   /* mouse-wheel / trackpad (desktop):
      Wheel over the policy text is left to the browser's own scrolling — the most reliable
