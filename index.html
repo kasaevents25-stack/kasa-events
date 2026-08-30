@@ -976,7 +976,7 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
 .legal-modal.open .legal-modal-box{transform:translateY(0) scale(1)}
 /* the scroll area: content stays scrollable, but the browser's native scrollbar is fully hidden —
    the custom gold indicator on the right is the ONLY scroll indicator */
-.legal-modal-scroll{flex:1;min-height:0;overflow-y:auto;direction:ltr;margin-left:-8px;padding-left:8px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none}
+.legal-modal-scroll{flex:1;min-height:0;overflow-y:auto;direction:ltr;margin-left:-8px;padding-left:8px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:auto}
 .legal-modal-scroll .legal-modal-body{direction:rtl;text-align:right}
 .legal-modal-scroll::-webkit-scrollbar{display:none;width:0;height:0}
 .legal-modal-scroll::-webkit-scrollbar-track{display:none}
@@ -3594,6 +3594,22 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
     scrollEl.addEventListener('scroll', function(){ requestAnimationFrame(updateIndicator); }, { passive:true });
   }
   window.addEventListener('resize', function(){ if(modal.classList.contains('open')) updateIndicator(); });
+
+  /* mouse-wheel / trackpad (desktop):
+     Wheel over the policy text is left to the browser's own scrolling — the most reliable
+     path, and the reason keyboard worked while a forced preventDefault() blocked the wheel.
+     We only consume the event outside the scroller (backdrop / fixed header area) so the
+     site behind never scrolls, plus at the scroller's own top/bottom edge to stop chaining. */
+  modal.addEventListener('wheel', function(e){
+    if(!modal.classList.contains('open') || !scrollEl) return;
+    if(scrollEl.contains(e.target)){
+      var atTop    = scrollEl.scrollTop <= 0 && e.deltaY < 0;
+      var atBottom = (scrollEl.scrollTop + scrollEl.clientHeight) >= (scrollEl.scrollHeight - 1) && e.deltaY > 0;
+      if(atTop || atBottom) e.preventDefault();   // edge: don't hand the scroll to the page
+      return;                                     // otherwise: native scrolling does the work
+    }
+    e.preventDefault();                           // outside the scroller: keep the page locked
+  }, { passive:false });
 
   function openLegal(key){
     var c = CONTENT[key];
