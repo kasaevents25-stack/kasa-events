@@ -1025,7 +1025,13 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
 .cc-banner{position:fixed;left:0;right:0;z-index:600;direction:rtl;display:flex;justify-content:center;
   bottom:calc(18px + env(safe-area-inset-bottom));
   padding:0 18px;pointer-events:none}
-.cc-bubble{position:relative;pointer-events:auto;width:100%;max-width:640px;
+/* [hidden] must actually hide it — an author `display:flex` otherwise beats the UA rule and
+   leaves an invisible (opacity:0) bubble sitting over the sticky WhatsApp bar, stealing clicks */
+.cc-banner[hidden]{display:none !important}
+/* until the bubble is shown it is transparent, so it must not capture pointer events either */
+.cc-bubble{pointer-events:none}
+.cc-banner.cc-show .cc-bubble{pointer-events:auto}
+.cc-bubble{position:relative;width:100%;max-width:640px;
   background:radial-gradient(120% 140% at 100% 0%,#181818,#0A0A0A 70%);
   border:1px solid var(--gold-border);border-radius:22px;
   padding:20px 22px 18px;
@@ -1051,6 +1057,8 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
 .cc-text a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
 .cc-text a:hover{color:var(--gold-light)}
 .cc-bubble-actions{display:flex;flex-wrap:wrap;gap:10px}
+/* 3 buttons: keep them readable — primary can lead, secondaries share the row */
+.cc-bubble-actions .cc-btn{min-width:112px}
 .cc-btn{font-family:inherit;font-size:.84rem;font-weight:700;padding:11px 20px;border-radius:999px;cursor:pointer;border:1px solid var(--gold-border);background:transparent;color:var(--champagne);transition:background .25s ease,border-color .25s ease,color .25s ease,transform .2s ease,box-shadow .25s ease;white-space:nowrap;flex:1;text-align:center;min-width:130px}
 .cc-btn:hover{border-color:var(--gold);color:var(--gold-light);transform:translateY(-1px)}
 .cc-btn:focus-visible{outline:3px solid #1a73e8;outline-offset:2px}
@@ -1062,7 +1070,10 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
   .cc-title{font-size:.98rem}
   .cc-text{font-size:.82rem}
   .cc-text-sub{font-size:.78rem}
-  .cc-btn{font-size:.82rem;padding:12px 14px;min-width:0}
+  .cc-btn{font-size:.82rem;padding:12px 12px;min-width:0}
+  /* mobile: 'אישור הכל' on its own line, the two secondary buttons share the next line */
+  .cc-bubble-actions #cc-accept-all{flex:1 1 100%}
+  .cc-bubble-actions #cc-reject-all,.cc-bubble-actions #cc-open-prefs{flex:1 1 0;min-width:0}
 }
 @media (max-width:360px){
   .cc-bubble-actions{gap:8px}
@@ -1968,7 +1979,7 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
             <textarea id="f-msg" placeholder="מספר אורחים, מיקום, בקשות מיוחדות..."></textarea>
           </div>
         </div>
-        <p class="form-privacy-notice">מסירת הפרטים היא מרצונך ואינה חובה על פי חוק. ללא מסירת הפרטים הנדרשים לא נוכל לחזור אליך, לבדוק זמינות או לטפל בפנייתך. המידע ישמש לצורך יצירת קשר, בדיקת זמינות, מתן הצעת מחיר, תיאום ומתן השירות. המידע עשוי להימסר לספקי שירות ככל שהדבר נדרש לצורך התקשורת עמך ומתן השירות. בעל השליטה במידע הוא דוד קסה / Kasa Events. לפניות בנושא פרטיות וכן למימוש זכויות עיון ותיקון במידע ניתן לפנות לכתובת <a href="mailto:Kasa.events25@gmail.com">Kasa.events25@gmail.com</a>. מידע נוסף מופיע ב<a data-legal="privacy">מדיניות הפרטיות</a>.</p>
+        <p class="form-privacy-notice">מסירת הפרטים היא מרצונך ואינה חובה על פי חוק. ללא מסירת הפרטים הנדרשים לא נוכל לחזור אליך, לבדוק זמינות או לטפל בפנייתך. המידע ישמש לצורך יצירת קשר, בדיקת זמינות, מתן הצעת מחיר, תיאום ומתן השירות. הפנייה מועברת ומטופלת באמצעות WhatsApp Business לצורך התקשורת עמך, ועשויה להימסר לספקי שירות נוספים ככל שיידרש למתן השירות. בעל השליטה במידע הוא דוד קסה / Kasa Events. באפשרותך לבקש לעיין במידע ולבקש לתקנו בהתאם לדין, בפנייה לכתובת <a href="mailto:Kasa.events25@gmail.com">Kasa.events25@gmail.com</a>. פירוט מלא ב<a data-legal="privacy">מדיניות הפרטיות</a>.</p>
         <div class="form-consent">
           <input type="checkbox" id="consent-checkbox" />
           <label for="consent-checkbox">קראתי את <a data-legal="privacy">מדיניות הפרטיות</a> ואני מאשר/ת את שליחת פרטיי לצורך טיפול בפנייה.</label>
@@ -3459,6 +3470,7 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
     <p class="cc-text cc-text-sub">ניתן לאשר הכל או להתאים את ההעדפות שלך. מידע נוסף ב<a data-legal="privacy">מדיניות הפרטיות</a>.</p>
     <div class="cc-bubble-actions">
       <button type="button" class="cc-btn cc-btn-primary" id="cc-accept-all">אישור הכל</button>
+      <button type="button" class="cc-btn" id="cc-reject-all">רק הכרחיים</button>
       <button type="button" class="cc-btn" id="cc-open-prefs">התאמת העדפות</button>
     </div>
   </div>
@@ -3876,7 +3888,8 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
   // banner buttons
   var byId = function(id){ return document.getElementById(id); };
   if(byId('cc-accept-all'))  byId('cc-accept-all').addEventListener('click', acceptAll);
-  if(byId('cc-close-x'))     byId('cc-close-x').addEventListener('click', rejectNonEssential); // X = reject non-essential (no analytics)
+  if(byId('cc-reject-all'))  byId('cc-reject-all').addEventListener('click', rejectNonEssential); // "רק הכרחיים"
+  if(byId('cc-close-x'))     byId('cc-close-x').addEventListener('click', rejectNonEssential); // X = same as "רק הכרחיים"
   if(byId('cc-open-prefs'))  byId('cc-open-prefs').addEventListener('click', openModal);
   // modal buttons
   if(byId('cc-save'))        byId('cc-save').addEventListener('click', savePrefs);

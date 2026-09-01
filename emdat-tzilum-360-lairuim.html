@@ -526,7 +526,202 @@ html.a11y-contrast .a11y-reset-float{filter:none !important;-webkit-filter:none 
 html.a11y-contrast .a11y-reset-float svg,html.a11y-invert .a11y-reset-float svg{fill:#fff !important}
 html.a11y-contrast .a11y-reset-float span,html.a11y-invert .a11y-reset-float span{color:#fff !important}
 html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !important;-webkit-filter:invert(1) hue-rotate(180deg) !important;z-index:2147483000 !important}
+
+
+/* footer legal links (same as index.html) */
+.footer-legal{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:.74rem}
+.footer-legal a{color:var(--gold);text-decoration:none;transition:color var(--transition),text-shadow var(--transition);cursor:pointer;padding:2px 0}
+.footer-legal a:hover{color:var(--gold-light);text-shadow:0 0 10px rgba(201,168,76,.5)}
+.footer-legal .sep{color:var(--gold-border);font-size:.7rem;user-select:none}
+/* ===== LEGAL MODAL + PRIVACY CONSENT (identical to index.html) ===== */
+.legal-modal{position:fixed;inset:0;z-index:650;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
+.legal-modal.open{opacity:1;visibility:visible}
+.legal-modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.legal-modal-box{position:relative;z-index:1;width:100%;max-width:560px;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(160deg,#121212,var(--black));border:1px solid var(--gold-border);border-radius:var(--radius-lg);box-shadow:0 0 0 1px rgba(201,168,76,.18),0 0 50px rgba(201,168,76,.16),0 24px 60px rgba(0,0,0,.6);padding:30px 26px 28px;direction:rtl;text-align:right;transform:translateY(16px) scale(.98);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.legal-modal.open .legal-modal-box{transform:translateY(0) scale(1)}
+/* the scroll area: content stays scrollable, but the browser's native scrollbar is fully hidden —
+   the custom gold indicator on the right is the ONLY scroll indicator */
+.legal-modal-scroll{flex:1;min-height:0;overflow-y:auto;direction:ltr;margin-left:-8px;padding-left:8px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:auto}
+.legal-modal-scroll .legal-modal-body{direction:rtl;text-align:right}
+.legal-modal-scroll::-webkit-scrollbar{display:none;width:0;height:0}
+.legal-modal-scroll::-webkit-scrollbar-track{display:none}
+.legal-modal-scroll::-webkit-scrollbar-thumb{display:none}
+/* custom gold scrollbar — right edge of the modal. Interactive on desktop (drag + track click),
+   indicator-only on touch devices. The layer is only as wide as the rail, so it never covers text. */
+.legal-scroll-indicator{position:absolute;top:86px;bottom:22px;right:8px;width:4px;border-radius:999px;background:rgba(255,255,255,.06);pointer-events:none;opacity:0;transition:opacity .25s ease}
+.legal-scroll-indicator.on{opacity:1}
+.legal-scroll-indicator span{position:absolute;right:0;left:0;top:0;height:40px;border-radius:999px;background:linear-gradient(180deg,var(--gold-light),var(--gold));box-shadow:0 0 8px rgba(201,168,76,.55);will-change:transform}
+/* pointer-capable (mouse) devices: enable dragging the thumb and clicking the rail */
+@media (hover:hover) and (pointer:fine){
+  .legal-scroll-indicator.on{pointer-events:auto;cursor:pointer}
+  /* invisible padded hit-area so the thin rail is easy to grab, without covering the text */
+  .legal-scroll-indicator::before{content:'';position:absolute;top:0;bottom:0;left:-6px;right:-6px}
+  .legal-scroll-indicator span{pointer-events:auto;cursor:grab}
+  .legal-scroll-indicator span::before{content:'';position:absolute;top:0;bottom:0;left:-6px;right:-6px}
+  .legal-scroll-indicator.dragging span{cursor:grabbing;background:var(--gold-light);box-shadow:0 0 12px rgba(201,168,76,.8)}
+  .legal-scroll-indicator.dragging{cursor:grabbing}
+}
+.legal-modal-close{position:absolute;top:14px;left:14px;width:38px;height:38px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--gold-border);color:var(--champagne);font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--transition),transform var(--transition)}
+.legal-modal-close:hover{background:rgba(201,168,76,.22);transform:scale(1.06)}
+.legal-modal-box h2{font-size:1.5rem;font-weight:900;color:var(--champagne);margin:0 0 6px;padding-left:44px}
+.legal-modal-box h2::after{content:'';display:block;width:54px;height:3px;margin-top:10px;border-radius:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.legal-modal-body{margin-top:18px;font-size:.92rem;line-height:1.85;color:var(--text)}
+.legal-modal-body p{margin:0 0 14px}
+.legal-modal-body h3{font-size:1.02rem;font-weight:700;color:var(--gold-light);margin:18px 0 8px}
+.legal-modal-body ul{list-style:none;margin:0 0 14px;padding:0}
+.legal-modal-body li{position:relative;padding-right:18px;margin-bottom:7px;color:var(--text)}
+.legal-modal-body li::before{content:'•';position:absolute;right:0;color:var(--gold);font-weight:700}
+
+.form-consent{display:flex;align-items:flex-start;gap:10px;margin:4px 0 16px;text-align:right;direction:rtl}
+.form-consent input[type=checkbox]{appearance:none;-webkit-appearance:none;flex-shrink:0;width:20px;height:20px;margin-top:2px;border:1.5px solid var(--gold-border);border-radius:5px;background:var(--card);cursor:pointer;position:relative;transition:border-color var(--transition),background var(--transition)}
+.form-consent input[type=checkbox]:hover{border-color:var(--gold)}
+.form-consent input[type=checkbox]:checked{background:linear-gradient(135deg,var(--gold),var(--gold-light));border-color:var(--gold)}
+.form-consent input[type=checkbox]:checked::after{content:'';position:absolute;top:2px;left:6px;width:5px;height:10px;border:solid #0A0A0A;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.form-consent label{font-size:.82rem;line-height:1.6;color:var(--muted);cursor:pointer}
+.form-consent label a{color:var(--gold);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.form-consent label a:hover{color:var(--gold-light)}
+.form-privacy-notice{margin:2px 0 12px;font-size:.74rem;line-height:1.65;color:var(--muted);text-align:right;direction:rtl}
+.form-privacy-notice a{color:var(--gold);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.form-privacy-notice a:hover{color:var(--gold-light)}
+.form-submit:disabled{opacity:.5;cursor:not-allowed;filter:grayscale(.3)}
+/* ===== PRIVACY / COOKIE CONSENT — compact premium bubble (matches site black/gold RTL) ===== */
+/* the wrapper only positions the bubble; the bubble itself is the visible card */
+.cc-banner{position:fixed;left:0;right:0;z-index:600;direction:rtl;display:flex;justify-content:center;
+  bottom:calc(18px + env(safe-area-inset-bottom));
+  padding:0 18px;pointer-events:none}
+/* [hidden] must actually hide it — an author `display:flex` otherwise beats the UA rule and
+   leaves an invisible (opacity:0) bubble sitting over the sticky WhatsApp bar, stealing clicks */
+.cc-banner[hidden]{display:none !important}
+/* until the bubble is shown it is transparent, so it must not capture pointer events either */
+.cc-bubble{pointer-events:none}
+.cc-banner.cc-show .cc-bubble{pointer-events:auto}
+.cc-bubble{position:relative;width:100%;max-width:640px;
+  background:radial-gradient(120% 140% at 100% 0%,#181818,#0A0A0A 70%);
+  border:1px solid var(--gold-border);border-radius:22px;
+  padding:20px 22px 18px;
+  box-shadow:0 0 0 1px rgba(201,168,76,.14),0 0 34px rgba(201,168,76,.16),0 18px 50px rgba(0,0,0,.6);
+  opacity:0;transform:translateY(24px) scale(.97);
+  transition:opacity .5s ease,transform .55s cubic-bezier(.22,1,.36,1)}
+.cc-banner.cc-show .cc-bubble{opacity:1;transform:translateY(0) scale(1)}
+.cc-x{position:absolute;top:12px;left:12px;width:30px;height:30px;border-radius:50%;
+  background:rgba(201,168,76,.1);border:1px solid var(--gold-border);color:var(--champagne);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;
+  transition:background .2s ease,transform .2s ease}
+.cc-x svg{width:15px;height:15px;fill:none}
+.cc-x:hover{background:rgba(201,168,76,.22);transform:scale(1.08)}
+.cc-x:focus-visible{outline:3px solid #1a73e8;outline-offset:2px}
+.cc-bubble-head{display:flex;align-items:center;gap:10px;margin:0 0 10px;padding-left:34px}
+.cc-shield{flex-shrink:0;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:var(--gold);background:var(--gold-dim);border:1px solid var(--gold-border)}
+.cc-shield svg{width:20px;height:20px}
+.cc-title{font-size:1.05rem;font-weight:800;color:var(--champagne);margin:0;line-height:1.3}
+.cc-title span{color:var(--gold)}
+.cc-text{font-size:.84rem;line-height:1.65;color:var(--text);margin:0 0 8px}
+.cc-text-sub{color:var(--muted);font-size:.8rem;margin:0 0 16px}
+.cc-text a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
+.cc-text a:hover{color:var(--gold-light)}
+.cc-bubble-actions{display:flex;flex-wrap:wrap;gap:10px}
+/* 3 buttons: keep them readable — primary can lead, secondaries share the row */
+.cc-bubble-actions .cc-btn{min-width:112px}
+.cc-btn{font-family:inherit;font-size:.84rem;font-weight:700;padding:11px 20px;border-radius:999px;cursor:pointer;border:1px solid var(--gold-border);background:transparent;color:var(--champagne);transition:background .25s ease,border-color .25s ease,color .25s ease,transform .2s ease,box-shadow .25s ease;white-space:nowrap;flex:1;text-align:center;min-width:130px}
+.cc-btn:hover{border-color:var(--gold);color:var(--gold-light);transform:translateY(-1px)}
+.cc-btn:focus-visible{outline:3px solid #1a73e8;outline-offset:2px}
+.cc-btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--black);border-color:var(--gold);box-shadow:0 0 18px rgba(201,168,76,.35),0 4px 14px rgba(201,168,76,.28)}
+.cc-btn-primary:hover{color:var(--black);filter:brightness(1.06);box-shadow:0 0 26px rgba(201,168,76,.5)}
+@media (max-width:600px){
+  .cc-banner{bottom:calc(16px + env(safe-area-inset-bottom));padding:0 16px}
+  .cc-bubble{padding:18px 18px 16px;border-radius:20px}
+  .cc-title{font-size:.98rem}
+  .cc-text{font-size:.82rem}
+  .cc-text-sub{font-size:.78rem}
+  .cc-btn{font-size:.82rem;padding:12px 12px;min-width:0}
+  /* mobile: 'אישור הכל' on its own line, the two secondary buttons share the next line */
+  .cc-bubble-actions #cc-accept-all{flex:1 1 100%}
+  .cc-bubble-actions #cc-reject-all,.cc-bubble-actions #cc-open-prefs{flex:1 1 0;min-width:0}
+}
+@media (max-width:360px){
+  .cc-bubble-actions{gap:8px}
+  .cc-btn{flex:1 1 100%}
+}
+/* while the consent bubble is showing, tuck away the floating controls so nothing overlaps it */
+body.cc-open .sticky-cta-bar{opacity:0 !important;transform:translateY(140%) !important;pointer-events:none !important;transition:opacity .4s ease,transform .4s ease}
+body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-float{opacity:0 !important;pointer-events:none !important;transition:opacity .3s ease}
+
+/* preferences modal reuses the legal-modal shell; these are the category rows */
+.cc-modal{position:fixed;inset:0;z-index:620;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
+.cc-modal.open{opacity:1;visibility:visible}
+.cc-modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.cc-modal-box{position:relative;z-index:1;width:100%;max-width:560px;max-height:min(86vh,calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px) - 32px));overflow-y:auto;background:linear-gradient(160deg,#121212,var(--black));border:1px solid var(--gold-border);border-radius:var(--radius-lg);box-shadow:0 0 0 1px rgba(201,168,76,.18),0 0 50px rgba(201,168,76,.16),0 24px 60px rgba(0,0,0,.6);padding:28px 24px 24px;direction:rtl;text-align:right;transform:translateY(16px) scale(.98);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.cc-modal.open .cc-modal-box{transform:translateY(0) scale(1)}
+.cc-modal-box::-webkit-scrollbar{width:7px}
+.cc-modal-box::-webkit-scrollbar-thumb{background:var(--gold-border);border-radius:8px}
+.cc-modal-close{position:absolute;top:14px;left:14px;width:38px;height:38px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--gold-border);color:var(--champagne);font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--transition),transform var(--transition)}
+.cc-modal-close:hover{background:rgba(201,168,76,.22);transform:scale(1.06)}
+.cc-modal-close:focus-visible{outline:3px solid #1a73e8;outline-offset:2px}
+.cc-modal-box h2{font-size:1.4rem;font-weight:900;color:var(--champagne);margin:0 0 4px;padding-left:44px}
+.cc-modal-box h2::after{content:'';display:block;width:54px;height:3px;margin-top:10px;border-radius:2px;background:linear-gradient(90deg,var(--gold),transparent)}
+.cc-modal-intro{margin:16px 0 6px;font-size:.86rem;line-height:1.7;color:var(--muted)}
+.cc-cat{border:1px solid rgba(201,168,76,.16);border-radius:14px;padding:14px 16px;margin-top:12px;background:rgba(255,255,255,.02)}
+.cc-cat-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cc-cat-title{font-size:.98rem;font-weight:700;color:var(--champagne)}
+.cc-cat-desc{margin-top:6px;font-size:.82rem;line-height:1.6;color:var(--muted)}
+.cc-locked{font-size:.72rem;font-weight:700;color:var(--gold);background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:999px;padding:4px 12px;white-space:nowrap}
+/* toggle switch */
+.cc-switch{position:relative;flex-shrink:0;width:46px;height:26px;display:inline-block}
+.cc-switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.cc-slider{position:absolute;inset:0;background:#333;border:1px solid rgba(201,168,76,.25);border-radius:999px;transition:background .3s ease,border-color .3s ease}
+.cc-slider::before{content:'';position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;background:#888;transition:transform .3s cubic-bezier(.34,1.56,.64,1),background .3s ease}
+.cc-switch input:checked + .cc-slider{background:linear-gradient(135deg,var(--gold),var(--gold-light));border-color:var(--gold)}
+.cc-switch input:checked + .cc-slider::before{transform:translateX(-20px);background:#0A0A0A}
+.cc-switch input:focus-visible + .cc-slider{outline:3px solid #1a73e8;outline-offset:2px}
+.cc-modal-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.cc-modal-actions .cc-btn{flex:1;text-align:center;min-width:120px}
+@media (max-width:600px){
+  /* compact "הגדרות פרטיות" so a normal iPhone shows the whole modal without scrolling.
+     overflow-y:auto stays on the box as a fallback for short screens / large text. */
+  .cc-modal{padding:14px}
+  .cc-modal-box{padding:18px 16px 16px}
+  .cc-modal-box h2{font-size:1.18rem;margin:0 0 2px}
+  .cc-modal-box h2::after{margin-top:7px;height:3px}
+  .cc-modal-intro{margin:10px 0 2px;font-size:.82rem;line-height:1.55}
+  .cc-cat{padding:10px 13px;margin-top:9px;border-radius:12px}
+  .cc-cat-head{gap:10px}
+  .cc-cat-title{font-size:.93rem}
+  .cc-cat-desc{margin-top:3px;font-size:.79rem;line-height:1.5}
+  .cc-locked{font-size:.68rem;padding:3px 10px}
+  .cc-switch{width:44px;height:25px}
+  .cc-slider::before{width:19px;height:19px}
+  .cc-switch input:checked + .cc-slider::before{transform:translateX(-21px)}
+  .cc-modal-actions{margin-top:14px;gap:9px}
+  .cc-modal-actions .cc-btn{padding:11px 14px;font-size:.83rem}
+}
 </style>
+<!-- ============================================================
+     Google Analytics 4 — CONSENT-GATED.
+     The GA library is NOT loaded on page load. gtag() is defined as a
+     safe queue immediately, so every existing gtag('event', …) call
+     works without errors and simply buffers. Nothing is sent to Google
+     until the visitor grants "analytics" consent (see the consent
+     manager script near the end of the file), at which point the GA
+     library is injected and the buffered hits are flushed.
+     ============================================================ -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  // Consent Mode v2 defaults — everything non-essential denied until the user chooses.
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  gtag('js', new Date());
+  // NOTE: gtag('config', …) is intentionally NOT called here.
+  // It runs only after the GA library loads following analytics consent.
+</script>
 </head>
 <body>
 
@@ -904,9 +1099,91 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
       <a href="https://www.kasa-events.co.il/#gallery">גלריה</a>
       <a href="https://www.kasa-events.co.il/#contact">צור קשר</a>
     </nav>
+    <div class="footer-legal" role="navigation" aria-label="קישורים משפטיים">
+      <a data-legal="privacy">מדיניות פרטיות</a>
+      <span class="sep" aria-hidden="true">•</span>
+      <a data-legal="terms">תנאי שימוש</a>
+      <span class="sep" aria-hidden="true">•</span>
+      <a data-legal="accessibility">הצהרת נגישות</a>
+      <span class="sep" aria-hidden="true">•</span>
+      <a data-open-privacy-settings href="#">הגדרות פרטיות</a>
+    </div>
     <p class="footer-copy">Kasa Events — עמדת צילום 360 לאירועים במרכז ובדרום הארץ.</p>
   </div>
 </footer>
+
+<!-- ===== PRIVACY / COOKIE CONSENT ===== -->
+<div class="cc-banner" id="cc-banner" role="dialog" aria-live="polite" aria-label="הודעת פרטיות ועוגיות" hidden>
+  <div class="cc-bubble">
+    <button type="button" class="cc-x" id="cc-close-x" aria-label="סגירת הודעת פרטיות">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="cc-bubble-head">
+      <span class="cc-shield" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2.5l7 2.6v5.2c0 4.5-3 8.3-7 9.7-4-1.4-7-5.2-7-9.7V5.1l7-2.6z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8.6 12.2l2.3 2.3 4-4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <h3 class="cc-title">אנחנו מכבדים את <span>הפרטיות</span> שלך</h3>
+    </div>
+    <p class="cc-text">אנחנו משתמשים בטכנולוגיות הכרחיות להפעלת האתר, ובכפוף לבחירתך גם בכלי ניתוח וביצועים המסייעים לנו להבין את השימוש באתר ולשפר אותו.</p>
+    <p class="cc-text cc-text-sub">ניתן לאשר הכל או להתאים את ההעדפות שלך. מידע נוסף ב<a data-legal="privacy">מדיניות הפרטיות</a>.</p>
+    <div class="cc-bubble-actions">
+      <button type="button" class="cc-btn cc-btn-primary" id="cc-accept-all">אישור הכל</button>
+      <button type="button" class="cc-btn" id="cc-reject-all">רק הכרחיים</button>
+      <button type="button" class="cc-btn" id="cc-open-prefs">התאמת העדפות</button>
+    </div>
+  </div>
+</div>
+
+<div class="cc-modal" id="cc-modal" role="dialog" aria-modal="true" aria-labelledby="cc-modal-title">
+  <div class="cc-modal-backdrop" data-cc-close></div>
+  <div class="cc-modal-box">
+    <button class="cc-modal-close" data-cc-close aria-label="סגירה">✕</button>
+    <h2 id="cc-modal-title">הגדרות פרטיות</h2>
+    <p class="cc-modal-intro">כאן ניתן לבחור אילו טכנולוגיות יופעלו באתר. ההגדרות ההכרחיות פעילות תמיד לצורך תפקוד האתר. שאר הקטגוריות כבויות כברירת מחדל עד לבחירתך.</p>
+
+    <div class="cc-cat">
+      <div class="cc-cat-head">
+        <span class="cc-cat-title">הכרחיים ופונקציונליים</span>
+        <span class="cc-locked">פעיל תמיד</span>
+      </div>
+      <p class="cc-cat-desc">נדרשים להפעלה תקינה של האתר ולשמירת העדפות חיוניות או פונקציונליות, כגון שמירת העדפות נגישות ובחירת הפרטיות שלך.</p>
+    </div>
+
+    <div class="cc-cat">
+      <div class="cc-cat-head">
+        <span class="cc-cat-title">ניתוח וביצועים</span>
+        <label class="cc-switch"><input type="checkbox" id="cc-analytics" aria-label="הפעלת ניתוח וביצועים"><span class="cc-slider"></span></label>
+      </div>
+      <p class="cc-cat-desc">מסייעים לנו להבין באופן סטטיסטי כיצד נעשה שימוש באתר ולשפר את חוויית המשתמש. כולל Google Analytics 4.</p>
+    </div>
+
+    <div class="cc-cat">
+      <div class="cc-cat-head">
+        <span class="cc-cat-title">שיווק ופרסום</span>
+        <label class="cc-switch"><input type="checkbox" id="cc-marketing" aria-label="הפעלת שיווק ופרסום"><span class="cc-slider"></span></label>
+      </div>
+      <p class="cc-cat-desc">עשויים לשמש בעתיד למדידת קמפיינים ולהתאמת פרסום. כרגע אין באתר כלי שיווק/פרסום פעילים, ולכן הפעלת הקטגוריה אינה טוענת דבר בשלב זה.</p>
+    </div>
+
+    <div class="cc-modal-actions">
+      <button type="button" class="cc-btn cc-btn-primary" id="cc-save">שמירת העדפות</button>
+      <button type="button" class="cc-btn" id="cc-accept-all-2">אישור הכל</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LEGAL MODALS ===== -->
+<div class="legal-modal" id="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+  <div class="legal-modal-backdrop" data-legal-close></div>
+  <div class="legal-modal-box">
+    <button class="legal-modal-close" data-legal-close aria-label="סגירה">✕</button>
+    <h2 id="legal-modal-title"></h2>
+    <div class="legal-modal-scroll" id="legal-modal-scroll">
+      <div class="legal-modal-body" id="legal-modal-body"></div>
+    </div>
+    <div class="legal-scroll-indicator" id="legal-scroll-indicator" aria-hidden="true"><span id="legal-scroll-thumb"></span></div>
+  </div>
+</div>
 
 <!-- ===== STICKY CTA BAR (copied 1:1 from index.html) ===== -->
 <div class="sticky-cta-bar" aria-label="פעולות מהירות">
@@ -1337,6 +1614,418 @@ html.a11y-invert .a11y-reset-float{filter:invert(1) hue-rotate(180deg) !importan
   });
 
   load();
+})();
+</script>
+
+<script>
+(function(){
+  var modal = document.getElementById('legal-modal');
+  var titleEl = document.getElementById('legal-modal-title');
+  var bodyEl = document.getElementById('legal-modal-body');
+  if(!modal) return;
+
+  var CONTENT = {
+    privacy: {
+      title: 'מדיניות פרטיות',
+      html: '<p><strong>עודכן לאחרונה:</strong> 29 באוגוסט 2026</p>'
+        + '<p>מדיניות פרטיות זו מתארת כיצד Kasa Events אוספת, משתמשת ושומרת מידע בקשר לאתר ולשירותים שלנו. אנו מכבדים את פרטיותך ופועלים לשמור על המידע בהתאם לדין החל.</p>'
+        + '<h3>א. מי אנחנו</h3>'
+        + '<p>Kasa Events — שירותי עמדת צילום 360 לאירועים.</p>'
+        + '<ul><li>בעל השליטה במידע: דוד קסה / Kasa Events</li><li>דוא"ל לפניות בנושא פרטיות: <a href="mailto:Kasa.events25@gmail.com">Kasa.events25@gmail.com</a></li></ul>'
+        + '<h3>ב. איזה מידע עשוי להיאסף</h3>'
+        + '<p>מידע שאתה מוסר ביוזמתך בטופס יצירת הקשר, ובכלל זה:</p>'
+        + '<ul><li>שם</li><li>מספר טלפון</li><li>תאריך האירוע</li><li>סוג האירוע</li><li>אזור</li><li>תוכן הפנייה / הערות שהוקלדו</li></ul>'
+        + '<p>בנוסף, בכפוף לבחירתך במנגנון הפרטיות, עשוי להיאסף מידע טכני וסטטיסטי באמצעות Google Analytics 4 — כגון מידע על השימוש באתר, דפים שנצפו, אינטראקציות ומידע טכני כללי כפי שנאסף על ידי השירות. פרטי הטופס (שם וטלפון) אינם נשלחים ל-Google Analytics.</p>'
+        + '<h3>ג. מטרות השימוש במידע</h3>'
+        + '<ul><li>יצירת קשר עם הפונה</li><li>בדיקת זמינות</li><li>מתן הצעת מחיר</li><li>תיאום ומתן השירות</li><li>טיפול בפניות</li><li>תפעול ואבטחת האתר</li><li>שמירת העדפות משתמש (כגון נגישות ובחירת פרטיות)</li><li>ניתוח ושיפור האתר — כאשר ניתנה על ידך הבחירה המתאימה לקטגוריית „ניתוח וביצועים”</li></ul>'
+        + '<h3>ד. WhatsApp Business</h3>'
+        + '<p>פנייה מהאתר (למשל דרך טופס יצירת הקשר או כפתורי הוואטסאפ) עשויה להמשיך בהתכתבות באמצעות WhatsApp Business במספר 052-976-2788. בעת השימוש ב-WhatsApp עשוי לחול גם אופן עיבוד המידע של ספק השירות עצמו (WhatsApp/Meta), בהתאם לתנאיו ולמדיניותו. פניות מטופס יצירת הקשר מועברות אלינו באמצעות WhatsApp Business, ואיננו מנהלים כיום מערכת CRM או מאגר לידים נוסף.</p>'
+        + '<h3>ה. Google Analytics</h3>'
+        + '<p>האתר עושה שימוש ב-Google Analytics 4 לצורכי ניתוח וביצועים, וזאת אך ורק בהתאם לבחירתך במנגנון הפרטיות. השירות מסופק על ידי Google ועשוי לעשות שימוש במזהים ובטכנולוגיות כגון Cookies בהתאם לאופן הפעלתו. אם לא ניתנה הסכמה לקטגוריית „ניתוח וביצועים”, רכיב ה-Analytics אינו נטען ואינו פועל.</p>'
+        + '<h3>ו. Cloudinary</h3>'
+        + '<p>האתר עושה שימוש בשירות Cloudinary לאחסון ואספקת קובצי מדיה (סרטונים ותמונות) המוצגים בגלריה. Cloudinary משמש כספק תשתית/אספקת מדיה בלבד ואינו מקבל את פרטי טופס יצירת הקשר.</p>'
+        + '<h3>ז. Google Fonts</h3>'
+        + '<p>האתר טוען גופנים (Heebo) משרתי Google Fonts לצורך עיצוב וטיפוגרפיה. בעת טעינת הגופנים עשוי להתבצע חיבור לשרתי Google כחלק מאספקת הגופן.</p>'
+        + '<h3>ח. אחסון מקומי (localStorage)</h3>'
+        + '<p>האתר עשוי לעשות שימוש ב-localStorage או בטכנולוגיות דומות בדפדפן שלך לצורך: שמירת העדפות נגישות, שמירת בחירת הפרטיות/ההסכמה שלך, ותפקוד תקין של האתר. מדובר בטכנולוגיה פונקציונלית ואינה משמשת לפרסום.</p>'
+        + '<h3>ט. רשתות חברתיות וקישורים חיצוניים</h3>'
+        + '<p>האתר כולל קישורים לשירותים חיצוניים כגון Instagram, TikTok ו-WhatsApp. מעבר לשירות חיצוני כפוף גם למדיניות הפרטיות ולתנאי השימוש של אותו שירות. כרגע אין באתר פיקסלי פרסום (כגון Meta Pixel או TikTok Pixel) והם אינם פעילים.</p>'
+        + '<h3>י. חומרי אירועים</h3>'
+        + '<p>במסגרת מתן שירותי Kasa Events עשויים להיווצר ולהישמר באופן זמני תמונות וסרטונים מהאירוע. חומרי האירוע נשמרים לתקופה של עד 30 יום ולאחר מכן נמחקים, בכפוף לצרכים תפעוליים או לחובה על פי דין. שימוש בתמונות או בסרטונים מאירועים לצורכי פרסום באתר או בערוצי השיווק של Kasa Events נעשה באישור בעלי האירוע.</p>'
+        + '<h3>יא. תקופת שמירת מידע</h3>'
+        + '<ul><li>חומרי אירוע: עד 30 יום ולאחר מכן נמחקים, בכפוף לצרכים תפעוליים או לחובה על פי דין.</li><li>פניות WhatsApp: המידע עשוי להישמר במסגרת ההתכתבות ב-WhatsApp בהתאם לצורך בטיפול בפנייה/שירות ולדין החל.</li><li>העדפות מקומיות (נגישות/פרטיות): נשמרות בדפדפן עד שתמחק או תשנה אותן, או בהתאם למנגנון שנקבע באתר.</li><li>Analytics: בהתאם להגדרות השירות ולבחירתך במנגנון הפרטיות.</li></ul>'
+        + '<h3>יב. מסירת מידע לצדדים שלישיים</h3>'
+        + '<p>איננו מוכרים את המידע האישי שלך. המידע עשוי להיות מעובד באמצעות ספקים הנדרשים להפעלת האתר, לתקשורת עמך ולמתן השירות — לפי הצורך ובהתאם לדין. בין הספקים/הקטגוריות הרלוונטיים כיום: WhatsApp Business (תקשורת), Google Analytics (ניתוח, בכפוף להסכמה), Cloudinary (אספקת מדיה) ו-Google Fonts (גופנים). מסירת מידע עשויה להתבצע גם אם הדבר נדרש על פי דין או רשות מוסמכת.</p>'
+        + '<h3>יג. זכויות המשתמש</h3>'
+        + '<p>בכפוף לדין החל, באפשרותך לפנות אלינו בנוגע למידע אישי אודותיך, לרבות בקשות עיון ותיקון של מידע, לפי העניין. לפניות בנושא זה ניתן לפנות לכתובת <a href="mailto:Kasa.events25@gmail.com">Kasa.events25@gmail.com</a>. היקף הזכויות ואופן מימושן כפופים להוראות הדין.</p>'
+        + '<h3>יד. אבטחת מידע</h3>'
+        + '<p>אנו נוקטים אמצעים סבירים ומקובלים לצמצום סיכונים ולהגנה על המידע. עם זאת, אין מערכת אינטרנטית או אמצעי העברה שמבטיחים אבטחה מוחלטת, ולכן איננו יכולים להתחייב לכך שהמידע יהיה חסין לחלוטין מפני גישה או שימוש בלתי מורשים.</p>'
+        + '<h3>טו. שינויים במדיניות</h3>'
+        + '<p>אנו רשאים לעדכן מדיניות זו מעת לעת. בעת עדכון מהותי יעודכן גם התאריך בראש המדיניות. מומלץ לעיין במדיניות מעת לעת. מועד העדכון האחרון מופיע בראש עמוד זה.</p>'
+        + '<h3>שימוש ב-Cookies וטכנולוגיות דומות</h3>'
+        + '<p>האתר עושה שימוש ב-Cookies, ב-localStorage ובטכנולוגיות דומות, המחולקות לקטגוריות הבאות:</p>'
+        + '<ul><li><strong>הכרחיים/פונקציונליים:</strong> נדרשים לתפקוד האתר ולשמירת העדפות חיוניות (כגון העדפות נגישות ובחירת הפרטיות). פעילים תמיד כאשר הם נדרשים.</li><li><strong>ניתוח וביצועים:</strong> Google Analytics 4 — מופעל רק בכפוף להסכמתך.</li><li><strong>שיווק ופרסום:</strong> כרגע אין באתר פיקסל פרסומי פעיל. הקטגוריה שמורה לשימוש עתידי ואינה טוענת דבר בשלב זה.</li></ul>'
+        + '<p>ניתן לשנות את בחירתך בכל עת דרך הקישור „הגדרות פרטיות” בתחתית האתר.</p>'
+    },
+    terms: {
+      title: 'תנאי שימוש',
+      html: '<p>השימוש באתר מהווה הסכמה לתנאים הבאים:</p>'
+        + '<ul>'
+        + '<li>האתר נועד להציג מידע על שירותי Kasa Events.</li>'
+        + '<li>כל התמונות, הסרטונים והעיצובים באתר הינם רכוש Kasa Events ואין לעשות בהם שימוש ללא אישור מראש ובכתב.</li>'
+        + '<li>שליחת טופס באתר אינה מהווה אישור להזמנת אירוע.</li>'
+        + '<li>הזמנת שירות תתבצע רק לאחר אישור ותשלום מקדמה בהתאם להסכם ההתקשרות.</li>'
+        + '<li>הנהלת האתר רשאית לעדכן את התוכן באתר מעת לעת.</li>'
+        + '</ul>'
+    },
+    accessibility: {
+      title: 'הצהרת נגישות',
+      html: '<p>Kasa Events פועלת להעניק חוויית גלישה נוחה ונגישה לכלל המשתמשים.</p>'
+        + '<p>באתר בוצעו התאמות שונות, ובהן:</p>'
+        + '<ul><li>התאמה למובייל</li><li>ניווט פשוט וברור</li><li>כותרות מסודרות</li><li>ניגודיות צבעים גבוהה</li></ul>'
+        + '<p>אם נתקלתם בבעיה בנושא נגישות, נשמח לקבל את פנייתכם ולעשות כל מאמץ לטפל בה בהקדם.</p>'
+    }
+  };
+
+  var scrollEl = document.getElementById('legal-modal-scroll');
+  var indicator = document.getElementById('legal-scroll-indicator');
+  var indThumb = document.getElementById('legal-scroll-thumb');
+
+  /* custom gold scroll indicator — mirrors the scroll position (visible on iOS too) */
+  function updateIndicator(){
+    if(!scrollEl || !indicator || !indThumb) return;
+    var sh = scrollEl.scrollHeight, ch = scrollEl.clientHeight;
+    if(sh <= ch + 4){ indicator.classList.remove('on'); return; }   // nothing to scroll — hide
+    indicator.classList.add('on');
+    var trackH = indicator.clientHeight;
+    var thumbH = Math.max(34, Math.round(trackH * (ch / sh)));      // proportional, min 34px
+    var maxTop = trackH - thumbH;
+    var ratio = scrollEl.scrollTop / (sh - ch);
+    indThumb.style.height = thumbH + 'px';
+    indThumb.style.transform = 'translateY(' + Math.round(maxTop * ratio) + 'px)';
+  }
+  if(scrollEl){
+    scrollEl.addEventListener('scroll', function(){ requestAnimationFrame(updateIndicator); }, { passive:true });
+  }
+  window.addEventListener('resize', function(){ if(modal.classList.contains('open')) updateIndicator(); });
+
+  /* ---- make the gold rail a real scrollbar on mouse devices (drag thumb + click track) ----
+     Touch devices keep it as a pure indicator; finger swiping on the text is untouched. */
+  (function(){
+    if(!scrollEl || !indicator || !indThumb) return;
+    var dragging = false, startY = 0, startScrollTop = 0, dragPointerId = null;
+
+    function metrics(){
+      var sh = scrollEl.scrollHeight, ch = scrollEl.clientHeight;
+      var trackH = indicator.clientHeight;
+      var thumbH = Math.max(34, Math.round(trackH * (ch / sh)));
+      return { maxScroll: sh - ch, maxThumb: trackH - thumbH, thumbH: thumbH, trackH: trackH };
+    }
+    function clamp(v, min, max){ return v < min ? min : (v > max ? max : v); }
+
+    // drag the thumb
+    indThumb.addEventListener('pointerdown', function(e){
+      if(e.button !== 0 && e.pointerType === 'mouse') return;
+      var m = metrics();
+      if(m.maxScroll <= 0 || m.maxThumb <= 0) return;
+      dragging = true; dragPointerId = e.pointerId;
+      startY = e.clientY;
+      startScrollTop = scrollEl.scrollTop;
+      indicator.classList.add('dragging');
+      if(indThumb.setPointerCapture){ try { indThumb.setPointerCapture(e.pointerId); } catch(err){} }
+      e.preventDefault();
+      e.stopPropagation();   // don't let it reach the track-click handler
+    });
+    indThumb.addEventListener('pointermove', function(e){
+      if(!dragging || e.pointerId !== dragPointerId) return;
+      var m = metrics();
+      if(m.maxThumb <= 0) return;
+      var delta = e.clientY - startY;                       // px moved along the rail
+      var scrollDelta = delta * (m.maxScroll / m.maxThumb); // rail px -> content px
+      scrollEl.scrollTop = clamp(startScrollTop + scrollDelta, 0, m.maxScroll);
+      e.preventDefault();
+    });
+    function endDrag(e){
+      if(!dragging || (e && e.pointerId !== dragPointerId)) return;
+      dragging = false; dragPointerId = null;
+      indicator.classList.remove('dragging');
+      if(e && indThumb.releasePointerCapture){ try { indThumb.releasePointerCapture(e.pointerId); } catch(err){} }
+    }
+    indThumb.addEventListener('pointerup', endDrag);
+    indThumb.addEventListener('pointercancel', endDrag);
+
+    // click on an empty part of the rail -> jump the content there
+    indicator.addEventListener('pointerdown', function(e){
+      if(dragging || e.target === indThumb) return;
+      var m = metrics();
+      if(m.maxScroll <= 0 || m.maxThumb <= 0) return;
+      var rect = indicator.getBoundingClientRect();
+      // centre the thumb on the click point, then convert to scrollTop
+      var thumbTop = clamp(e.clientY - rect.top - m.thumbH / 2, 0, m.maxThumb);
+      scrollEl.scrollTop = (thumbTop / m.maxThumb) * m.maxScroll;
+      e.preventDefault();
+    });
+  })();
+
+  /* mouse-wheel / trackpad (desktop):
+     Wheel over the policy text is left to the browser's own scrolling — the most reliable
+     path, and the reason keyboard worked while a forced preventDefault() blocked the wheel.
+     We only consume the event outside the scroller (backdrop / fixed header area) so the
+     site behind never scrolls, plus at the scroller's own top/bottom edge to stop chaining. */
+  modal.addEventListener('wheel', function(e){
+    if(!modal.classList.contains('open') || !scrollEl) return;
+    if(scrollEl.contains(e.target)){
+      var atTop    = scrollEl.scrollTop <= 0 && e.deltaY < 0;
+      var atBottom = (scrollEl.scrollTop + scrollEl.clientHeight) >= (scrollEl.scrollHeight - 1) && e.deltaY > 0;
+      if(atTop || atBottom) e.preventDefault();   // edge: don't hand the scroll to the page
+      return;                                     // otherwise: native scrolling does the work
+    }
+    e.preventDefault();                           // outside the scroller: keep the page locked
+  }, { passive:false });
+
+  function openLegal(key){
+    var c = CONTENT[key];
+    if(!c) return;
+    // if the consent bubble is currently showing, tuck it away while the policy is read
+    // (this is NOT a consent decision — see __ccHideForLegal / __ccRestoreAfterLegal)
+    if(typeof window.__ccHideForLegal === 'function') window.__ccHideForLegal();
+    titleEl.textContent = c.title;
+    bodyEl.innerHTML = c.html;
+    if(scrollEl) scrollEl.scrollTop = 0;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // measure after the open animation has laid things out
+    requestAnimationFrame(function(){ requestAnimationFrame(updateIndicator); });
+    setTimeout(updateIndicator, 400);
+  }
+  function closeLegal(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    // bring the consent bubble back if it was hidden for the policy and no choice was made yet
+    if(typeof window.__ccRestoreAfterLegal === 'function') window.__ccRestoreAfterLegal();
+  }
+
+  // open from any element carrying data-legal
+  document.addEventListener('click', function(e){
+    var trigger = e.target.closest('[data-legal]');
+    if(trigger){ e.preventDefault(); openLegal(trigger.getAttribute('data-legal')); return; }
+    if(e.target.closest('[data-legal-close]')){ closeLegal(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeLegal();
+  });
+
+  // consent checkbox enables the submit button
+  var consent = document.getElementById('consent-checkbox');
+  var submit = document.getElementById('lead-submit');
+  if(consent && submit){
+    function sync(){ submit.disabled = !consent.checked; }
+    consent.addEventListener('change', sync);
+    sync();
+  }
+
+  // GA4: track every WhatsApp click (works for all current & future WhatsApp links via delegation).
+  // Uses beacon transport + event_callback so the hit is sent BEFORE the browser leaves for WhatsApp.
+  document.addEventListener('click', function(e){
+    var waEl = e.target.closest(
+      'a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href*="whatsapp.com/send"], ' +
+      '#mobile-wa-link, #footer-wa-link, #sticky-bar-wa-link, .scta-wa, .mobile-wa-btn'
+    );
+    if(!waEl) return;
+    if(!window.__ccAnalytics || typeof gtag !== 'function') return; // no analytics consent — link works normally
+
+    // Only send the origin+path of the WhatsApp link to GA — never the ?text= message body.
+    var url = (waEl.href || '').split('?')[0];
+    var target = waEl.getAttribute('target');
+    // If it opens in a new tab, the current page does NOT unload, so the hit sends fine — don't intercept.
+    if(target === '_blank'){
+      gtag('event', 'whatsapp_click', { link_url: url, link_id: waEl.id || '', link_location: waEl.className || '', transport_type: 'beacon' });
+      return;
+    }
+
+    // Same-tab navigation: hold navigation briefly until the event is sent (with a safety timeout).
+    e.preventDefault();
+    var navigated = false;
+    function go(){ if(navigated) return; navigated = true; window.location.href = url; }
+    gtag('event', 'whatsapp_click', {
+      link_url: url,
+      link_id: waEl.id || '',
+      link_location: waEl.className || '',
+      transport_type: 'beacon',
+      event_callback: go
+    });
+    setTimeout(go, 600); // fallback so the link never gets stuck if the callback doesn't fire
+  }, true);
+
+  // GA4: track every phone-call click (all current & future tel: links, incl. mobile) via delegation.
+  // beacon transport ensures the hit is sent even as the dialer app opens. The tel: link is NOT
+  // intercepted, so the dialer opens exactly as before.
+  document.addEventListener('click', function(e){
+    var telEl = e.target.closest('a[href^="tel:"]');
+    if(!telEl) return;
+    if(!window.__ccAnalytics || typeof gtag !== 'function') return; // no analytics consent — link works normally
+    gtag('event', 'phone_click', {
+      link_url: telEl.getAttribute('href') || '',
+      link_id: telEl.id || '',
+      link_location: telEl.className || '',
+      transport_type: 'beacon'
+    });
+    // no preventDefault — the dialer opens as usual
+  }, true);
+})();
+</script>
+
+<!-- ===== PRIVACY / COOKIE CONSENT MANAGER (identical to index.html) ===== -->
+<script>
+(function(){
+  var STORE_KEY = 'kasa_consent';      // stores ONLY consent state — never name/phone/email/form text
+  var GA_ID = 'G-2C37Q52VRV';
+  var gaLoaded = false;
+
+  // ---- storage helpers ----
+  function readConsent(){
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if(!raw) return null;
+      var obj = JSON.parse(raw);
+      if(!obj || typeof obj !== 'object') return null;
+      return obj;
+    } catch(e){ return null; }
+  }
+  function saveConsent(analytics, marketing){
+    var data = {
+      necessary: true,                 // always on when required
+      analytics: !!analytics,
+      marketing: !!marketing,
+      ts: Date.now(),
+      v: 1
+    };
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch(e){}
+    return data;
+  }
+
+  // ---- Google Analytics loader (only after analytics consent) ----
+  function loadGA(){
+    if(gaLoaded) return;
+    gaLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+    // config runs once the library is present; buffered dataLayer hits are then processed
+    gtag('config', GA_ID, { anonymize_ip: true });
+  }
+
+  // ---- apply a consent decision to Consent Mode + GA + our own gate ----
+  function applyConsent(c){
+    window.__ccAnalytics = !!(c && c.analytics);
+    window.__ccMarketing = !!(c && c.marketing);
+    if(typeof gtag === 'function'){
+      gtag('consent', 'update', {
+        'analytics_storage': (c && c.analytics) ? 'granted' : 'denied',
+        'ad_storage':        (c && c.marketing) ? 'granted' : 'denied',
+        'ad_user_data':      (c && c.marketing) ? 'granted' : 'denied',
+        'ad_personalization':(c && c.marketing) ? 'granted' : 'denied'
+      });
+    }
+    if(c && c.analytics){
+      loadGA();
+    } else {
+      // analytics denied/withdrawn: stop future GA and clear removable GA cookies
+      window['ga-disable-' + GA_ID] = true;
+      clearGACookies();
+    }
+    // NOTE: marketing has no active pixels at present — nothing to load.
+  }
+
+  // ---- remove GA cookies we can clear from our own domain ----
+  function clearGACookies(){
+    try {
+      var host = location.hostname;
+      var domains = ['', host, '.' + host];
+      // also try the registrable domain (e.g. .kasa-events.co.il)
+      var parts = host.split('.');
+      if(parts.length > 2){ domains.push('.' + parts.slice(-3).join('.')); domains.push('.' + parts.slice(-2).join('.')); }
+      document.cookie.split(';').forEach(function(ck){
+        var name = ck.split('=')[0].trim();
+        if(/^_ga/.test(name) || name === '_gid' || name === '_gat'){
+          domains.forEach(function(d){
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + (d ? ('; domain=' + d) : '');
+          });
+        }
+      });
+    } catch(e){}
+  }
+
+  // ---- UI wiring ----
+  var banner   = document.getElementById('cc-banner');
+  var modal    = document.getElementById('cc-modal');
+  var tAnalytics = document.getElementById('cc-analytics');
+  var tMarketing = document.getElementById('cc-marketing');
+
+  function showBanner(){ if(banner){ banner.hidden = false; document.body.classList.add('cc-open'); requestAnimationFrame(function(){ banner.classList.add('cc-show'); }); } }
+  function hideBanner(){ if(banner){ banner.classList.remove('cc-show'); document.body.classList.remove('cc-open'); setTimeout(function(){ banner.hidden = true; }, 500); } }
+  function openModal(){
+    var c = readConsent();
+    if(tAnalytics) tAnalytics.checked = !!(c && c.analytics);
+    if(tMarketing) tMarketing.checked = !!(c && c.marketing);
+    if(modal){ modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  }
+  function closeModal(){ if(modal){ modal.classList.remove('open'); document.body.style.overflow = ''; } }
+
+  function acceptAll(){ var c = saveConsent(true, true); applyConsent(c); hideBanner(); closeModal(); }
+  function rejectNonEssential(){ var c = saveConsent(false, false); applyConsent(c); hideBanner(); closeModal(); }
+  function savePrefs(){ var c = saveConsent(tAnalytics && tAnalytics.checked, tMarketing && tMarketing.checked); applyConsent(c); hideBanner(); closeModal(); }
+
+  // banner buttons
+  var byId = function(id){ return document.getElementById(id); };
+  if(byId('cc-accept-all'))  byId('cc-accept-all').addEventListener('click', acceptAll);
+  if(byId('cc-reject-all'))  byId('cc-reject-all').addEventListener('click', rejectNonEssential); // "רק הכרחיים"
+  if(byId('cc-close-x'))     byId('cc-close-x').addEventListener('click', rejectNonEssential); // X = same as "רק הכרחיים"
+  if(byId('cc-open-prefs'))  byId('cc-open-prefs').addEventListener('click', openModal);
+  // modal buttons
+  if(byId('cc-save'))        byId('cc-save').addEventListener('click', savePrefs);
+  if(byId('cc-accept-all-2'))byId('cc-accept-all-2').addEventListener('click', acceptAll);
+  // modal close (backdrop / X)
+  document.addEventListener('click', function(e){
+    if(e.target.closest('[data-cc-close]')) closeModal();
+    var opener = e.target.closest('[data-open-privacy-settings]');
+    if(opener){ e.preventDefault(); openModal(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal();
+  });
+
+  // expose a global so the footer link (and anything else) can reopen preferences
+  window.openPrivacySettings = openModal;
+
+  // ---- hooks for the "privacy policy" link INSIDE the bubble ----
+  // Opening the policy is NOT a consent decision: we only hide the bubble temporarily,
+  // then restore it on policy close IF the visitor still hasn't made a choice.
+  var hiddenForLegal = false;
+  window.__ccHideForLegal = function(){
+    if(banner && !banner.hidden && banner.classList.contains('cc-show')){
+      hiddenForLegal = true;
+      banner.classList.remove('cc-show');
+      document.body.classList.remove('cc-open'); // let the policy modal own the screen
+      setTimeout(function(){ if(hiddenForLegal) banner.hidden = true; }, 500);
+    }
+  };
+  window.__ccRestoreAfterLegal = function(){
+    if(!hiddenForLegal) return;      // wasn't hidden by us — do nothing
+    hiddenForLegal = false;
+    if(readConsent()) return;        // visitor already chose meanwhile — keep it hidden
+    showBanner();                     // bring the bubble back exactly as before (reuses fade/slide-up)
+  };
+
+  // ---- init on load ----
+  var existing = readConsent();
+  if(existing){
+    applyConsent(existing);   // returning visitor — honor saved choice, no banner
+  } else {
+    applyConsent({ analytics:false, marketing:false }); // new visitor — nothing non-essential yet
+    showBanner();
+  }
 })();
 </script>
 </body>
