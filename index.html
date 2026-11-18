@@ -457,6 +457,18 @@ nav.scrolled .hamburger span{width:22px}
 .review-footer{display:flex;align-items:center;justify-content:flex-end;gap:3px;margin-top:5px}
 .review-time{font-size:.6rem;color:#8696A0}
 .review-check{font-size:.68rem;color:#53BDEB;line-height:1}
+/* long reviews show their first lines and a "קרא עוד" link, so one long message doesn't stretch every card
+   (the cards share one height). The script sets --review-lines to the longest regular review on screen;
+   these values are only the fallback before it runs. */
+.review-track{--review-lines:6}
+@media (max-width:600px){.review-track{--review-lines:7}}
+@media (max-width:380px){.review-track{--review-lines:8}}
+.review-text:not(.is-expanded){display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:var(--review-lines);overflow:hidden}
+.review-more{position:relative;margin-inline-end:auto;padding:0;background:none;border:0;font:inherit;font-size:.72rem;font-weight:700;line-height:1;color:#53BDEB;cursor:pointer}
+.review-more::after{content:'';position:absolute;inset:-12px -10px} /* larger tap area without adding height */
+.review-more[hidden]{display:none}
+.review-more:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px}
+.review-slide:not(.is-active) .review-more{visibility:hidden}
 
 /* arrows */
 .review-arrow{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:rgba(17,17,17,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(201,168,76,.35);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:background .25s ease,border-color .25s ease,transform .25s ease}
@@ -916,6 +928,7 @@ html.a11y-contrast .scta-gold *,html.a11y-contrast .nav-cta *,html.a11y-contrast
 html.a11y-contrast .scta-gold svg,html.a11y-contrast .form-submit svg{fill:#000 !important}
 /* outline/secondary buttons: white text + gold border on black */
 html.a11y-contrast .price-btn-outline,html.a11y-contrast .hero-cta-secondary,html.a11y-contrast .gallery-cta,html.a11y-contrast button{border-color:#ffd84d !important}
+html.a11y-contrast .review-more{color:#ffd84d !important}
 /* form fields readable */
 html.a11y-contrast input,html.a11y-contrast select,html.a11y-contrast textarea{background:#111 !important;color:#fff !important;border:1px solid #ffd84d !important}
 html.a11y-contrast input::placeholder,html.a11y-contrast textarea::placeholder{color:#bbb !important}
@@ -1888,6 +1901,25 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
             </div>
           </div>
 
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-wa-header"><span class="review-wa-avatar" role="img" aria-label="Kasa Events"></span><div class="review-wa-headtext"><span class="review-wa-title">Kasa Events</span><span class="review-wa-status"><span class="review-wa-dot"></span>מחובר</span></div></div>
+              <div class="review-body">
+                <div class="review-bubble">
+                  <div class="review-top">
+                    <div class="review-avatar">💍</div>
+                    <div class="review-meta">
+                      <div class="review-name">חתונה • יבנה</div>
+                    </div>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                  <p class="review-text">דוד היקר 👑<br>רצינו להגיד לך תודה ענקית על עמדת ה-360 המטורפת! 🔥<br>באמת שכל הקהל עף על זה ברמות אנשים לא הפסיקו להצטלם וליהנות<br>הוספת כל כך הרבה שמחה ואנרגיות לערב שלנו וזה בדיוק מה שרצינו!<br>תודה על הכל, על ההשקעה ועל זה שהיית חלק מהיום הכי מיוחד שלנו 🥹❤️<br>אין ספק שהייתה בחירה מעולה<br>מאחלים לך שפע של פרנסה והצלחה 🙏🏽<br>אוהבים ומודים לך מאוד🤍</p>
+                  <div class="review-footer"><span class="review-time">22:13</span><span class="review-check">✓✓</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
 
         </div>
       </div>
@@ -1915,6 +1947,7 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
         <button class="review-dot" data-i="12" aria-label="ביקורת 13"></button>
         <button class="review-dot" data-i="13" aria-label="ביקורת 14"></button>
         <button class="review-dot" data-i="14" aria-label="ביקורת 15"></button>
+        <button class="review-dot" data-i="15" aria-label="ביקורת 16"></button>
       </div>
     </div>
   </div>
@@ -2901,7 +2934,9 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
     }
 
     function show(i) {
-      current = (i + total) % total;
+      var target = (i + total) % total;
+      if (target !== current) collapseReviews();
+      current = target;
       position();
     }
 
@@ -2910,6 +2945,7 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
 
     function startAuto() {
       stopAuto();
+      if (reviewOpen()) return; // the visitor is reading a long review
       autoTimer = setInterval(next, AUTO_MS);
     }
     function stopAuto() {
@@ -2942,6 +2978,68 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
       });
     });
 
+    /* long reviews: "קרא עוד" opens the full text (the link only appears when the text is cut) */
+    var MORE_LABEL = 'קרא עוד', LESS_LABEL = 'הצג פחות';
+    var reviewTexts = [];
+    slides.forEach(function (s) {
+      var text = s.querySelector('.review-text');
+      if (!text) return;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'review-more';
+      btn.hidden = true;
+      btn.textContent = MORE_LABEL;
+      btn.setAttribute('aria-expanded', 'false');
+      var footer = s.querySelector('.review-footer'); // same row as the time, so the card doesn't grow
+      if (footer) footer.insertBefore(btn, footer.firstChild); else text.insertAdjacentElement('afterend', btn);
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = !text.classList.contains('is-expanded');
+        text.classList.toggle('is-expanded', open);
+        btn.textContent = open ? LESS_LABEL : MORE_LABEL;
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) stopAuto(); else startAuto();
+      });
+      reviewTexts.push({ text: text, btn: btn });
+    });
+    function reviewOpen() {
+      return reviewTexts.some(function (x) { return x.text.classList.contains('is-expanded'); });
+    }
+    function collapseReviews() {
+      reviewTexts.forEach(function (x) {
+        if (!x.text.classList.contains('is-expanded')) return;
+        x.text.classList.remove('is-expanded');
+        x.btn.textContent = MORE_LABEL;
+        x.btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+    function markCutReviews() {
+      reviewTexts.forEach(function (x) {
+        if (x.text.classList.contains('is-expanded')) return;
+        x.btn.hidden = x.text.scrollHeight <= x.text.clientHeight + 1;
+      });
+    }
+    /* cut only unusually long reviews, to the line count of the longest regular one */
+    function fitReviewLines() {
+      if (!reviewTexts.length) return;
+      var cs = getComputedStyle(reviewTexts[0].text);
+      var lh = parseFloat(cs.lineHeight);
+      if (!/px$/.test(cs.lineHeight)) lh = parseFloat(cs.fontSize) * (isNaN(lh) ? 1.2 : lh);
+      var counts = reviewTexts.map(function (x) { return Math.round(x.text.scrollHeight / lh); });
+      var sorted = counts.slice().sort(function (a, b) { return a - b; });
+      var median = sorted[Math.floor(sorted.length / 2)];
+      var longFrom = Math.max(median + 3, Math.ceil(median * 1.6));
+      var regular = counts.filter(function (n) { return n <= longFrom; });
+      track.style.setProperty('--review-lines', Math.max(3, Math.max.apply(null, regular)));
+      markCutReviews();
+    }
+    fitReviewLines();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitReviewLines);
+    if ('ResizeObserver' in window) {
+      var reviewSizeWatch = new ResizeObserver(function () { requestAnimationFrame(fitReviewLines); });
+      reviewTexts.forEach(function (x) { reviewSizeWatch.observe(x.text); });
+    }
+
     /* pause on hover (desktop) */
     viewport.addEventListener('mouseenter', stopAuto);
     viewport.addEventListener('mouseleave', startAuto);
@@ -2967,7 +3065,7 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
       startAuto();
     }, { passive: true });
 
-    window.addEventListener('resize', position);
+    window.addEventListener('resize', function () { position(); fitReviewLines(); });
 
     position();
     startAuto();
