@@ -378,9 +378,13 @@ nav.scrolled .hamburger span{width:22px}
 .trust-label{font-size:.9rem;font-weight:700;color:var(--champagne)}
 .trust-sub{font-size:.78rem;color:var(--muted)}
 
-.review-carousel{max-width:560px;margin:26px auto 0;position:relative}
-.review-viewport{overflow:hidden;position:relative;padding:6px 0}
-.review-track{display:flex;align-items:stretch;will-change:transform;transition:transform .55s cubic-bezier(0.22,1,0.36,1);touch-action:pan-y}
+.review-carousel{max-width:560px;margin:26px auto 0;position:relative;display:flow-root}
+/* Extra room above/below so the active card's glow is never clipped; the negative margins keep
+   the layout (arrows, dots, spacing) exactly where it was. The horizontal mask fades the peeking
+   side cards into the background instead of cutting them at a hard edge. The padded strips let
+   taps pass through (pointer-events) — the cards themselves stay interactive via the track. */
+.review-viewport{overflow:hidden;position:relative;padding:44px 0 66px;margin:-38px 0 -60px;pointer-events:none;-webkit-mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.35) 5%,rgba(0,0,0,.8) 10%,#000 14%,#000 86%,rgba(0,0,0,.8) 90%,rgba(0,0,0,.35) 95%,transparent 100%);mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.35) 5%,rgba(0,0,0,.8) 10%,#000 14%,#000 86%,rgba(0,0,0,.8) 90%,rgba(0,0,0,.35) 95%,transparent 100%)}
+.review-track{display:flex;align-items:stretch;will-change:transform;transition:transform .55s cubic-bezier(0.22,1,0.36,1);touch-action:pan-y;pointer-events:auto}
 .review-slide{flex:0 0 68%;max-width:68%;padding:0 6px;box-sizing:border-box;display:flex;cursor:pointer}
 
 /* card shell — premium black+gold frame around the WA-style bubble */
@@ -461,7 +465,7 @@ nav.scrolled .hamburger span{width:22px}
 .review-arrow-prev{right:0}
 .review-arrow-next{left:0}
 
-.review-dots{display:flex;justify-content:center;gap:7px;margin-top:16px}
+.review-dots{display:flex;justify-content:center;gap:7px;margin-top:16px;position:relative;z-index:2}
 .review-dot{width:7px;height:7px;border-radius:50%;background:rgba(201,168,76,.25);border:none;padding:0;cursor:pointer;transition:background .3s ease,transform .3s ease}
 .review-dot.active{background:linear-gradient(135deg,var(--gold),var(--gold-light));transform:scale(1.3);box-shadow:0 0 8px rgba(201,168,76,.6)}
 
