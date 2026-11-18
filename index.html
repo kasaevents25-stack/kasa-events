@@ -2960,8 +2960,9 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
       touchEndX = e.changedTouches[0].screenX;
       var diff = touchStartX - touchEndX;
       if (Math.abs(diff) > SWIPE_THRESHOLD) {
-        if (diff > 0) { next(); }
-        else { prev(); }
+        // RTL-natural swipe (same as the gallery): the cards follow the finger
+        if (diff > 0) { prev(); }
+        else { next(); }
       }
       startAuto();
     }, { passive: true });
