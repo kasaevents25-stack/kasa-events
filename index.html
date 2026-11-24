@@ -1432,6 +1432,15 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
           </div>
 
           <div class="gallery-slide">
+            <div class="gallery-item" style="--thumb:url('/videos/party-reel-start.jpg')">
+              <video class="gallery-video gallery-local-video" src="/videos/party-reel.mp4" poster="/videos/party-reel-start.jpg" muted playsinline preload="none"></video>
+              <button class="gallery-item-click-catcher" type="button" data-lightbox-open aria-label="פתיחת הסרטון במסך מלא"></button>
+              <div class="video-badge">VIDEO</div>
+              <div class="gallery-overlay"><span>מסיבה — אירוע מועדון</span></div>
+            </div>
+          </div>
+
+          <div class="gallery-slide">
             <div class="gallery-item" style="--thumb:url('/videos/wedding-four-seasons-start.jpg')">
               <video class="gallery-video gallery-local-video" src="/videos/wedding-four-seasons.mp4" poster="/videos/wedding-four-seasons-start.jpg" muted playsinline preload="none"></video>
               <button class="gallery-item-click-catcher" type="button" data-lightbox-open aria-label="פתיחת הסרטון במסך מלא"></button>
@@ -1503,6 +1512,7 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
         <button class="gallery-dot" data-i="4" aria-label="וידאו 5"></button>
         <button class="gallery-dot" data-i="5" aria-label="וידאו 6"></button>
         <button class="gallery-dot" data-i="6" aria-label="וידאו 7"></button>
+        <button class="gallery-dot" data-i="7" aria-label="וידאו 8"></button>
       </div>
 
       <div class="guide-link">
@@ -2271,6 +2281,11 @@ body.cc-open .a11y-toggle,body.cc-open .a11y-panel,body.cc-open .a11y-reset-floa
     'חתונה — אירוע': {
       video:  'https://res.cloudinary.com/dchc5d5lr/video/upload/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.mp4',
       poster: 'https://res.cloudinary.com/dchc5d5lr/video/upload/so_2/copy_D9711E05-C165-47B5-AA67-E71969F3CA79_py6dbr.jpg'
+    },
+    // stored in the site itself (videos/ folder), not on Cloudinary
+    'מסיבה — אירוע מועדון': {
+      video:  '/videos/party-reel.mp4',
+      poster: '/videos/party-reel-start.jpg'
     },
     // this one is stored in the site itself (videos/ folder), not on Cloudinary
     'חתונה — ארבע עונות': {
